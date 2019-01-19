@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Miftah</title>
+
+        <link rel="stylesheet" href="libs/css/vendor.css">
+        <link rel="stylesheet" href="libs/css/main.css">
+        <link rel="stylesheet" href="libs/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="libs/css/lf-ng-md-file-input.min.css">
+        <link rel="stylesheet" href="libs/css/sweet-alert.css">
+        <link rel="stylesheet" href="libs/css/google.css">
+        <link rel="stylesheet" href="custom/css/style.css">
+    </head>
+    <body ng-app="myApp" class="extended">
+        <div ui-view=""></div>
+        <script type="text/javascript" src="libs/scripts/vendor.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script type="text/javascript" src="libs/scripts/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDW9E6MQ_gxDJLWJLg_8QpPKaoITOF3yPA",
+                authDomain: "daawa-301ba.firebaseapp.com",
+                databaseURL: "https://daawa-301ba.firebaseio.com",
+                projectId: "daawa-301ba",
+                storageBucket: "daawa-301ba.appspot.com",
+                messagingSenderId: "901626089406"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script type="text/javascript" src="libs/scripts/angularfire.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script type="text/javascript" src="custom/script/app.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/loginCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/dashbordCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/sidenavCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/admin/AdminCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/channel/channelCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/playlist/playlistCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/controllers/content/contenCtrl.js"></script>
+        <script type="text/javascript" src="custom/script/services/auth.js"></script>
+        <script type="text/javascript" src="custom/script/services/sp.js"></script>
+        <script type="text/javascript" src="libs/scripts/lf-ng-md-file-input.js"></script>
+        <script type="text/javascript" src="libs/scripts/fileSaver.js"></script>
+        <script type="text/javascript" src="libs/scripts/json-export-excel.min.js"></script>
+        <script type="text/javascript" src="libs/scripts/sweet-alert.min.js"></script>
+    </body>
+</html>

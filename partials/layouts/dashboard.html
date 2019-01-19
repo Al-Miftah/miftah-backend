@@ -1,0 +1,107 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="navbar shadow">
+        <button class="c-hamburger c-hamburger--htla is-active" ng-click="extend()">
+            <span>
+                toggle menu
+            </span>
+        </button>
+        <div class="responsive-logo">
+            Miftah<br/>
+            <span class="smaller">Dashboard</span>
+        </div>
+        <nav class="right" style="margin-right: 20px; margin-top: 10px;">
+            <button class="thisrtl md-button md-ink-ripple" aria-label="RTL" ng-click="rtl();" type="button">
+                <span class="">RTL</span>
+                <span class="md-ripple-container"></span>
+            </button>
+            <md-menu class="md-menu" md-position-mode="target-right target">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <div class="mdl-badge" data-badge="7">
+                        <i class="mdi mdi-dots-vertical"></i>
+                    </div>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="Logout();"> <span md-menu-align-target>logout</span> </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </nav>
+    </header>
+    <aside class="sidebar">
+        <div class="top-logo">M</div>
+        <div class="top-logo-extended">
+            Miftah
+            <br/>
+            <span class="smaller">DASHBOARD</span>
+        </div>
+        <div class="scrollbar" id="scroll">
+            <div class="user-info">
+                <div class="opacity">
+                    <a>
+                        <img src="images/a.jpg" alt="profile" class="sidebar-profile">
+                    </a>
+                    <div class="info">
+                         {{luser.username}}
+                        <br/>
+                        <span class="smaller">{{luser.type}}</span>
+                        <div class="pen">
+                            <span>
+                            <!--<a href="#/app/dashboard/editAdmin/{{luser._id}}">-->
+                                <!--<i class="mdi mdi-border-color"></i>-->
+                            <!--</a>-->
+                           </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-menu">
+                <ul class="menu-list">
+                     <li class="show-subnav">
+                        <a class="show-menu md-button md-ink-ripple" aria-label="Admin" ng-click="subnav('ad')" href="">
+                            <i class="mdi mdi-chevron-down" ng-class="{'active': showingSubNav=='ad'}"></i>
+                            <i class="mdi mdi-account"></i>
+                            <span class="text">Admin</span>
+                        </a>
+                        <ul  class="sub-menu" ng-class="{'visible': showingSubNav=='ad'}">
+                            <li  ng-class="{active: $state.includes('addAdmin')}">
+                                <a class="md-button md-ink-ripple" aria-label=">Register Admin" href="#/app/dashboard/addAdmin" ui-sref="addAdmin">
+                                    <span class="text">Registration</span>
+                                </a>
+                            </li>
+                            <li  ng-class="{active: $state.includes('administrators')}">
+                                <a class="md-button md-ink-ripple" aria-label=">Administrators" href="#/app/dashboard/administrators" ui-sref="administrators">
+                                    <span class="text">Profile Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="show-subnav">
+                       <a class="show-menu md-button md-ink-ripple" aria-label="Channel" ng-click="subnav('ch')" href="">
+                           <i class="mdi mdi-chevron-down" ng-class="{'active': showingSubNav=='ev'}"></i>
+                           <i class="mdi mdi-calendar"></i>
+                           <span class="text">Channel</span>
+                       </a>
+                       <ul  class="sub-menu" ng-class="{'visible': showingSubNav=='ch'}">
+                           <li ng-class="{active: $state.includes('events')}">
+                               <a class="md-button md-ink-ripple" aria-label=">All Channels" href="#/app/dashboard/channels" ui-sref="channels">
+                                   <span class="text">All Channels</span>
+                               </a>
+                           </li>
+                           <li ng-class="{active: $state.includes('createChannel')}">
+                               <a class="md-button md-ink-ripple" aria-label=">Create Channel" href="#/app/dashboard/createChannel" ui-sref="createChannel">
+                                   <span class="text">Create Channel</span>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <main class="content-holder">
+        <div class="page-content remodal-bg animsition" ng-class="{expandedContainer: $state.includes('profile')}">
+            <div ui-view></div>
+        </div>
+    </main>
+</div>
