@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Topic;
+use App\Models\Topic;
 use App\Observers\TopicObserver;
 
 class EloquentEventServiceProvider extends ServiceProvider

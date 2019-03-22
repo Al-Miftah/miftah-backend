@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterFormRequest;
-use App\User;
+use App\Models\User;
 
 class RegisterController extends Controller
 {

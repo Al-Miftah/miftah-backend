@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Topic;
+use App\Models\Topic;
 
 
 class TopicObserver

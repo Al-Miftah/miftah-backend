@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Topic;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
@@ -52,7 +52,7 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function show(Topic $topic)
@@ -63,7 +63,7 @@ class TopicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function edit(Topic $topic)
@@ -75,7 +75,7 @@ class TopicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTopicRequest $request, Topic $topic)
@@ -92,7 +92,7 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function destroy(DestroyTopicRequest $request, Topic $topic)

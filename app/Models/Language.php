@@ -1,13 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Answer extends Model
+class Language extends Model
 {
     use SoftDeletes;
-
+    
     protected $fillable = [];
+    
+    public function speech()
+    {
+        return $this->hasMany(Speech::class);
+    }
 }
