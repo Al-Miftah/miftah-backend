@@ -11,7 +11,7 @@ class SpeakerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
         $this->speaker = factory(Speaker::class)->create();

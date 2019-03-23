@@ -12,7 +12,7 @@ class TopicTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->topic = factory(Topic::class)->create();
