@@ -34,7 +34,30 @@ class LanguagesTableSeeder extends Seeder
             [
                 'name' => 'Sisaale',
 
+            ],
+            [
+                'name' => 'Kussasi',
+
+            ],
+            [
+                'name' => 'Ewe',
+
+            ],
+            [
+                'name' => 'Fante',
+
+            ],
+            [
+                'name' => 'Mamprusi',
+
             ]
         ];
+
+        foreach ($languages as $language) {
+            Topic::firstOrCreate(
+                ['slug' => str_slug($language['name'])],
+                ['name' => $language['name']]
+            );
+        }
     }
 }

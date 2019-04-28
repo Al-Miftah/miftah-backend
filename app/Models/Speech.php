@@ -25,4 +25,12 @@ class Speech extends Model
     {
         return $this->belongsTo(Topic::class);
     }
+
+    /**
+     * Return users who favorited the speech
+     */
+    public function favorators()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'speech_id', 'user_id');
+    }
 }

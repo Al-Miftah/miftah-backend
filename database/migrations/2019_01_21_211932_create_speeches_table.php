@@ -16,11 +16,11 @@ class CreateSpeechesTable extends Migration
         Schema::create('speeches', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('speaker_id');
-            $table->unsignedInteger('topic_id');
+            $table->unsignedInteger('topic_id')->nullable();
             $table->unsignedInteger('language_id');
             $table->string('title');
             $table->string('slug');
-            $table->text('summary');
+            $table->text('summary')->nullable();
             $table->text('url');
 
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');

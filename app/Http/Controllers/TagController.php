@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Speech;
+use App\ModelsTag;
 use Illuminate\Http\Request;
 
-class SpeechController extends Controller
+class TagController extends Controller
 {
-    public function __construct()
-    {
-        //
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +14,7 @@ class SpeechController extends Controller
      */
     public function index()
     {
-        $speeches = Speech::paginate(10);
-        return response()->json([
-            'data' => $speeches
-        ], 200);
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class SpeechController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Speech  $speech
+     * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function show(Speech $speech)
+    public function show(ModelsTag $modelsTag)
     {
         //
     }
@@ -59,10 +52,10 @@ class SpeechController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Speech  $speech
+     * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Speech $speech)
+    public function edit(ModelsTag $modelsTag)
     {
         //
     }
@@ -71,10 +64,10 @@ class SpeechController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Speech  $speech
+     * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Speech $speech)
+    public function update(Request $request, ModelsTag $modelsTag)
     {
         //
     }
@@ -82,10 +75,10 @@ class SpeechController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Speech  $speech
+     * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Speech $speech)
+    public function destroy(ModelsTag $modelsTag)
     {
         //
     }
