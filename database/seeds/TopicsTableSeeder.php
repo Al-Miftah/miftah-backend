@@ -14,41 +14,41 @@ class TopicsTableSeeder extends Seeder
     {
         $topics = [
             [
-                'name' => 'Ramadan 2019 series',
+                'title' => 'Ramadan 2019 series',
             ],
             [
-                'name' => 'Marriage in Islam series',
+                'title' => 'Marriage in Islam series',
             ],
             [
-                'name' => '99 names of Allah series',
+                'title' => '99 names of Allah series',
             ],
             [
-                'name' => 'The companions of the prophet series',
+                'title' => 'The companions of the prophet series',
             ],
             [
-                'name' => 'Tafsir of Suratul Baqara series',
+                'title' => 'Tafsir of Suratul Baqara series',
             ],
             [
-                'name' => 'The life of the project series',
+                'title' => 'The life of the project series',
             ],
             [
-                'name' => 'Wives of the prophet series',
+                'title' => 'Wives of the prophet series',
             ],
             [
-                'name' => 'Purification of the soul series',
+                'title' => 'Purification of the soul series',
             ],
             [
-                'name' => 'Tafsir of suratul Maryam series',
+                'title' => 'Tafsir of suratul Maryam series',
             ],
             [
-                'name' => 'Benefits of reciting the Quran series',
+                'title' => 'Benefits of reciting the Quran series',
             ]
         ];
 
         foreach ($topics as $topic) {
             Topic::firstOrCreate(
-                ['slug' => str_slug($topic['name'])],
-                ['name' => $topic['name']]
+                ['slug' => str_slug($topic['title'])],
+                ['title' => $topic['title']]
             );
         }
     }

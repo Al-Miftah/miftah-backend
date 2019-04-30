@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\ModelsTag;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
@@ -14,17 +14,12 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
-    }
+        //TODO: Paginate results
+        $tags = Tag::get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'data' => $tags
+        ], 200);
     }
 
     /**
@@ -35,27 +30,21 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->name;
+        $tag = Tag::firstOrCreate(
+                ['slug' => str_slug($name)],
+                [
+                    'name' => $name,
+                ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ModelsTag  $modelsTag
+     * @param  \App\Tag  $Tag
      * @return \Illuminate\Http\Response
      */
-    public function show(ModelsTag $modelsTag)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ModelsTag  $modelsTag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ModelsTag $modelsTag)
+    public function show(Tag $tag)
     {
         //
     }
@@ -67,9 +56,11 @@ class TagController extends Controller
      * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelsTag $modelsTag)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $tag->name = $request->name;
+        $tag->save();
+        
     }
 
     /**
@@ -78,8 +69,12 @@ class TagController extends Controller
      * @param  \App\ModelsTag  $modelsTag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelsTag $modelsTag)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return response()->json([
+            'data' => 'Tag removed successfully'
+        ], 201);
     }
 }

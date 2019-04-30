@@ -15,4 +15,20 @@ class Speaker extends Model
     {
         return $this->hasMany(Speech::class);
     }
+
+    /**
+     * Return users following this speaker
+     */
+    public function followers()
+    {
+        return $this->morphMany(Follower::class, 'followable');
+    }
+
+    /**
+     * Questions directed to the speaker
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

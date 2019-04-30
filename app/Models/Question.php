@@ -10,4 +10,9 @@ class Question extends Model
     use SoftDeletes;
 
     protected $fillable = [];
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

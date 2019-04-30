@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Language;
 
 class LanguagesTableSeeder extends Seeder
 {
@@ -54,7 +55,7 @@ class LanguagesTableSeeder extends Seeder
         ];
 
         foreach ($languages as $language) {
-            Topic::firstOrCreate(
+            Language::firstOrCreate(
                 ['slug' => str_slug($language['name'])],
                 ['name' => $language['name']]
             );

@@ -17,4 +17,12 @@ class Topic extends Model
     {
         return $this->hasMany(Speech::class);
     }
+
+     /**
+      * Return users following this topic
+      */
+    public function followers()
+    {
+        return $this->morphMany(Follower::class, 'followable');
+    }
 }

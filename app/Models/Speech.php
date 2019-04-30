@@ -10,6 +10,11 @@ class Speech extends Model
     use SoftDeletes;
     
     protected $fillable = [];
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
     
     public function speaker()
     {

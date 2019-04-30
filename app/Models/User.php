@@ -37,4 +37,20 @@ class User extends Authenticatable
         return $this->belongsToMany(Speech::class, 'favorites', 'user_id', 'speech_id')
                     ->withTimeStamps();
     }
+
+    /**
+     * Questions asked by the user
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    /**
+     * Return items the user follows. Speaker or Topic
+     */
+    public function following()
+    {
+        //
+    }
 }

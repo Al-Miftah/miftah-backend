@@ -10,4 +10,9 @@ class Answer extends Model
     use SoftDeletes;
 
     protected $fillable = [];
+
+    public function question()
+    {
+        return $this->belongsTo(Qeustion::class);
+    }
 }
