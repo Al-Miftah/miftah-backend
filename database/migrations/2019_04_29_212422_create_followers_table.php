@@ -15,7 +15,8 @@ class CreateFollowersTable extends Migration
     {
         Schema::create('followers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('follow')->comment('This createds followable_id and followable_type columns');
+            //'This createds followable_id and followable_type columns'
+            $table->morphs('follow');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
