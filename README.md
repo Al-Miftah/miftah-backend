@@ -3,7 +3,7 @@
 ## Installation steps
 ### Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
 ### Clone the repository
-### Create a `.env` file with contents from `.env.example` file and update then env variables
+### Create a `.env` file with contents from `.env.example` file and then update the env variables to suit your taste
 ### Run `composer install && npm install` to install project dependencies
 ### Run `php artisan key:generate` to generate the application encryption key
 ### Run `php artisan migrate` to migrate the database
@@ -20,8 +20,8 @@
 - [ ] CRUD Speech
 - [ ] CRUD Languages
 - [ ] Upload audio file with different encodings to a speech
-- [ ] A User can ask a Speaker Questions
-- [ ] A Speaker can respond to Questions
+- [ ] A User can ask Questions
+- [ ] Any Speaker can respond to a Question
 - [ ] A User can favorite a Speech
 - [ ] A User can follow a Topic/Series
 - [ ] A User get notified when there's a new Speech in a Topic he is following
