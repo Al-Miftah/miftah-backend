@@ -14,34 +14,61 @@ class TopicsTableSeeder extends Seeder
     {
         $topics = [
             [
-                'title' => 'Ramadan 2019 series',
+                'title' => 'Ramadan',
             ],
             [
-                'title' => 'Marriage in Islam series',
+                'title' => 'Fasting',
             ],
             [
-                'title' => '99 names of Allah series',
+                'title' => 'Marriage',
             ],
             [
-                'title' => 'The companions of the prophet series',
+                'title' => 'Fiqh',
             ],
             [
-                'title' => 'Tafsir of Suratul Baqara series',
+                'title' => 'Divorce',
             ],
             [
-                'title' => 'The life of the project series',
+                'title' => 'Dua',
             ],
             [
-                'title' => 'Wives of the prophet series',
+                'title' => 'Hajj',
             ],
             [
-                'title' => 'Purification of the soul series',
+                'title' => 'Islamic Finance',
             ],
             [
-                'title' => 'Tafsir of suratul Maryam series',
+                'title' => 'History',
             ],
             [
-                'title' => 'Benefits of reciting the Quran series',
+                'title' => 'Hadith',
+            ],
+            [
+                'title' => 'Quran',
+            ],
+            [
+                'title' => 'Names of Allah',
+            ],
+            [
+                'title' => 'Parenting',
+            ],
+            [
+                'title' => 'Salah',
+            ],
+            [
+                'title' => 'Seera',
+            ],
+            [
+                'title' => 'Prophets',
+            ],
+            [
+                'title' => 'Nawafil',
+            ],
+            [
+                'title' => 'Women',
+            ],
+            [
+                'title' => 'Zakat',
             ]
         ];
 
