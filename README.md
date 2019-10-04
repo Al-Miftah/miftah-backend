@@ -28,3 +28,7 @@
 - [ ] A User can follow/subscribe to a Speaker
 - [ ] A User get notified when a Speaker he follows release a new Speech
 - [ ] A Speech can be tagged to many available tags or new tag created on the fly
+
+
+## External packages
+- [Laravel passport](https://github.com/laravel/passport)
