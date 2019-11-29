@@ -62,9 +62,35 @@ class SpeakerTest extends TestCase
     /** @test */
     public function it_lists_all_speakers()
     {
-        $speakers = factory('App\Models\Speaker', 2)->create();
+        factory('App\Models\Speaker', 2)->create();
         $response = $this->json('GET', route('speakers.index'));
         $response->assertOk();
         $response->assertJsonCount(2, 'data');
+    }
+
+    /**
+     * @test
+     */
+    public function it_soft_deletes_a_speaker()
+    {
+        $speaker = factory('App\Models\Speaker')->create();
+        $response = $this->json('DELETE', route('speakers.destroy', $speaker));
+        $response->assertNoContent(204);
+        $this->assertSoftDeleted('speakers', [
+            'id' => $speaker->id,
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_deletes_a_speaker_permanently()
+    {
+        $speaker = factory('App\Models\Speaker')->create();
+        $response = $this->json('DELETE', route('speakers.destroy', $speaker), ['permanent' => true]);
+        $response->assertNoContent(204);
+        $this->assertDatabaseMissing('speakers', [
+            'id' => $speaker->id,
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
+use Illuminate\Http\Request;
 use App\Http\Resources\SpeakerResource;
 use App\Http\Resources\SpeakerCollection;
 use App\Http\Requests\UpdateSpeakerRequest;
@@ -57,8 +58,13 @@ class SpeakerController extends Controller
      * @param  \App\Models\Speaker  $speaker
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Speaker $speaker)
+    public function destroy(Request $request, Speaker $speaker)
     {
-        //
+        if ($request->permanent) {
+            $speaker->forceDelete();
+        }else {
+            $speaker->delete();
+        }
+        return response()->noContent(204);
     }
 }

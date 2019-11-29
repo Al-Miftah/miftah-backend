@@ -3,7 +3,7 @@
 ## Installation steps
 ### Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
 ### Clone the repository
-### Create a `.env` file with contents from `.env.example` file and then update the env variables to suit your taste
+### Create a `.env` file with contents from `.env.example` file and then update the env variables
 ### Run `composer install && npm install` to install project dependencies
 ### Run `php artisan key:generate` to generate the application encryption key
 ### Run `php artisan migrate` to migrate the database

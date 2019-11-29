@@ -43,7 +43,7 @@ class DocumentationController extends Controller
             ],
             'speakers' => 
             [
-                'registeration' => 
+                'registration' => 
                 [
                     'method' => 'POST',
                     'endpoint' => '/api/speaker/auth/register',
@@ -66,7 +66,44 @@ class DocumentationController extends Controller
                     'params' => [
                         'email', 'password'
                     ]
+                ],
+                'create' =>
+                [
+                    'method' => 'POST',
+                    'endpoint' => '/api/speakers',
+                    'params' => [
+                        'first_name',
+                        'last_name',
+                        'email',
+                        'phone_number',
+                        'location_address',
+                        'city',
+                        'password',
+                        'password_confirmation',
+                        'avatar'
+                    ]
+                ],
+                'list' =>
+                [
+                    'method' => 'GET',
+                    'endpoint' => '/api/speakers',
+                ],
+                'update' =>
+                [
+                    'method' => 'PATCH',
+                    'endpoint' => '/api/speakers/:id',
+                    'params' => []
+                ],
+                'delete' =>
+                [
+                    'method' => 'DELETE',
+                    'endpoint' => '/api/speakers/:id',
+                    'params' => [
+                        'permanent'
+                    ]
                 ]
+
+
             ],
             'topics' => 
             [
