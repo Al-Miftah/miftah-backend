@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Speaker;
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreSpeakerRequest;
+use App\Http\Resources\SpeakerResource;
+use App\Http\Resources\SpeakerCollection;
 use App\Http\Requests\UpdateSpeakerRequest;
+use App\Http\Requests\RegisterSpeakerRequest;
 
 class SpeakerController extends Controller
 {
@@ -17,10 +18,7 @@ class SpeakerController extends Controller
     public function index()
     {
         $speakers = Speaker::paginate(10);
-
-        return response()->json([
-            'data' => $speakers
-        ], 200);
+        return new SpeakerCollection($speakers);
     }
 
     /**
@@ -29,16 +27,13 @@ class SpeakerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSpeakerRequest $request)
+    public function store(RegisterSpeakerRequest $request)
     {
-        $speaker = Speaker::create($request->only('phone', 'city', 'address', 'bio'));
+        $input = $request->only('first_name', 'last_name', 'email', 'location_address', 'phone_number', 'city', 'address', 'bio');
+        $input['password'] = bcrypt($request->password);
+        $speaker = Speaker::create($input);
 
-        $data = [
-            'status' => true,
-            'message' => 'Speaker added successfully!',
-            'data' => $speaker
-        ];
-        return response()->json($data, 200);
+        return new SpeakerResource($speaker);
     }
 
 
@@ -51,14 +46,9 @@ class SpeakerController extends Controller
      */
     public function update(UpdateSpeakerRequest $request, Speaker $speaker)
     {
-        $speaker->update($request->all());
-
-        $data = [
-            'status' => true,
-            'message' => 'Speaker details updated successfully!',
-            'data' => $speaker
-        ];
-        return response()->json($data, 200);
+        $input = $request->only('first_name', 'last_name', 'email', 'location_address', 'phone_number', 'city', 'address', 'bio');
+        $speaker->update($input);
+        return new SpeakerResource($speaker->fresh());
     }
 
     /**

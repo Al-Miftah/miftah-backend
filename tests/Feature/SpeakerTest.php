@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Speaker;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Speaker;
 
 class SpeakerTest extends TestCase
 {
@@ -18,59 +18,53 @@ class SpeakerTest extends TestCase
 
 
     /** @test */
-    public function it_creates_a_speaker_and_associate_it_with_a_user()
+    public function it_creates_a_speaker()
     {
         $input = [
-            'name' => 'Yakubu Salifu',
+            'first_name' => 'Salifu',
+            'last_name' => 'Yakubu',
             'email' => 'sheikhsalifu@yahoo.com',
-            'phone' => '+233540362282',
-            'address' => 'Chaggu, Wa East - Upper West',
-            'bio' => 'An islamic cleric with many years of experience in Chaggu'
+            'phone_number' => '+233540362282',
+            'location_address' => 'Chaggu, Wa East - Upper West',
+            'bio' => 'An islamic cleric with many years of experience in Chaggu',
+            'city' => 'Wa',
+            'password' => 'secret123',
+            'password_confirmation' => 'secret123'
         ];
 
         $response = $this->json('POST', route('speakers.store'), $input);
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('speakers', [
+            'email' => 'sheikhsalifu@yahoo.com'
+        ]);
+        $response->assertJsonFragment([
+            'first_name' => 'Salifu'
+        ]);
+    }
+
+    /** @test */
+    public function it_updates_details_of_aspeaker()
+    {
+        $speaker = factory(Speaker::class)->create();
+        $input = [
+            'first_name' => 'Salih'
+        ];
+        $response = $this->json('PATCH', route('speakers.update', $speaker), $input);
         $response->assertOk();
         $this->assertDatabaseHas('speakers', [
-            'name' => 'Yakubu Salifu'
+            'first_name' => 'Salih'
+        ]);
+        $response->assertJsonFragment([
+            'first_name' => 'Salih'
         ]);
     }
 
     /** @test */
-    public function update_speaker()
+    public function it_lists_all_speakers()
     {
-        //$speaker = factory(Speaker::class)->create();
-        $response = $this->json('PATCH', '/api/speakers/'.$this->speaker->id);
-        $response->assertStatus(200);
-        
-        $this->speaker->update(['name' => 'Imori Abu']);
-        $this->assertDatabaseHas('speakers', ['name' => 'Imori Abu']);
-    }
-
-    /** @test */
-    public function show_details_of_a_specific_speaker()
-    {
-        $speaker = $this->speaker;
-
-        $response = $this->json('GET', '/api/speakers/'.$speaker->id);
-        $response->assertStatus(200);
-
-        $content = $response->getData();
-        $this->assertEquals($content->data->name, $speaker->name);
-    }
-
-    /** @test */
-    public function list_all_speakers()
-    {
-        $response = $this->json('GET', '/api/speakers');
-        $response->assertStatus(200);
-
-        //TODO Refact to use only setUp() in model creation
-        $speakers = factory(Speaker::class, 2)->create(); 
-        $this->assertCount(3, Speaker::get()); //3 because 1 is already created in setUp() 
-
-        //TODO Check full json structure of returned model
-        $response->assertJsonStructure([
-            'data' => 'data'
-        ]);
+        $speakers = factory('App\Models\Speaker', 2)->create();
+        $response = $this->json('GET', route('speakers.index'));
+        $response->assertOk();
+        $response->assertJsonCount(2, 'data');
     }
 }

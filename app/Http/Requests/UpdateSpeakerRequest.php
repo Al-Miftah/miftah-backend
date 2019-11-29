@@ -24,12 +24,14 @@ class UpdateSpeakerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'filled|string|max:150',
-            'phone' => 'filled|string|max:20',
+            'first_name' => 'filled|string|max:150',
+            'last_name' => 'filled|string|max:150',
+            'phone_number' => 'filled|string|min:10|max:20',
             'email' => 'filled|email|max:150',
-            'address' => 'filled|max:150',
+            'location_address' => 'filled|max:100',
             'avatar' => 'filled|image:jpeg,png',
-            'bio' => 'filled|string|max:255'
+            'bio' => 'filled|string',
+            'city' => 'filled|string',
         ];
     }
 }
