@@ -2,14 +2,19 @@
 
 use Illuminate\Http\Request;
 
+Route::get('developer/docs', 'DocumentationController');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//User authentication
+Route::post('auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
+Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
 
-Route::post('auth/register', 'Auth\Api\RegisterController@register');
-Route::post('auth/login', 'Auth\Api\LoginController@authenticate');
-
+//Speaker authentication
+Route::post('speaker/auth/register', 'Auth\API\SpeakerRegistrationController')->name('speaker.auth.register');
+Route::post('speaker/auth/login', 'Auth\API\SpeakerLoginController')->name('speaker.auth.login');
 
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('speakers', 'SpeakerController');

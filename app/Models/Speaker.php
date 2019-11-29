@@ -2,26 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Speaker extends Model
+class Speaker extends Authenticatable
 {
-    use SoftDeletes;
+    use Notifiable, HasApiTokens, SoftDeletes;
     
-    protected $fillable = ['name', 'phone', 'email', 'bio', 'address', 'avatar'];
+    protected $guard = 'speaker';
+
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone_number', 'bio', 'city', 'location_address', 'avatar'];
+    
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     
     public function speeches()
     {
         return $this->hasMany(Speech::class);
     }
 
-    /**
-     * Return users following this speaker
-     */
     public function followers()
     {
-        return $this->morphMany(Follower::class, 'followable');
+        return $this->morphedByMany(User::class, 'followerble', 'users', 'followerble_id', 'follower_id');
     }
 
     /**

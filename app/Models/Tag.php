@@ -10,6 +10,6 @@ class Tag extends Model
 
     public function speeches()
     {
-        return $this->belongsToMany(Speech::class);
+        return $this->morphedByMany(Speech::class, 'taggable');
     }
 }

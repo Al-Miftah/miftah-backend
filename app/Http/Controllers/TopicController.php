@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use App\Http\Resources\TopicResource;
 use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
-use App\Http\Requests\DestroyTopicRequest;
+use App\Http\Resources\TopicCollection;
 
 class TopicController extends Controller
 {
@@ -18,17 +19,7 @@ class TopicController extends Controller
     public function index()
     {
         $topics = Topic::paginate(10);
-        return response()->json($topics, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return new TopicCollection($topics);
     }
 
     /**
@@ -39,36 +30,8 @@ class TopicController extends Controller
      */
     public function store(StoreTopicRequest $request)
     {
-        $topic = Topic::create($request->all());
-
-        $data = [
-            'status' => true,
-            'message' => 'Topic created successfully!',
-            'data' => $topic
-        ];
-        return response()->json($data, 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Topic $topic)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Topic  $topic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Topic $topic)
-    {
-        //
+        $topic = Topic::create($request->only('title', 'description'));
+        return new TopicResource($topic);
     }
 
     /**
@@ -80,13 +43,8 @@ class TopicController extends Controller
      */
     public function update(UpdateTopicRequest $request, Topic $topic)
     {
-        $status = $topic->update($request->only(['name', 'slug']));
-
-        return response()->json([
-            'status' => $status,
-            'message' => $status ? 'Topic Updated!' : 'Error Updating topic',
-            'data' => $topic
-        ]);
+        $topic->update($request->only(['title', 'description']));
+        return new TopicResource($topic->fresh());
     }
 
     /**
@@ -95,18 +53,14 @@ class TopicController extends Controller
      * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DestroyTopicRequest $request, Topic $topic)
+    public function destroy(Request $request, Topic $topic)
     {
         if($request->permanent) {
             $topic->forceDelete();
-            return response()->json([
-                'message' => 'Topic removed permanently'
-            ], 201);
+            return response()->noContent(204);
         }
         
         $topic->delete();
-        return response()->json([
-            'message' => 'Topic removed temporarily'
-        ], 201);
+        return response()->noContent(204);
     }
 }

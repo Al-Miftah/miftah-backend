@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-//use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class DestroyTopicRequest extends FormRequest
+class LoginSpeakerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class DestroyTopicRequest extends FormRequest
     public function rules()
     {
         return [
-            'permanent' => 'required|boolean'
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 }

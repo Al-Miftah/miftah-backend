@@ -27,6 +27,7 @@ class StoreTopicRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:topics|max:255',
+            'description' => 'required|string|min:10'
         ];
     }
 

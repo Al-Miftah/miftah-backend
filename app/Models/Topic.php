@@ -9,7 +9,7 @@ class Topic extends Model
 {
     use SoftDeletes;
     
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title', 'description'];
 
     protected $dates = ['deleted_at'];
 

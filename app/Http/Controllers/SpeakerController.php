@@ -24,16 +24,6 @@ class SpeakerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('speakers.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,7 +31,7 @@ class SpeakerController extends Controller
      */
     public function store(StoreSpeakerRequest $request)
     {
-        $speaker = Speaker::create($request->all());
+        $speaker = Speaker::create($request->only('phone', 'city', 'address', 'bio'));
 
         $data = [
             'status' => true,
@@ -51,29 +41,6 @@ class SpeakerController extends Controller
         return response()->json($data, 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Speaker  $speaker
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Speaker $speaker)
-    {
-        return response()->json([
-            'data' => $speaker
-        ], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Speaker  $speaker
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Speaker $speaker)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

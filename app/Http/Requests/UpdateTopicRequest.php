@@ -24,7 +24,8 @@ class UpdateTopicRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'filled|max:255',
+            'name' => 'filled|string|max:255',
+            'description' => 'filled|string'
         ];
     }
 }

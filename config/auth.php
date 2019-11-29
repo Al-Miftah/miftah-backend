@@ -45,6 +45,11 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
         ],
+
+        'speaker' => [
+            'driver' => 'passport',
+            'provider' => 'speakers'
+        ]
     ],
 
     /*
@@ -69,6 +74,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'speakers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Speaker::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

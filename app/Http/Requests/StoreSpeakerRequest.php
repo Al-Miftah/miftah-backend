@@ -24,10 +24,9 @@ class StoreSpeakerRequest extends FormRequest //Extending custom FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:150',
             'phone' => 'required|max:150',
-            'email' => ['string', 'email', 'max:255', 'unique:speakers'],
-            'address' => 'required|string|max:150',
+            'city' => 'required|max:50',
+            'address' => 'required|string|max:50',
             'avatar' => 'image|mimes:jpeg,png',
             'bio'   => 'String|max:255'
         ];

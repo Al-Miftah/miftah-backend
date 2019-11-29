@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSpeechTagTable extends Migration
+class CreateTaggablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateSpeechTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('speech_tag', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('speech_id');
             $table->unsignedBigInteger('tag_id');
-            $table->timestamps();
-
-            $table->foreign('speech_id')->references('id')->on('speeches')->onDelete('cascade');
+            $table->unsignedBigInteger('taggable_id');
+            $table->string('taggable_type');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +30,6 @@ class CreateSpeechTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('speech_tag');
+        Schema::dropIfExists('taggables');
     }
 }
