@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Speech;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,12 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class SpeechTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed('TagsTableSeeder');
+    }
 
     /**
      * @test
@@ -35,6 +42,7 @@ class SpeechTest extends TestCase
             'speaker_id' => $speaker->id,
             'language_id' => $language->id,
             'topic_id' => $topic->id,
+            'tags' => ['repentance', 'fasting']
         ];
         
         $response = $this->json('POST', route('speeches.store'), $input);
@@ -48,6 +56,7 @@ class SpeechTest extends TestCase
         $folder = 'public/uploads/speeches/audio';
         $this->assertCount(1, Storage::files($folder));
         $this->assertCount(1, Storage::files('public/uploads/speeches/photos'));
+        $this->assertCount(2, Speech::whereTitle('Women rights in Islam')->first()->tags);
         
     }
 

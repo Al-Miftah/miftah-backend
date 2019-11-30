@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\{Topic, Speech};
-use App\Observers\{TopicObserver, SpeechObserver};
+use App\Models\{Topic, Speech, Tag};
+use App\Observers\{TopicObserver, SpeechObserver, TagObserver};
 
 class EloquentEventServiceProvider extends ServiceProvider
 {
@@ -17,6 +17,7 @@ class EloquentEventServiceProvider extends ServiceProvider
     {
         Topic::observe(TopicObserver::class);
         Speech::observe(SpeechObserver::class);
+        Tag::observe(TagObserver::class);
     }
 
     /**

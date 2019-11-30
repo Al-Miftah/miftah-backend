@@ -31,7 +31,8 @@ class StoreSpeechRequest extends FormRequest
             'cover_photo' => 'nullable|image|max:200',
             'speaker_id' => 'required|integer|exists:speakers,id',
             'topic_id' => 'nullable|integer|exists:topics,id',
-            'language_id' => 'required|integer|exists:languages,id'
+            'language_id' => 'required|integer|exists:languages,id',
+            'tags' => 'sometimes|array'
         ];
     }
 }

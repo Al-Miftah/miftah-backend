@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Speech;
 use App\Traits\UploadTrait;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Resources\SpeechResource;
+use App\Http\Resources\SpeechCollection;
 use App\Http\Requests\StoreSpeechRequest;
 use App\Http\Requests\UpdateSpeechRequest;
-use App\Http\Resources\SpeechCollection;
-use App\Http\Resources\SpeechResource;
 
 class SpeechController extends Controller
 {
@@ -53,12 +55,27 @@ class SpeechController extends Controller
         //Save speech
         $speech->save();
 
+        //Tags if any
+        if ($request->has('tags')) {
+            $tags = $request->input('tags');
+            $ids = [];
+
+            foreach ($tags as $tag) {
+                $tag = Tag::firstOrCreate(['slug' => Str::slug($tag)], [
+                    'name' => $tag
+                ]);
+                $ids[] = $tag->id;
+            }
+
+            $speech->tags()->syncWithoutDetaching($ids);
+        }
+
         return new SpeechResource($speech);
     }
 
     public function show(Speech $speech)
     {
-        $data = $speech->load('speaker', 'language');
+        $data = $speech->load('speaker', 'language', 'tags');
         return new SpeechResource($data);
     }
 
@@ -77,6 +94,21 @@ class SpeechController extends Controller
             $input['cover_photo'] = $path;
         }
         $speech->update($input);
+        //Tags if any
+        if ($request->has('tags')) {
+            $tags = $request->input('tags');
+            $ids = [];
+
+            foreach ($tags as $tag) {
+                $tag = Tag::firstOrCreate(['slug' => Str::slug($tag)], [
+                    'name' => $tag
+                ]);
+                $ids[] = $tag->id;
+            }
+
+            $speech->tags()->syncWithoutDetaching($ids);
+        }
+
         return new SpeechResource($speech->fresh());
     }
 

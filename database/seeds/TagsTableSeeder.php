@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Tag;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class TagsTableSeeder extends Seeder
 {
@@ -27,7 +28,7 @@ class TagsTableSeeder extends Seeder
 
         foreach ($tags as $tag) {
             Tag::firstOrCreate(
-                ['slug' => str_slug($tag['name'])],
+                ['slug' => Str::slug($tag['name'])],
                 ['name' => $tag['name']]
             );
         }

@@ -190,7 +190,8 @@ class DocumentationController extends Controller
                         'speaker_id',
                         'language_id',
                         'topic_id' => 'optional',
-                        'cover_photo' => 'optional'
+                        'cover_photo' => 'optional',
+                        'tags' => ['...names']
                     ]
                 ],
                 'list' => [

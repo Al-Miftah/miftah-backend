@@ -3,17 +3,13 @@
 namespace App\Observers;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 
 
 class TagObserver
 {
-    public function creating(Tag $tag)
+    public function saving(Tag $tag)
     {
-        $tag->slug = str_slug($tag->name);
-    }
-
-    public function updating(Tag $tag)
-    {
-        $tag->slug = str_slug($tag->name);
+        $tag->slug = Str::slug($tag->name);
     }
 }
