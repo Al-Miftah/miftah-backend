@@ -14,16 +14,12 @@
 
 
 ## TODO
-- [ ] CRUD Speech
-- [ ] CRUD Languages
-- [ ] Upload audio file with different encodings to a speech
+- [ ] Setup laravel horizon
 - [ ] A User can ask Questions
 - [ ] Any Speaker can respond to a Question
 - [ ] A User can favorite a Speech
 - [ ] A User get notified when there's a new Speech in a Topic he is following
 - [ ] A User get notified when a Speaker he follows release a new Speech
-- [ ] A Speech can be tagged to many available tags or new tag created on the fly
-- [ ] Setup laravel horizon
 
 
 ## External packages
