@@ -13,13 +13,13 @@ Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.a
 Route::post('speaker/auth/register', 'Auth\API\SpeakerRegistrationController')->name('speaker.auth.register');
 Route::post('speaker/auth/login', 'Auth\API\SpeakerLoginController')->name('speaker.auth.login');
 
-//Speaker followers
-Route::get('speakers/{speaker}/followers', 'UserSpeakerController@index')->name('speakers.followers.index');
-Route::post('speakers/{speaker}/followers', 'UserSpeakerController@store')->name('speakers.followers.store');
-
 //User topics
 Route::get('users/topics', 'UserTopicController@index')->name('users.topics.index');
 Route::post('users/topics/{topic}', 'UserTopicController@store')->name('users.topics.store');
+
+//User speakers
+Route::post('users/speakers/{speaker}', 'UserSpeakerController@store')->name('users.speakers.store');
+Route::get('users/speakers', 'UserSpeakerController@index')->name('users.speakers.index');
 
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('speakers', 'SpeakerController');
