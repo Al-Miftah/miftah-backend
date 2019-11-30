@@ -9,6 +9,14 @@ Route::get('developer/docs', 'DocumentationController');
 Route::post('auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
 Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
 
+Route::group(['middleware' => ['auth:api']], function () {
+    //User profile
+    Route::get('user/profile', 'UserProfileController@show')->name('user.profile.show');
+    Route::patch('user/profile', 'UserProfileController@update')->name('user.profile.update');
+    Route::patch('user/profile/password', 'UserProfileController@changePassword')->name('user.password.update');
+});
+
+
 //Speaker authentication
 Route::post('speaker/auth/register', 'Auth\API\SpeakerRegistrationController')->name('speaker.auth.register');
 Route::post('speaker/auth/login', 'Auth\API\SpeakerLoginController')->name('speaker.auth.login');

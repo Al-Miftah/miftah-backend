@@ -40,6 +40,27 @@ class DocumentationController extends Controller
                         'password',
                     ]
                 ],
+                'profile' =>
+                [
+                    'show' => [
+                        'method' => 'GET',
+                        'endpoint' => '/api/user/profile'
+                    ],
+                    'update' => [
+                        'method' => 'PATCH',
+                        'endpoint' => '/api/user/profile',
+                        'params' => [
+                            'name', 'email', 'username', 'avatar'
+                        ]
+                    ],
+                    'change_password' => [
+                        'method' => 'PATCH',
+                        'endpoint' => '/user/profile/password',
+                        'params' => [
+                            'current_password', 'password', 'password_confirmation'
+                        ]
+                    ]
+                ],
                 'topics' => 
                 [
                     'follow/unfollow' => [
