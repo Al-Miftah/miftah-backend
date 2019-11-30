@@ -50,7 +50,19 @@ class DocumentationController extends Controller
                         'method' => 'GET',
                         'endpoint' => '/api/user/topics'
                     ]
+                ],
+                'speakers' =>
+                [
+                    'follow/unfollow' => [
+                        'method' => 'POST',
+                        'endpoint' => '/api/users/speakers/:id'
+                    ],
+                    'list' => [
+                        'method' => 'GET',
+                        'endpoint' => '/api/users/speakers'
+                    ]
                 ]
+
             ],
             'speakers' => 
             [
@@ -113,18 +125,6 @@ class DocumentationController extends Controller
                         'permanent'
                     ]
                 ],
-                'followers' =>
-                [
-                    'method' => 'GET',
-                    'endpoint' => '/api/speakers/:id/followers'
-                ],
-                'follow/unfollow' =>
-                [
-                    'method' => 'POST',
-                    'endpoint' => '/api/speakers/:id/followers'
-                ]
-
-
             ],
             'topics' => 
             [
