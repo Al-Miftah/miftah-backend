@@ -9,7 +9,7 @@ class Speech extends Model
 {
     use SoftDeletes;
     
-    protected $fillable = [];
+    protected $fillable = ['title', 'summary', 'transcription', 'url', 'cover_photo', 'speaker_id', 'topic_id', 'language_id'];
 
     public function tags()
     {

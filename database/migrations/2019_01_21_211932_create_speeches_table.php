@@ -14,15 +14,16 @@ class CreateSpeechesTable extends Migration
     public function up()
     {
         Schema::create('speeches', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('speaker_id');
-            $table->unsignedInteger('topic_id')->nullable();
-            $table->unsignedInteger('language_id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('slug');
+            $table->string('url');
             $table->text('summary')->nullable();
-            $table->text('url');
-
+            $table->text('transcription')->nullable();
+            $table->string('cover_photo')->nullable();
+            $table->unsignedBigInteger('speaker_id');
+            $table->unsignedBigInteger('language_id');
+            $table->unsignedBigInteger('topic_id')->nullable();
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             $table->foreign('speaker_id')->references('id')->on('speakers')->onDelete('cascade');
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');

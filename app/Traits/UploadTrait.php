@@ -12,7 +12,6 @@ trait UploadTrait {
     {
         $name = $filename ??  Str::random(20).'.'.$file->getClientOriginalExtension();
         $folder = $folder ?? 'public/uploads';
-        $disk = $disk ?? config('miftah.storage.disk');
-        return $file->storeAs($folder, $name, $disk);
+        return $file->storeAs($folder, $name);
     }
 }

@@ -13,7 +13,7 @@ class UpdateSpeechRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class UpdateSpeechRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'filled|string|max:150',
+            'summary' => 'filled|string',
+            'transcription' => 'filled|nullable|string',
+            'speech' => 'filled|file|mimetypes:audio/mpeg,audio/mp4,audio/ogg,audio/wave,audio/3gpp,audio/ac3,audio/basic,audio/midi',
+            'cover_photo' => 'filled|nullable|image|max:200',
+            'speaker_id' => 'filled|integer|exists:speakers,id',
+            'topic_id' => 'filled|nullable|integer|exists:topics,id',
+            'language_id' => 'filled|integer|exists:languages,id'
         ];
     }
 }

@@ -3,17 +3,13 @@
 namespace App\Observers;
 
 use App\Models\Speech;
+use Illuminate\Support\Str;
 
 
 class SpeechObserver
 {
-    public function creating(Speech $speech)
+    public function saving(Speech $speech)
     {
-        $speech->slug = str_slug($speech->title);
-    }
-
-    public function updating(Speech $speech)
-    {
-        $speech->slug = str_slug($speech->title);
+        $speech->slug = Str::slug($speech->title);
     }
 }

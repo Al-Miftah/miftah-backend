@@ -176,7 +176,44 @@ class DocumentationController extends Controller
                         'permanent' => 'boolean'
                     ]
                 ]
-            ],    
+            ],
+            'speeches' =>
+            [
+                'create' => [
+                    'method' => 'POST',
+                    'endpoint' => '/api/speeches',
+                    'params' => [
+                        'title',
+                        'summary' => 'optional',
+                        'transcription' => 'optional',
+                        'speech' => 'File',
+                        'speaker_id',
+                        'language_id',
+                        'topic_id' => 'optional',
+                        'cover_photo' => 'optional'
+                    ]
+                ],
+                'list' => [
+                    'method' => 'GET',
+                    'endpoint' => '/api/speeches'
+                ],
+                'show' => [
+                    'method' => 'GET',
+                    'endpoint' => '/api/speeches/:id'
+                ],
+                'update' => [
+                    'method' => 'PATCH',
+                    'endpoint' => '/api/speeches/:id',
+                    'params' => []
+                ],
+                'delete' => [
+                    'method' => 'DELETE',
+                    'endpoint' => '/api/speeches/:id',
+                    'params' => [
+                        'permanent' => 'true/false'
+                    ]
+                ]
+            ]   
         ]);
     }
 }
