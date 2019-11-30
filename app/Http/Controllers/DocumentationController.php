@@ -39,6 +39,17 @@ class DocumentationController extends Controller
                         'email',
                         'password',
                     ]
+                ],
+                'topics' => 
+                [
+                    'follow/unfollow' => [
+                        'method' => 'POST',
+                        'endpoint' => '/api/user/topics/:id'
+                    ],
+                    'list' => [
+                        'method' => 'GET',
+                        'endpoint' => '/api/user/topics'
+                    ]
                 ]
             ],
             'speakers' => 
@@ -101,6 +112,16 @@ class DocumentationController extends Controller
                     'params' => [
                         'permanent'
                     ]
+                ],
+                'followers' =>
+                [
+                    'method' => 'GET',
+                    'endpoint' => '/api/speakers/:id/followers'
+                ],
+                'follow/unfollow' =>
+                [
+                    'method' => 'POST',
+                    'endpoint' => '/api/speakers/:id/followers'
                 ]
 
 

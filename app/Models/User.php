@@ -47,10 +47,18 @@ class User extends Authenticatable
     }
 
     /**
-     * Return items the user follows. Speaker or Topic
+     * Speakers the user follows
      */
-    public function following()
+    public function speakers()
     {
-        //
+        return $this->morphedByMany(Speaker::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
+    }
+
+    /**
+     * Topics the user follows
+     */
+    public function topics()
+    {
+        return $this->morphedByMany(Topic::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
     }
 }

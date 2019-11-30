@@ -23,6 +23,6 @@ class Topic extends Model
       */
     public function followers()
     {
-        return $this->morphMany(Follower::class, 'followable');
+        return $this->morphToMany(User::class, 'followerble', 'followerbles', 'followerble_id', 'follower_id');
     }
 }

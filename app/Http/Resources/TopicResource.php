@@ -17,6 +17,7 @@ class TopicResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'description' => $this->description,
             'created_at' => $this->created_at,
         ];
     }

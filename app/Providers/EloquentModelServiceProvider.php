@@ -26,6 +26,8 @@ class EloquentModelServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'speeches' => 'App\Models\Speech',
+            'speakers' => 'App\Models\Speaker',
+            'topics' => 'App\Models\Topic'
         ]);
     }
 }

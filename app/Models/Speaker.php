@@ -26,7 +26,8 @@ class Speaker extends Authenticatable
 
     public function followers()
     {
-        return $this->morphedByMany(User::class, 'followerble', 'users', 'followerble_id', 'follower_id');
+        return $this->morphToMany(User::class, 'followerble', 'followerbles', 'followerble_id', 'follower_id');
+        
     }
 
     /**
