@@ -15,9 +15,9 @@
 
 ## TODO
 - [ ] Setup laravel horizon
-- Forgot password (API)
-- Reset password (API)
-- Verify email (API)
+- [ ] Forgot password (API)
+- [ ] Reset password (API)
+- [ ] Verify email (API)
 - [ ] A User can ask Questions
 - [ ] Any Speaker can respond to a Question
 - [ ] A User can favorite a Speech
