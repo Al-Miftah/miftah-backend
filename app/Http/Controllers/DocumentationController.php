@@ -24,11 +24,11 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/auth/register',
                     'params' => [
-                        'name',
-                        'username',
-                        'email',
-                        'password',
-                        'password_confirmation'
+                        'name' => 'String',
+                        'username' => 'String',
+                        'email' => 'String',
+                        'password' => 'String',
+                        'password_confirmation' => 'String'
                     ]
                 ],
                 'login' =>
@@ -36,8 +36,8 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/auth/login',
                     'params' => [
-                        'email',
-                        'password',
+                        'email' => 'String',
+                        'password' => 'String',
                     ]
                 ],
                 'profile' =>
@@ -50,14 +50,19 @@ class DocumentationController extends Controller
                         'method' => 'PATCH',
                         'endpoint' => '/api/user/profile',
                         'params' => [
-                            'name', 'email', 'username', 'avatar'
+                            'name' => 'String', 
+                            'email' => 'String', 
+                            'username' => 'String', 
+                            'avatar' => 'File'
                         ]
                     ],
                     'change_password' => [
                         'method' => 'PATCH',
                         'endpoint' => '/user/profile/password',
                         'params' => [
-                            'current_password', 'password', 'password_confirmation'
+                            'current_password' => 'String',
+                            'password' => 'String',
+                            'password_confirmation' => 'String'
                         ]
                     ]
                 ],
@@ -92,15 +97,15 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/speaker/auth/register',
                     'params' => [
-                        'first_name',
-                        'last_name',
-                        'email',
-                        'phone_number',
-                        'location_address',
-                        'city',
-                        'password',
-                        'password_confirmation',
-                        'avatar'
+                        'first_name' => 'String',
+                        'last_name' => 'String',
+                        'email' => 'String',
+                        'phone_number' => 'String',
+                        'location_address' => 'String',
+                        'city' => 'String',
+                        'password' => 'String',
+                        'password_confirmation' => 'String',
+                        'avatar' => 'File'
                     ]
                 ],
                 'login' => 
@@ -108,7 +113,8 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/speaker/auth/login',
                     'params' => [
-                        'email', 'password'
+                        'email' => 'String', 
+                        'password' => 'String'
                     ]
                 ],
                 'create' =>
@@ -116,15 +122,15 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/speakers',
                     'params' => [
-                        'first_name',
-                        'last_name',
-                        'email',
-                        'phone_number',
-                        'location_address',
-                        'city',
-                        'password',
-                        'password_confirmation',
-                        'avatar'
+                        'first_name' => 'String',
+                        'last_name' => 'String',
+                        'email' => 'String',
+                        'phone_number' => 'String',
+                        'location_address' => 'String',
+                        'city' => 'String',
+                        'password' => 'String',
+                        'password_confirmation' => 'String',
+                        'avatar' => 'File'
                     ]
                 ],
                 'list' =>
@@ -143,7 +149,7 @@ class DocumentationController extends Controller
                     'method' => 'DELETE',
                     'endpoint' => '/api/speakers/:id',
                     'params' => [
-                        'permanent'
+                        'permanent' => 'true/false'
                     ]
                 ],
             ],
@@ -157,23 +163,23 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/topics',
                     'params' => [
-                        'title',
-                        'description'
+                        'title' => 'String',
+                        'description' => 'String'
                     ]
                 ],
                 'update' => [
                     'method' => 'PATCH',
                     'endpoint' => '/api/topics/:id',
                     'params' => [
-                        'title',
-                        'description'
+                        'title' => 'String',
+                        'description' => 'String'
                     ]
                 ],
                 'delete' => [
                     'method' => 'DELETE',
                     'endpoint' => '/api/topics/:id',
                     'params' => [
-                        'permanent' => 'boolean'
+                        'permanent' => 'true/false'
                     ]
                 ]
             ],
@@ -183,12 +189,12 @@ class DocumentationController extends Controller
                     'method' => 'POST',
                     'endpoint' => '/api/speeches',
                     'params' => [
-                        'title',
-                        'summary' => 'optional',
+                        'title' => 'String',
+                        'summary' => 'String',
                         'transcription' => 'optional',
                         'speech' => 'File',
-                        'speaker_id',
-                        'language_id',
+                        'speaker_id' => 'Integer',
+                        'language_id' => 'Integer',
                         'topic_id' => 'optional',
                         'cover_photo' => 'optional',
                         'tags' => ['...names']
