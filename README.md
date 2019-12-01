@@ -1,15 +1,15 @@
 # Al-Miftah Api
 
 ## Installation steps
-### Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
-### Clone the repository
-### Create a `.env` file with contents from `.env.example` file and then update the env variables
-### Run `composer install && npm install` to install project dependencies
-### Run `php artisan key:generate` to generate the application encryption key
-### Run `php artisan migrate` to migrate the database
-### Run `php artisan passport:install` to create the encryption keys needed to generate secure access tokens
-### Run `php artisan db:seed` to seed the database tables with dummy data
-### Run `php artisan storage:link` to make uploaded files visible in public folder
+Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
+Clone the repository
+Create a `.env` file with contents from `.env.example` file and then update the env variables
+Run `composer install && npm install` to install project dependencies
+Run `php artisan key:generate` to generate the application encryption key
+Run `php artisan migrate` to migrate the database
+Run `php artisan passport:install` to create the encryption keys needed to generate secure access tokens
+Run `php artisan db:seed` to seed the database tables with dummy data
+Run `php artisan storage:link` to make uploaded files visible in public folder
 
 
 
