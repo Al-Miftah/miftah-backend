@@ -14,7 +14,6 @@
 
 
 ## TODO
-- [ ] Setup laravel horizon
 - [ ] Forgot password (API)
 - [ ] Reset password (API)
 - [ ] Verify email (API)
@@ -27,3 +26,4 @@
 
 ## External packages
 - [Laravel passport](https://github.com/laravel/passport)
+- [Predis](https://github.com/nrk/predis)
