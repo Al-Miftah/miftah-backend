@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Topic;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class TopicsTableSeeder extends Seeder
 {
@@ -14,67 +15,86 @@ class TopicsTableSeeder extends Seeder
     {
         $topics = [
             [
-                'title' => 'Ramadan',
+                'title' => 'Ramadan 2019 series',
+                'description' => ''
             ],
             [
                 'title' => 'Fasting',
+                'description' => ''
             ],
             [
-                'title' => 'Marriage',
+                'title' => 'Marriage in the 21st century',
+                'description' => ''
             ],
             [
                 'title' => 'Fiqh',
+                'description' => ''
             ],
             [
                 'title' => 'Divorce',
+                'description' => ''
             ],
             [
                 'title' => 'Dua',
+                'description' => ''
             ],
             [
                 'title' => 'Hajj',
+                'description' => ''
             ],
             [
                 'title' => 'Islamic Finance',
+                'description' => ''
             ],
             [
                 'title' => 'History',
+                'description' => ''
             ],
             [
                 'title' => 'Hadith',
+                'description' => ''
             ],
             [
-                'title' => 'Quran',
+                'title' => 'Benefits of reciting Quran',
+                'description' => ''
             ],
             [
                 'title' => 'Names of Allah',
+                'description' => ''
             ],
             [
                 'title' => 'Parenting',
+                'description' => ''
             ],
             [
                 'title' => 'Salah',
+                'description' => ''
             ],
             [
                 'title' => 'Seera',
+                'description' => ''
             ],
             [
                 'title' => 'Prophets',
+                'description' => ''
             ],
             [
                 'title' => 'Nawafil',
+                'description' => ''
             ],
             [
                 'title' => 'Women',
+                'description' => ''
             ],
             [
                 'title' => 'Zakat',
+                'description' => ''
             ]
         ];
 
         foreach ($topics as $topic) {
             Topic::firstOrCreate(
-                ['slug' => str_slug($topic['title'])],
+                ['slug' => Str::slug($topic['title'])],
                 ['title' => $topic['title']]
             );
         }

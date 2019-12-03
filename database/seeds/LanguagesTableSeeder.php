@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Language;
+use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class LanguagesTableSeeder extends Seeder
 {
@@ -56,7 +57,7 @@ class LanguagesTableSeeder extends Seeder
 
         foreach ($languages as $language) {
             Language::firstOrCreate(
-                ['slug' => str_slug($language['name'])],
+                ['slug' => Str::slug($language['name'])],
                 ['name' => $language['name']]
             );
         }
