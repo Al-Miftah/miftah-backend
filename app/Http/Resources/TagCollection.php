@@ -15,7 +15,7 @@ class TagCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => TagResource::collection($this->colleciton),
+            'data' => TagResource::collection($this->collection),
             'pagination' => [
                 'total' => $this->total(),
                 'count' => $this->count(),

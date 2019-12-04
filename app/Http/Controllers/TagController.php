@@ -2,79 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Resources\TagCollection;
+use App\Http\Resources\TagResource;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //TODO: Paginate results
-        $tags = Tag::get();
+        $tags = Tag::paginate(30);
 
-        return response()->json([
-            'data' => $tags
-        ], 200);
+        return new TagCollection($tags);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $name = $request->name;
-        $tag = Tag::firstOrCreate(
-                ['slug' => str_slug($name)],
+        //Create tags
+        $tags = $request->input('tags');
+        foreach ($tags as $tag) {
+            Tag::firstOrCreate(
+                ['slug' => Str::slug($tag)],
                 [
-                    'name' => $name,
-                ]);
+                    'name' => $tag,
+                ]
+            );
+        }
+
+        return response()->json([
+            'message' => 'Tags created successfully!'
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tag  $Tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ModelsTag  $modelsTag
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Tag $tag)
     {
         $tag->name = $request->name;
         $tag->save();
-        
+        return new TagResource($tag);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ModelsTag  $modelsTag
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Tag $tag)
     {
         $tag->delete();
-
-        return response()->json([
-            'data' => 'Tag removed successfully'
-        ], 201);
+        return response()->noContent();
     }
 }
