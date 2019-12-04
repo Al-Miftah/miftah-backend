@@ -28,8 +28,8 @@
 - [ ] Forgot password (API)
 - [ ] Reset password (API)
 - [ ] Verify email (API)
-- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
-- [ ] A User get notified when a Speaker he/she follows release a new Speech
-- [ ] Apply authorization to appropriate resources
 - [ ] Favorite a Question
 - [ ] Favorite an Answer
+- [ ] Apply authorization to appropriate resources
+- [ ] A User get notified when a Speaker he/she follows release a new Speech
+- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
