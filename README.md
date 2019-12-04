@@ -1,6 +1,6 @@
-# Al-Miftah Api
+# Al-Miftah Backend API
 
-## Installation steps
+## Installation & Setup
 1. Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
 2. Clone the repository
 3. Create a `.env` file with contents from `.env.example` file and then update the env variables
@@ -23,6 +23,13 @@
 - [ ] Apply authorization to appropriate resources
 
 
-## External packages
+## Deployment instructions
+1. Review `.env` variables and tweak for production
+2. Install Supervisor, Redis
+3. Run migrations
+4. Generate and link public and private oauth keys for passport
+5. Make `/storage` directory writeable
+
+## External packages used.
 - [Laravel passport](https://github.com/laravel/passport)
 - [Predis](https://github.com/nrk/predis)
