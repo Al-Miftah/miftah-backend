@@ -87,8 +87,23 @@ class DocumentationController extends Controller
                         'method' => 'GET',
                         'endpoint' => '/api/users/speakers'
                     ]
+                ],
+                'favorites' => [
+                    'speeches' => [
+                        'list' => [
+                            'method' => 'GET',
+                            'endpoint' => '/api/favorites/speeches'
+                        ],
+                        'add' => [
+                            'method' => 'POST',
+                            'endpoint' => '/api/speeches/:id/favorites',
+                        ],
+                        'remove' => [
+                            'method' => 'DELETE',
+                            'endpoint' => '/api/speeches/:id/favorites'
+                        ]
+                    ]
                 ]
-
             ],
             'speakers' => 
             [

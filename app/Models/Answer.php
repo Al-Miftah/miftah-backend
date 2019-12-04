@@ -20,4 +20,12 @@ class Answer extends Model
     {
         return $this->belongsTo(Speaker::class, 'speaker_id');
     }
+
+    /**
+     * Get all answer favorites
+     */
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorable');
+    }
 }

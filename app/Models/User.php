@@ -30,12 +30,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * Return speeches the user favorited
+     * Return all user favorites
      */
     public function favorites()
     {
-        return $this->belongsToMany(Speech::class, 'favorites', 'user_id', 'speech_id')
-                    ->withTimeStamps();
+        return $this->hasMany(Favorite::class);
     }
 
     /**

@@ -23,4 +23,12 @@ class Question extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    /**
+     * Get all question favorites
+     */
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorable');
+    }
 }

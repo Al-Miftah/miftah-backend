@@ -9,11 +9,11 @@ Route::get('developer/docs', 'DocumentationController');
 Route::post('auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
 Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['prefix' => 'user/profile', 'middleware' => ['auth:api']], function () {
     //User profile
-    Route::get('user/profile', 'UserProfileController@show')->name('user.profile.show');
-    Route::patch('user/profile', 'UserProfileController@update')->name('user.profile.update');
-    Route::patch('user/profile/password', 'UserProfileController@changePassword')->name('user.password.update');
+    Route::get('', 'UserProfileController@show')->name('user.profile.show');
+    Route::patch('', 'UserProfileController@update')->name('user.profile.update');
+    Route::patch('password', 'UserProfileController@changePassword')->name('user.password.update');
 });
 
 
@@ -43,3 +43,10 @@ Route::delete('users/{user}/speeches/{speech}/favorites', 'UserFavoriteControlle
 
 Route::get('questions/{question}/answers', 'QuestionAnswerController@index')->name('question.answers.index');
 Route::post('questions/{question}/answers', 'QuestionAnswerController@store')->name('question.answers.store');
+
+//User favorite a speech
+Route::post('speeches/{speech}/favorites', 'UserFavoriteSpeechController@store')->name('user.favorites.speeches.store');
+//List user favorited speeches
+Route::get('favorites/speeches', 'UserFavoriteSpeechController@index')->name('user.favorites.speeches.index');
+//User unfavorite a speech
+Route::delete('speeches/{speech}/favorites', 'UserFavoriteSpeechController@destroy')->name('user.favorites.speeches.destroy');

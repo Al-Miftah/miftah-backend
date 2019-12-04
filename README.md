@@ -13,11 +13,11 @@
 
 
 ## Deployment instructions
-1. Review `.env` variables and tweak for production
-2. Install Supervisor, Redis
-3. Run migrations
-4. Generate and link public and private oauth keys for passport
-5. Make `/storage` directory writeable
+1. Review official [Guide](https://laravel.com/docs/6.x/deployment)
+2. Tweak `.env` variables for production
+3. Install Supervisor, Redis
+4. Run migrations and seeders (if any)
+5. Generate and link public and private oauth keys for passport
 
 ## External packages used.
 - [Laravel passport](https://github.com/laravel/passport)
@@ -28,7 +28,8 @@
 - [ ] Forgot password (API)
 - [ ] Reset password (API)
 - [ ] Verify email (API)
-- [ ] A User can favorite a Speech
 - [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
 - [ ] A User get notified when a Speaker he/she follows release a new Speech
 - [ ] Apply authorization to appropriate resources
+- [ ] Favorite a Question
+- [ ] Favorite an Answer

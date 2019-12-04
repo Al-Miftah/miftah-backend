@@ -32,10 +32,10 @@ class Speech extends Model
     }
 
     /**
-     * Return users who favorited the speech
+     * Get all speech favorites
      */
-    public function favorators()
+    public function favorites()
     {
-        return $this->belongsToMany(User::class, 'favorites', 'speech_id', 'user_id');
+        return $this->morphMany(Favorite::class, 'favorable');
     }
 }
