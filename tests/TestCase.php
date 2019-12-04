@@ -9,10 +9,10 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function authenticate($user = null)
+    public function authenticate($user = null, $guard = 'api')
     {
         $user = $user ?? factory('App\Models\User')->create();
-        Passport::actingAs($user);
+        Passport::actingAs($user, [], $guard);
         return $this;
     }
 }

@@ -17,11 +17,10 @@
 - [ ] Forgot password (API)
 - [ ] Reset password (API)
 - [ ] Verify email (API)
-- [ ] A User can ask Questions
-- [ ] Any Speaker can respond to a Question
 - [ ] A User can favorite a Speech
-- [ ] A User get notified when there's a new Speech in a Topic he is following
-- [ ] A User get notified when a Speaker he follows release a new Speech
+- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
+- [ ] A User get notified when a Speaker he/she follows release a new Speech
+- [ ] Apply authorization to appropriate resources
 
 
 ## External packages

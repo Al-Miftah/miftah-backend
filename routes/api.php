@@ -34,8 +34,12 @@ Route::apiResource('speakers', 'SpeakerController');
 Route::apiResource('speeches', 'SpeechController');
 Route::apiResource('languages', 'LanguageController');
 Route::apiResource('tags', 'TagController');
+Route::apiResource('questions', 'QuestionController');
 
 
 Route::get('users/{user}/favorites', 'UserFavoriteController@index');
 Route::post('users/{user}/speeches/{speech}/favorites', 'UserFavoriteController@store');
 Route::delete('users/{user}/speeches/{speech}/favorites', 'UserFavoriteController@destroy');
+
+Route::get('questions/{question}/answers', 'QuestionAnswerController@index')->name('question.answers.index');
+Route::post('questions/{question}/answers', 'QuestionAnswerController@store')->name('question.answers.store');

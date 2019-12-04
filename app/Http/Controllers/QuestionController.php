@@ -4,82 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
+use App\Http\Resources\QuestionCollection;
+use App\Http\Resources\QuestionResource;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('index');
+    }
+
     public function index()
     {
-        //
+        $questions = Question::with('answers')->paginate();
+        return new QuestionCollection($questions);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(StoreQuestionRequest $request)
+    {   $user = auth('api')->user();
+
+        $question = new Question;
+        $question->title = $request->input('title');
+        $question->description = $request->input('description');
+        $question->asker()->associate($user);
+        $question->save();
+
+        return new QuestionResource($question);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function show(Question $question)
     {
-        //
+        $data = $question->load('answers');
+        return new QuestionResource($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
+    public function update(UpdateQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'description'));
+        return new QuestionResource($question->fresh());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
+    public function destroy(Request $request, Question $question)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
-    {
-        //
+        if ($request->permanent) {
+            $question->forceDelete();
+        }else {
+            $question->delete();
+        }
+        return response()->noContent();
     }
 }

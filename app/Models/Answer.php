@@ -9,10 +9,15 @@ class Answer extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [];
+    protected $fillable = ['description', 'speaker_id', 'question_id'];
 
     public function question()
     {
         return $this->belongsTo(Qeustion::class);
+    }
+
+    public function answerer()
+    {
+        return $this->belongsTo(Speaker::class, 'speaker_id');
     }
 }

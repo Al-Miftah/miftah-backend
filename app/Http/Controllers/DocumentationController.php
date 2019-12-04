@@ -220,7 +220,50 @@ class DocumentationController extends Controller
                         'permanent' => 'true/false'
                     ]
                 ]
-            ]   
+            ],
+            'questions' => [
+                'list' => [
+                    'method' => 'GET',
+                    'endpoint' => '/api/questions'
+                ],
+                'create' => [
+                    'method' => 'POST',
+                    'endpoint' => '/api/questions',
+                    'params' => [
+                        'title' => 'String',
+                        'description' => 'String'
+                    ]
+                ],
+                'update' => [
+                    'method' => 'PATCH',
+                    'endpoint' => '/api/questions/:id',
+                    'params' => []
+                ],
+                'show' => [
+                    'method' => 'GET',
+                    'endpoint' => '/api/questions/:id'
+                ],
+                'delete' => [
+                    'method' => 'DELETE',
+                    'endpoint' => '/api/questions/:id',
+                    'params' => [
+                        'permanent' => 'true/false'
+                    ]
+                ],
+                'answers' => [
+                    'list' => [
+                        'method' => 'GET',
+                        'endpoint' => '/api/questions/:id/answers'
+                    ],
+                    'create' => [
+                        'method' => 'POST',
+                        'endpoint' => '/api/questions/:id/answers',
+                        'params' => [
+                            'description' => 'String'
+                        ]
+                    ]
+                ]
+            ]
         ]);
     }
 }
