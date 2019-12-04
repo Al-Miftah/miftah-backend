@@ -12,17 +12,6 @@
 9. Run `php artisan storage:link` to make uploaded files visible in public folder
 
 
-
-## TODO
-- [ ] Forgot password (API)
-- [ ] Reset password (API)
-- [ ] Verify email (API)
-- [ ] A User can favorite a Speech
-- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
-- [ ] A User get notified when a Speaker he/she follows release a new Speech
-- [ ] Apply authorization to appropriate resources
-
-
 ## Deployment instructions
 1. Review `.env` variables and tweak for production
 2. Install Supervisor, Redis
@@ -33,3 +22,13 @@
 ## External packages used.
 - [Laravel passport](https://github.com/laravel/passport)
 - [Predis](https://github.com/nrk/predis)
+
+
+## TODO
+- [ ] Forgot password (API)
+- [ ] Reset password (API)
+- [ ] Verify email (API)
+- [ ] A User can favorite a Speech
+- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
+- [ ] A User get notified when a Speaker he/she follows release a new Speech
+- [ ] Apply authorization to appropriate resources
