@@ -19,7 +19,7 @@
 4. Run migrations and seeders (if any)
 5. Generate and link public and private oauth keys for passport
 
-## External packages used.
+## External packages used
 - [Laravel passport](https://github.com/laravel/passport)
 - [Predis](https://github.com/nrk/predis)
 
