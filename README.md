@@ -5,11 +5,12 @@
 2. Clone the repository
 3. Create a `.env` file with contents from `.env.example` file and then update the env variables
 4. Run `composer install && npm install` to install project dependencies
-5. Run `php artisan key:generate` to generate the application encryption key
-6. Run `php artisan migrate` to migrate the database
-7. Run `php artisan passport:install` to create the encryption keys needed to generate secure access tokens
-8. Run `php artisan db:seed` to seed the database tables with dummy data
-9. Run `php artisan storage:link` to make uploaded files visible in public folder
+5. Run `npm run dev` to build css and js assets if any
+6. Run `php artisan key:generate` to generate the application encryption key
+7. Run `php artisan migrate` to migrate the database
+8. Run `php artisan passport:install` to create the encryption keys needed to generate secure access tokens
+9. Run `php artisan db:seed` to seed the database tables with dummy data
+10. Run `php artisan storage:link` to make uploaded files visible in public folder
 
 
 ## Deployment instructions
