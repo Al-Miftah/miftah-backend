@@ -92,7 +92,7 @@ class DocumentationController extends Controller
                     'speeches' => [
                         'list' => [
                             'method' => 'GET',
-                            'endpoint' => '/api/favorites/speeches'
+                            'endpoint' => '/api/user/favorites/speeches'
                         ],
                         'add' => [
                             'method' => 'POST',
@@ -101,6 +101,34 @@ class DocumentationController extends Controller
                         'remove' => [
                             'method' => 'DELETE',
                             'endpoint' => '/api/speeches/:id/favorites'
+                        ]
+                    ],
+                    'questions' => [
+                        'list' => [
+                            'method' => 'GET',
+                            'endpoint' => '/api/user/favorites/questions'
+                        ],
+                        'add' => [
+                            'method' => 'POST',
+                            'endpoint' => '/api/questions/:id/favorites',
+                        ],
+                        'remove' => [
+                            'method' => 'DELETE',
+                            'endpoint' => '/api/questions/:id/favorites'
+                        ]
+                    ],
+                    'answers' => [
+                        'list' => [
+                            'method' => 'GET',
+                            'endpoint' => '/api/user/favorites/answers'
+                        ],
+                        'add' => [
+                            'method' => 'POST',
+                            'endpoint' => '/api/answers/:id/favorites',
+                        ],
+                        'remove' => [
+                            'method' => 'DELETE',
+                            'endpoint' => '/api/answers/:id/favorites'
                         ]
                     ]
                 ]

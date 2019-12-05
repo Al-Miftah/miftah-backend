@@ -53,7 +53,7 @@ class UserFavoriteSpeechTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_a_speech_user_favorited_speeches()
+    public function it_removes_a_speech_from_user_favorite_speeches()
     {
         $user = factory('App\Models\User')->create();
         $this->authenticate($user);

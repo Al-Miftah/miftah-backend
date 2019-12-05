@@ -28,8 +28,7 @@
 - [ ] Forgot password (API)
 - [ ] Reset password (API)
 - [ ] Verify email (API)
-- [ ] Favorite a Question
-- [ ] Favorite an Answer
+- [ ] Verify Phone Number
 - [ ] Apply authorization to appropriate resources
 - [ ] A User get notified when a Speaker he/she follows release a new Speech
 - [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following

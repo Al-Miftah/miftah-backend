@@ -47,6 +47,16 @@ Route::post('questions/{question}/answers', 'QuestionAnswerController@store')->n
 //User favorite a speech
 Route::post('speeches/{speech}/favorites', 'UserFavoriteSpeechController@store')->name('user.favorites.speeches.store');
 //List user favorited speeches
-Route::get('favorites/speeches', 'UserFavoriteSpeechController@index')->name('user.favorites.speeches.index');
+Route::get('user/favorites/speeches', 'UserFavoriteSpeechController@index')->name('user.favorites.speeches.index');
 //User unfavorite a speech
 Route::delete('speeches/{speech}/favorites', 'UserFavoriteSpeechController@destroy')->name('user.favorites.speeches.destroy');
+
+//User favorite questions
+Route::post('questions/{question}/favorites', 'UserFavoriteQuestionController@store')->name('user.favorites.questions.store');
+Route::get('user/favorites/questions', 'UserFavoriteQuestionController@index')->name('user.favorites.questions.index');
+Route::delete('questions/{question}/favorites', 'UserFavoriteQuestionController@destroy')->name('user.favorites.questions.destroy');
+
+//User favorite answers
+Route::post('answers/{answer}/favorites', 'UserFavoriteAnswerController@store')->name('user.favorites.answers.store');
+Route::get('user/favorites/answers', 'UserFavoriteAnswerController@index')->name('user.favorites.answers.index');
+Route::delete('answers/{answer}/favorites', 'UserFavoriteAnswerController@destroy')->name('user.favorites.answers.destroy');
