@@ -21,6 +21,7 @@ class DocumentationController extends Controller
             [
                 'registration' => 
                 [
+                    'description' => 'Register a user account',
                     'method' => 'POST',
                     'endpoint' => '/api/auth/register',
                     'params' => [
@@ -33,6 +34,7 @@ class DocumentationController extends Controller
                 ],
                 'login' =>
                 [
+                    'Login to app',
                     'method' => 'POST',
                     'endpoint' => '/api/auth/login',
                     'params' => [
@@ -43,10 +45,12 @@ class DocumentationController extends Controller
                 'profile' =>
                 [
                     'show' => [
+                        'description' => 'Display profile details of logged in user',
                         'method' => 'GET',
                         'endpoint' => '/api/user/profile'
                     ],
                     'update' => [
+                        'description' => 'Update user profile information',
                         'method' => 'PATCH',
                         'endpoint' => '/api/user/profile',
                         'params' => [
@@ -56,7 +60,9 @@ class DocumentationController extends Controller
                             'avatar' => 'File'
                         ]
                     ],
+
                     'change_password' => [
+                        'description' => 'Change user password',
                         'method' => 'PATCH',
                         'endpoint' => '/user/profile/password',
                         'params' => [
@@ -69,10 +75,12 @@ class DocumentationController extends Controller
                 'topics' => 
                 [
                     'follow/unfollow' => [
+                        'description' => 'Follow or unfollow a topic',
                         'method' => 'POST',
                         'endpoint' => '/api/user/topics/:id'
                     ],
                     'list' => [
+                        'description' => 'List all topics user is following',
                         'method' => 'GET',
                         'endpoint' => '/api/user/topics'
                     ]
@@ -80,53 +88,64 @@ class DocumentationController extends Controller
                 'speakers' =>
                 [
                     'follow/unfollow' => [
+                        'description' => 'Follow or unfollow a speaker',
                         'method' => 'POST',
                         'endpoint' => '/api/users/speakers/:id'
                     ],
                     'list' => [
+                        'description' => 'List all speakers user is following',
                         'method' => 'GET',
-                        'endpoint' => '/api/users/speakers'
+                        'endpoint' => '/api/users/speakers',
                     ]
                 ],
                 'favorites' => [
                     'speeches' => [
                         'list' => [
+                            'description' => 'List all user favorite speeches',
                             'method' => 'GET',
-                            'endpoint' => '/api/user/favorites/speeches'
+                            'endpoint' => '/api/user/favorites/speeches',
                         ],
                         'add' => [
+                            'description' => 'Add a speech to user favorites',
                             'method' => 'POST',
                             'endpoint' => '/api/speeches/:id/favorites',
                         ],
                         'remove' => [
+                            'description' => 'Remove a speech from user favorites',
                             'method' => 'DELETE',
                             'endpoint' => '/api/speeches/:id/favorites'
                         ]
                     ],
                     'questions' => [
                         'list' => [
+                            'description' => 'List all user favorite questions',
                             'method' => 'GET',
                             'endpoint' => '/api/user/favorites/questions'
                         ],
                         'add' => [
+                            'description' => 'Add a question to user favorites',
                             'method' => 'POST',
                             'endpoint' => '/api/questions/:id/favorites',
                         ],
                         'remove' => [
+                            'description' => 'Remove a question from user favorites',
                             'method' => 'DELETE',
                             'endpoint' => '/api/questions/:id/favorites'
                         ]
                     ],
                     'answers' => [
                         'list' => [
+                            'description' => 'List all user favorite answers',
                             'method' => 'GET',
                             'endpoint' => '/api/user/favorites/answers'
                         ],
                         'add' => [
+                            'description' => 'Add an answer to user favorites',
                             'method' => 'POST',
                             'endpoint' => '/api/answers/:id/favorites',
                         ],
                         'remove' => [
+                            'description' => 'Remove an answer from user favorites',
                             'method' => 'DELETE',
                             'endpoint' => '/api/answers/:id/favorites'
                         ]
@@ -137,6 +156,7 @@ class DocumentationController extends Controller
             [
                 'registration' => 
                 [
+                    'description' => 'Register a new speaker',
                     'method' => 'POST',
                     'endpoint' => '/api/speaker/auth/register',
                     'params' => [
@@ -153,6 +173,7 @@ class DocumentationController extends Controller
                 ],
                 'login' => 
                 [
+                    'description' => 'Signin a speaker',
                     'method' => 'POST',
                     'endpoint' => '/api/speaker/auth/login',
                     'params' => [
@@ -162,6 +183,7 @@ class DocumentationController extends Controller
                 ],
                 'create' =>
                 [
+                    'description' => 'Create a new speaker',
                     'method' => 'POST',
                     'endpoint' => '/api/speakers',
                     'params' => [
@@ -178,17 +200,20 @@ class DocumentationController extends Controller
                 ],
                 'list' =>
                 [
+                    'description' => 'List all speakers',
                     'method' => 'GET',
                     'endpoint' => '/api/speakers',
                 ],
                 'update' =>
                 [
+                    'description' => 'Update details of a speaker',
                     'method' => 'PATCH',
                     'endpoint' => '/api/speakers/:id',
                     'params' => []
                 ],
                 'delete' =>
                 [
+                    'description' => 'Delete a speaker',
                     'method' => 'DELETE',
                     'endpoint' => '/api/speakers/:id',
                     'params' => [
@@ -199,10 +224,12 @@ class DocumentationController extends Controller
             'topics' => 
             [
                 'list' => [
+                    'description' => 'List all topics',
                     'method' => 'GET',
                     'endpoint' => '/api/topics'
                 ],
                 'create' => [
+                    'description' => 'Create a new topic',
                     'method' => 'POST',
                     'endpoint' => '/api/topics',
                     'params' => [
@@ -211,6 +238,7 @@ class DocumentationController extends Controller
                     ]
                 ],
                 'update' => [
+                    'description' => 'Update a topic',
                     'method' => 'PATCH',
                     'endpoint' => '/api/topics/:id',
                     'params' => [
@@ -219,6 +247,7 @@ class DocumentationController extends Controller
                     ]
                 ],
                 'delete' => [
+                    'description' => 'Delete a topic',
                     'method' => 'DELETE',
                     'endpoint' => '/api/topics/:id',
                     'params' => [
@@ -229,6 +258,7 @@ class DocumentationController extends Controller
             'speeches' =>
             [
                 'create' => [
+                    'description' => 'Create a new speech',
                     'method' => 'POST',
                     'endpoint' => '/api/speeches',
                     'params' => [
@@ -244,19 +274,23 @@ class DocumentationController extends Controller
                     ]
                 ],
                 'list' => [
+                    'description' => 'List all speeches',
                     'method' => 'GET',
                     'endpoint' => '/api/speeches'
                 ],
                 'show' => [
+                    'description' => 'Show details of speech',
                     'method' => 'GET',
                     'endpoint' => '/api/speeches/:id'
                 ],
                 'update' => [
+                    'description' => 'Update a speech',
                     'method' => 'PATCH',
                     'endpoint' => '/api/speeches/:id',
                     'params' => []
                 ],
                 'delete' => [
+                    'description' => 'Delete a speech',
                     'method' => 'DELETE',
                     'endpoint' => '/api/speeches/:id',
                     'params' => [
@@ -266,10 +300,12 @@ class DocumentationController extends Controller
             ],
             'questions' => [
                 'list' => [
+                    'description' => 'List all questions',
                     'method' => 'GET',
                     'endpoint' => '/api/questions'
                 ],
                 'create' => [
+                    'description' => 'Ask a new question',
                     'method' => 'POST',
                     'endpoint' => '/api/questions',
                     'params' => [
@@ -278,15 +314,18 @@ class DocumentationController extends Controller
                     ]
                 ],
                 'update' => [
+                    'description' => 'Update a question',
                     'method' => 'PATCH',
                     'endpoint' => '/api/questions/:id',
                     'params' => []
                 ],
                 'show' => [
+                    'description' => 'Show details of a question',
                     'method' => 'GET',
                     'endpoint' => '/api/questions/:id'
                 ],
                 'delete' => [
+                    'description' => 'Delete a question',
                     'method' => 'DELETE',
                     'endpoint' => '/api/questions/:id',
                     'params' => [
@@ -295,10 +334,12 @@ class DocumentationController extends Controller
                 ],
                 'answers' => [
                     'list' => [
+                        'description' => 'List answers to a question',
                         'method' => 'GET',
                         'endpoint' => '/api/questions/:id/answers'
                     ],
                     'create' => [
+                        'description' => 'Provide answer to a question',
                         'method' => 'POST',
                         'endpoint' => '/api/questions/:id/answers',
                         'params' => [
