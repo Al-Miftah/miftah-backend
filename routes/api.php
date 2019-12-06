@@ -9,6 +9,14 @@ Route::get('developer/docs', 'DocumentationController');
 Route::post('auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
 Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
 
+//Email verification
+Route::get('email-verification/resend', 'Auth\API\VerificationController@resend')->name('verification.resend');
+Route::get('email-verification/verify/{id}', 'Auth\API\VerificationController@verify')->name('api.verification.verify');
+
+//Password reset
+Route::get('password/email', 'Auth\API\ForgotPasswordController@sendLink');
+Route::post('password/reset', 'Auth\API\ResetPasswordController@doReset')->name('api.password.reset');
+
 Route::group(['prefix' => 'user/profile', 'middleware' => ['auth:api']], function () {
     //User profile
     Route::get('', 'UserProfileController@show')->name('user.profile.show');
