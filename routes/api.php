@@ -60,3 +60,6 @@ Route::delete('questions/{question}/favorites', 'UserFavoriteQuestionController@
 Route::post('answers/{answer}/favorites', 'UserFavoriteAnswerController@store')->name('user.favorites.answers.store');
 Route::get('user/favorites/answers', 'UserFavoriteAnswerController@index')->name('user.favorites.answers.index');
 Route::delete('answers/{answer}/favorites', 'UserFavoriteAnswerController@destroy')->name('user.favorites.answers.destroy');
+
+//User questions
+Route::get('user/questions', 'UserQuestionController@index')->name('user.questions');

@@ -150,6 +150,13 @@ class DocumentationController extends Controller
                             'endpoint' => '/api/answers/:id/favorites'
                         ]
                     ]
+                ],
+                'questions' => [
+                    'list' => [
+                        'description' => 'List all questions user asked',
+                        'method' => 'GET',
+                        'endpoint' => '/api/user/questions'
+                    ]
                 ]
             ],
             'speakers' => 
