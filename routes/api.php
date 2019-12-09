@@ -22,6 +22,7 @@ Route::group(['prefix' => 'user/profile', 'middleware' => ['auth:api']], functio
     Route::get('', 'UserProfileController@show')->name('user.profile.show');
     Route::patch('', 'UserProfileController@update')->name('user.profile.update');
     Route::patch('password', 'UserProfileController@changePassword')->name('user.password.update');
+    Route::get('notifications', 'UserNotificationController')->name('user.notifications.index');
 });
 
 
