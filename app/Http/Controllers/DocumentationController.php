@@ -354,6 +354,18 @@ class DocumentationController extends Controller
                         ]
                     ]
                 ]
+            ],
+            'tags' => [
+                'list' => [
+                    'description' => 'List all available tags',
+                    'method' => 'GET',
+                    'endpoint' => '/api/tags'
+                ],
+                'speeches' => [
+                    'description' => 'List speeches under a tag',
+                    'method' => 'GET',
+                    'endpoint' => '/api/tags/:id/speeches'
+                ]
             ]
         ]);
     }

@@ -1,5 +1,7 @@
 # Al-Miftah Backend API
 
+API docs available at `/api/developer/docs`
+
 ## Installation & Setup
 1. Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
 2. Clone the repository

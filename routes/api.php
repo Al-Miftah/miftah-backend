@@ -72,3 +72,6 @@ Route::delete('answers/{answer}/favorites', 'UserFavoriteAnswerController@destro
 
 //User questions
 Route::get('user/questions', 'UserQuestionController@index')->name('user.questions');
+
+//Tag speeches
+Route::get('tags/{tag}/speeches', 'TagSpeechController')->name('tags.speeches.index');
