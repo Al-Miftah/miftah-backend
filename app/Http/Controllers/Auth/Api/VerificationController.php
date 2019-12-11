@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\API;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -37,9 +37,20 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
+        $this->middleware('auth:api')->only('resend');
+        $this->middleware('signed.api')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    /**
+     * Show the email verification notice.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        //
     }
 
     /**
@@ -85,12 +96,13 @@ class VerificationController extends Controller
      */
     public function resend(Request $request)
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        $user = $request->user();
+        if ($user->hasVerifiedEmail()) {
             return response()->json([
-                'error' => 'User email has already been verfied!'
+                'error' => 'User email has already been verified!'
             ], 401);
         }
-        $request->user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
         
         return response()->json([
             'message'   => 'Verification email resent successfully!'

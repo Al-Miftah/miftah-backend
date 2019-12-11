@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 Route::get('developer/docs', 'DocumentationController');
 
 
@@ -14,7 +12,7 @@ Route::get('email-verification/resend', 'Auth\API\VerificationController@resend'
 Route::get('email-verification/verify/{id}', 'Auth\API\VerificationController@verify')->name('api.verification.verify');
 
 //Password reset
-Route::get('password/email', 'Auth\API\ForgotPasswordController@sendLink');
+Route::get('password/email', 'Auth\API\ForgotPasswordController@sendLink')->name('api.password.forgot');
 Route::post('password/reset', 'Auth\API\ResetPasswordController@doReset')->name('api.password.reset');
 
 Route::group(['prefix' => 'user/profile', 'middleware' => ['auth:api']], function () {
