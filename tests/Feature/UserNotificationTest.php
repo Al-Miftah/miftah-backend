@@ -21,18 +21,4 @@ class UserNotificationTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure(['data']);
     }
-
-    /**
-     * @test
-     */
-    public function it_notifies_user_when_new_speech_is_avalable_from_followed_topic()
-    {
-        $this->assertTrue(true);
-    }
-
-    public function it_notifies_user_when_new_speech_is_available_from_followed_speaker()
-    {
-        $this->assertTrue(true);
-    }
-
 }

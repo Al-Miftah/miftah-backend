@@ -11,14 +11,18 @@ class NewSpeechAvailable extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $speech;
+    protected $speaker;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($speech, $speaker)
     {
-        //
+        $this->speech = $speech;
+        $this->speaker = $speaker;
     }
 
     /**
@@ -44,6 +48,15 @@ class NewSpeechAvailable extends Notification implements ShouldQueue
                     ->line('New .')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            'speech' => $this->speech->toArray(),
+            'speaker' => $this->speaker->toArray(),
+            'message' => "{$this->speaker->last_name} {$this->speaker->last_name}: {$this->speech->title}"
+        ];
     }
 
     /**
