@@ -53,8 +53,9 @@ class NewSpeechAvailable extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            'speech' => $this->speech->toArray(),
-            'speaker' => $this->speaker->toArray(),
+            'speaker_avatar' => $this->speaker->avatar,
+            'speech_cover_photo' => $this->speech->cover_photo,
+            'speech_date' => $this->speech->created_at,
             'message' => "{$this->speaker->last_name} {$this->speaker->last_name}: {$this->speech->title}"
         ];
     }
