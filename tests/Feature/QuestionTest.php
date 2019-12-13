@@ -10,6 +10,14 @@ class QuestionTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
+    private $user;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->user = factory('App\Models\User')->create();
+    }
+
     /**
      * @test
      */
@@ -27,11 +35,10 @@ class QuestionTest extends TestCase
      */
     public function it_shows_details_of_a_question()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
+        $this->authenticate($this->user);
 
         $question = factory('App\Models\Question')->create([
-            'user_id' => $user,
+            'user_id' => $this->user,
             'title' => 'The night of power',
         ]);
 
@@ -47,8 +54,7 @@ class QuestionTest extends TestCase
      */
     public function an_authenticated_user_can_ask_a_question()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
+        $this->authenticate($this->user);
 
         $input = [
             'title' => 'Fasting in Ramadan',
@@ -59,7 +65,7 @@ class QuestionTest extends TestCase
         $response->assertStatus(201);
         $this->assertDatabaseHas('questions', [
             'description' => 'Who is it mandatory upon to fast the full month of Ramadan?',
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
         ]);
         $response->assertJsonFragment([
             'description' => 'Who is it mandatory upon to fast the full month of Ramadan?'
@@ -71,11 +77,10 @@ class QuestionTest extends TestCase
      */
     public function an_authorized_user_can_update_a_question()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
+        $this->authenticate($this->user);
 
         $question = factory('App\Models\Question')->create([
-            'user_id' => $user,
+            'user_id' => $this->user,
             'title' => 'Fasting in Ramadan',
         ]);
 
@@ -95,11 +100,10 @@ class QuestionTest extends TestCase
      */
     public function an_authorized_user_can_soft_delete_a_question()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
+        $this->authenticate($this->user);
 
         $question = factory('App\Models\Question')->create([
-            'user_id' => $user,
+            'user_id' => $this->user,
             'title' => 'Shafi & Witr',
         ]);
 
@@ -113,11 +117,10 @@ class QuestionTest extends TestCase
      */
     public function an_authorized_user_can_delete_a_question_permanently()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
+        $this->authenticate($this->user);
 
         $question = factory('App\Models\Question')->create([
-            'user_id' => $user,
+            'user_id' => $this->user,
             'title' => 'Shafi & Witr',
         ]);
 

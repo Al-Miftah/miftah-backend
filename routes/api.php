@@ -32,9 +32,12 @@ Route::post('speaker/auth/login', 'Auth\API\SpeakerLoginController')->name('spea
 Route::get('users/topics', 'UserTopicController@index')->name('users.topics.index');
 Route::post('users/topics/{topic}', 'UserTopicController@store')->name('users.topics.store');
 
-//User speakers
+//User speakers (following)
 Route::post('users/speakers/{speaker}', 'UserSpeakerController@store')->name('users.speakers.store');
 Route::get('users/speakers', 'UserSpeakerController@index')->name('users.speakers.index');
+
+//Speeches of a speaker
+Route::get('speakers/{speaker}/speeches', 'SpeakerSpeechController')->name('speaker.speeches');
 
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('speakers', 'SpeakerController');

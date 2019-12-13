@@ -2,21 +2,24 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SpeakerSpeechTest extends TestCase
 {
+    use WithFaker, RefreshDatabase;
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * @test
      */
-    public function testExample()
+    public function it_lists_speeches_by_a_speaker()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $speaker = factory('App\Models\Speaker')->create();
+        $speeches = factory('App\Models\Speech', 2)->create();
+        $speaker->speeches()->saveMany($speeches);
+        
+        $response = $this->json('GET', route('speaker.speeches', $speaker));
+        $response->assertOk();
+        $response->assertJsonCount(2, 'data');
     }
 }

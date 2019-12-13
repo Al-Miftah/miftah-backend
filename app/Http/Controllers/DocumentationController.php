@@ -227,6 +227,11 @@ class DocumentationController extends Controller
                         'permanent' => 'true/false'
                     ]
                 ],
+                'speeches' => [
+                    'description' => 'List all speeches by a speaker',
+                    'method' => 'GET',
+                    'endpoint' => '/api/speakers/:id/speeches'
+                ]
             ],
             'topics' => 
             [
