@@ -26,6 +26,8 @@ API docs available at `/api/developer/docs`
 - [Laravel passport](https://github.com/laravel/passport)
 - [Predis](https://github.com/nrk/predis)
 
+## Run tests
+`./vendor/bin/phpunit`
 
 ## TODO
 - [ ] Apply authorization to appropriate resources
