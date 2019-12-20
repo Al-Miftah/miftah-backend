@@ -23,25 +23,28 @@ class UserFavoriteSpeechController extends Controller
     }
 
     /**
-     * Favorite a speech
+     * Favorite/Unfavorite a speech
      */
     public function store(Request $request, Speech $speech)
     {
         $user = auth('api')->user();
+        $favorite = $speech->favorites()->where('user_id', $user->id)->first();
 
-        $favorite = new Favorite;
-        $favorite->user()->associate($user);
-        $speech->favorites()->save($favorite);
-        return new SpeechResource($speech);
-    }
-
-    /**
-     * Unfavorite a speech
-     */
-    public function destroy(Request $request, Speech $speech)
-    {
-        $user = auth('api')->user();
-        $speech->favorites()->where('user_id', $user->id)->delete();
-        return response()->noContent();
+        if ($favorite) {
+            $favorite->delete();
+        }else {
+            //else create it
+            $favorite = new Favorite;
+            $favorite->user()->associate($user);
+            $speech->favorites()->save($favorite);
+        }
+        
+        //Return back user favorited speeches
+        $speechIds = Favorite::where([
+            'favorable_type' => 'speeches',
+            'user_id' => $user->id,
+        ])->pluck('favorable_id');
+        $speeches = Speech::whereIn('id', $speechIds)->paginate();
+        return new SpeechCollection($speeches);
     }
 }

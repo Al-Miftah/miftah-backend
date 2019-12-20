@@ -27,16 +27,22 @@ class UserFavoriteQuestionController extends Controller
     {
         $user = auth('api')->user();
 
-        $favorite = new Favorite;
-        $favorite->user()->associate($user);
-        $question->favorites()->save($favorite);
-        return new QuestionResource($question);
-    }
+        $favorite = $question->favorites()->where('user_id', $user->id)->first();
+        if ($favorite) {
+            //remove it
+            $favorite->delete();
+        }else {
+            //create it
+            $favorite = new Favorite;
+            $favorite->user()->associate($user);
+            $question->favorites()->save($favorite);
+        }
 
-    public function destroy(Request $request, Question $question)
-    {
-        $user = auth('api')->user();
-        $question->favorites()->where('user_id', $user->id)->delete();
-        return response()->noContent();
+        $ids = Favorite::where([
+            'favorable_type' => 'questions',
+            'user_id' => $user->id,
+        ])->pluck('favorable_id');
+        $questions = Question::whereIn('id', $ids)->paginate();
+        return new QuestionCollection($questions);
     }
 }

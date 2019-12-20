@@ -52,7 +52,7 @@ class UserFavoriteQuestionTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_a_question_from_user_favorite_questions()
+    public function an_authenticated_user_can_unfavorite_a_question()
     {
         $user = factory('App\Models\User')->create();
         $this->authenticate($user);
@@ -65,8 +65,10 @@ class UserFavoriteQuestionTest extends TestCase
         ]);
 
         //Unfavorite
-        $response = $this->json('DELETE', route('user.favorites.questions.destroy', $question));
-        $response->assertNoContent();
-        $this->assertCount(0, $user->favorites()->where('favorable_type', 'questions')->get());
+        $response = $this->json('POST', route('user.favorites.questions.store', $question));
+        //$response->assertNoContent();
+        $favorites = $user->favorites()->where('favorable_type', 'questions')->get();
+        $this->assertCount(0, $favorites);
+        $response->assertJsonCount(0, 'data');
     }
 }

@@ -24,6 +24,8 @@ class SpeakerResource extends JsonResource
             'city' => $this->city,
             'bio' => $this->bio,
             'avatar' => $this->avatar,
+            'speeches_count' => $this->speeches->count(),
+            'followers_count' => $this->followers->count(),
         ];
     }
 }

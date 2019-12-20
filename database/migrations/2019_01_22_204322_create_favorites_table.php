@@ -19,7 +19,7 @@ class CreateFavoritesTable extends Migration
             $table->unsignedBigInteger('favorable_id');
             $table->string('favorable_type');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+            $table->index(['favorable_id', 'favorable_type']);
             $table->timestamps();
         });
     }

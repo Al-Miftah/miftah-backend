@@ -20,6 +20,7 @@ class CreateFollowerblesTable extends Migration
             $table->string('followerble_type');
             $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->index(['followerble_id', 'followerble_type']);
         });
     }
 

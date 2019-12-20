@@ -47,29 +47,22 @@ Route::apiResource('tags', 'TagController');
 Route::apiResource('questions', 'QuestionController');
 
 
-Route::get('users/{user}/favorites', 'UserFavoriteController@index');
-Route::post('users/{user}/speeches/{speech}/favorites', 'UserFavoriteController@store');
-Route::delete('users/{user}/speeches/{speech}/favorites', 'UserFavoriteController@destroy');
-
 Route::get('questions/{question}/answers', 'QuestionAnswerController@index')->name('question.answers.index');
 Route::post('questions/{question}/answers', 'QuestionAnswerController@store')->name('question.answers.store');
 
-//User favorite a speech
+//User favorite/unfavorite a speech
 Route::post('speeches/{speech}/favorites', 'UserFavoriteSpeechController@store')->name('user.favorites.speeches.store');
 //List user favorited speeches
 Route::get('user/favorites/speeches', 'UserFavoriteSpeechController@index')->name('user.favorites.speeches.index');
-//User unfavorite a speech
-Route::delete('speeches/{speech}/favorites', 'UserFavoriteSpeechController@destroy')->name('user.favorites.speeches.destroy');
 
-//User favorite questions
+//User favorite/unfavorite a questions
 Route::post('questions/{question}/favorites', 'UserFavoriteQuestionController@store')->name('user.favorites.questions.store');
 Route::get('user/favorites/questions', 'UserFavoriteQuestionController@index')->name('user.favorites.questions.index');
-Route::delete('questions/{question}/favorites', 'UserFavoriteQuestionController@destroy')->name('user.favorites.questions.destroy');
 
-//User favorite answers
+//User favorite/unfavorite an answer
 Route::post('answers/{answer}/favorites', 'UserFavoriteAnswerController@store')->name('user.favorites.answers.store');
 Route::get('user/favorites/answers', 'UserFavoriteAnswerController@index')->name('user.favorites.answers.index');
-Route::delete('answers/{answer}/favorites', 'UserFavoriteAnswerController@destroy')->name('user.favorites.answers.destroy');
+//Route::delete('answers/{answer}/favorites', 'UserFavoriteAnswerController@destroy')->name('user.favorites.answers.destroy');
 
 //User questions
 Route::get('user/questions', 'UserQuestionController@index')->name('user.questions');

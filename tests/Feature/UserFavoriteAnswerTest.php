@@ -57,21 +57,22 @@ class UserFavoriteAnswerTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_a_question_from_user_favorite_questions()
+    public function an_authenticated_user_can_unfavorite_an_answer()
     {
         $user = factory('App\Models\User')->create();
         $this->authenticate($user);
 
         $answer = factory('App\Models\Answer')->create();
-        $favorite = factory('App\Models\Favorite')->create([
+        factory('App\Models\Favorite')->create([
             'user_id' => $user->id,
             'favorable_id' => $answer->id,
             'favorable_type' => 'answers'
         ]);
 
         //Unfavorite
-        $response = $this->json('DELETE', route('user.favorites.answers.destroy', $answer));
-        $response->assertNoContent();
-        $this->assertCount(0, $user->favorites()->where('favorable_type', 'answers')->get());
+        $response = $this->json('POST', route('user.favorites.answers.store', $answer));
+        $response->assertJsonCount(0, 'data');
+        $favorites = $user->favorites()->where('favorable_type', 'answers')->get();
+        $this->assertCount(0, $favorites);
     }
 }

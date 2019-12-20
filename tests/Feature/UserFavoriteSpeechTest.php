@@ -53,12 +53,13 @@ class UserFavoriteSpeechTest extends TestCase
     /**
      * @test
      */
-    public function it_removes_a_speech_from_user_favorite_speeches()
+    public function an_authenticated_user_can_unfavorite_a_speech()
     {
         $user = factory('App\Models\User')->create();
         $this->authenticate($user);
 
         $speech = factory('App\Models\Speech')->create();
+
         $favorite = factory('App\Models\Favorite')->create([
             'user_id' => $user->id,
             'favorable_id' => $speech->id,
@@ -66,8 +67,9 @@ class UserFavoriteSpeechTest extends TestCase
         ]);
 
         //Unfavorite
-        $response = $this->json('DELETE', route('user.favorites.speeches.destroy', $speech));
-        $response->assertNoContent();
-        $this->assertCount(0, $user->favorites()->where('favorable_type', 'speeches')->get());
+        $response = $this->json('POST', route('user.favorites.speeches.store', $speech));
+        $favorites = $speech->favorites()->where('user_id', $user->id)->get();
+        $this->assertCount(0, $favorites);
+        $response->assertJsonCount(0, 'data');
     }
 }

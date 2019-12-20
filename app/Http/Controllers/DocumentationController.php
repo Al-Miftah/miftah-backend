@@ -105,16 +105,11 @@ class DocumentationController extends Controller
                             'method' => 'GET',
                             'endpoint' => '/api/user/favorites/speeches',
                         ],
-                        'add' => [
-                            'description' => 'Add a speech to user favorites',
+                        'add/remove' => [
+                            'description' => 'Add or remove a speech from user favorite speeches',
                             'method' => 'POST',
                             'endpoint' => '/api/speeches/:id/favorites',
                         ],
-                        'remove' => [
-                            'description' => 'Remove a speech from user favorites',
-                            'method' => 'DELETE',
-                            'endpoint' => '/api/speeches/:id/favorites'
-                        ]
                     ],
                     'questions' => [
                         'list' => [
@@ -122,16 +117,11 @@ class DocumentationController extends Controller
                             'method' => 'GET',
                             'endpoint' => '/api/user/favorites/questions'
                         ],
-                        'add' => [
-                            'description' => 'Add a question to user favorites',
+                        'add/remove' => [
+                            'description' => 'Add or remove a question from user favorite questions',
                             'method' => 'POST',
                             'endpoint' => '/api/questions/:id/favorites',
                         ],
-                        'remove' => [
-                            'description' => 'Remove a question from user favorites',
-                            'method' => 'DELETE',
-                            'endpoint' => '/api/questions/:id/favorites'
-                        ]
                     ],
                     'answers' => [
                         'list' => [
@@ -139,16 +129,11 @@ class DocumentationController extends Controller
                             'method' => 'GET',
                             'endpoint' => '/api/user/favorites/answers'
                         ],
-                        'add' => [
-                            'description' => 'Add an answer to user favorites',
+                        'add/remove' => [
+                            'description' => 'Add or remove an answer from user favorite answers',
                             'method' => 'POST',
                             'endpoint' => '/api/answers/:id/favorites',
                         ],
-                        'remove' => [
-                            'description' => 'Remove an answer from user favorites',
-                            'method' => 'DELETE',
-                            'endpoint' => '/api/answers/:id/favorites'
-                        ]
                     ]
                 ],
                 'questions' => [

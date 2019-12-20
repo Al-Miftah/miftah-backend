@@ -26,10 +26,21 @@ class UserFavoriteAnswerController extends Controller
     {
         $user = auth('api')->user();
 
-        $favorite = new Favorite;
-        $favorite->user()->associate($user);
-        $answer->favorites()->save($favorite);
-        return new AnswerResource($answer);
+        $favorite = $answer->favorites()->where('user_id', $user->id)->first();
+        if ($favorite) {
+            $favorite->delete();
+        }else {
+            $favorite = new Favorite;
+            $favorite->user()->associate($user);
+            $answer->favorites()->save($favorite);
+        }
+
+        $ids = Favorite::where([
+            'favorable_type' => 'answers',
+            'user_id' => $user->id,
+        ])->pluck('favorable_id');
+        $answers = Answer::whereIn('id', $ids)->paginate();
+        return new AnswerCollection($answers);
     }
 
     public function destroy(Answer $answer)
