@@ -32,3 +32,4 @@ API docs available at `/api/developer/docs`
 ## TODO
 - [ ] Apply authorization to appropriate resources
 - [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
+- [ ] Add status page for email and password reset verification
