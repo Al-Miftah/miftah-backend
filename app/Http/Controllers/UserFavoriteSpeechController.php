@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Speech;
-use App\Models\Favorite;
-use Illuminate\Http\Request;
+use App\Models\{Speech, Favorite};
 use App\Http\Resources\SpeechCollection;
-use App\Http\Resources\SpeechResource;
 
 class UserFavoriteSpeechController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $user = auth('api')->user();
 
@@ -21,15 +18,14 @@ class UserFavoriteSpeechController extends Controller
     /**
      * Favorite/Unfavorite a speech
      */
-    public function store(Request $request, Speech $speech)
+    public function store(Speech $speech)
     {
         $user = auth('api')->user();
-        $favorite = $speech->favorites()->where('user_id', $user->id)->first();
 
+        $favorite = $speech->favorites()->where('user_id', $user->id)->first();
         if ($favorite) {
             $favorite->delete();
         }else {
-            //else create it
             $favorite = new Favorite;
             $favorite->user()->associate($user);
             $speech->favorites()->save($favorite);
@@ -44,10 +40,7 @@ class UserFavoriteSpeechController extends Controller
      */
     private function favoriteSpeeches($user)
     {
-        $ids = $user->favorites()->where([
-            'favorable_type' => 'speeches',
-        ])->pluck('favorable_id');
-        
+        $ids = $user->favorites()->where('favorable_type', 'speeches')->pluck('favorable_id');
         return Speech::whereIn('id', $ids)->paginate();
     }
 }

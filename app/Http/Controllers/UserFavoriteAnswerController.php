@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer;
-use App\Models\Favorite;
-use Illuminate\Http\Request;
-use App\Http\Resources\AnswerResource;
+use App\Models\{Favorite, Answer};
 use App\Http\Resources\AnswerCollection;
 
 
@@ -19,7 +16,7 @@ class UserFavoriteAnswerController extends Controller
         return new AnswerCollection($answers);
     }
 
-    public function store(Request $request, Answer $answer)
+    public function store(Answer $answer)
     {
         $user = auth('api')->user();
 
@@ -41,10 +38,7 @@ class UserFavoriteAnswerController extends Controller
      */
     private function favoriteAnswers($user)
     {
-        $ids = $user->favorites()->where([
-            'favorable_type' => 'answers',
-        ])->pluck('favorable_id');
-        
+        $ids = $user->favorites()->where('favorable_type', 'answers')->pluck('favorable_id');
         return Answer::whereIn('id', $ids)->paginate();
     }
 }

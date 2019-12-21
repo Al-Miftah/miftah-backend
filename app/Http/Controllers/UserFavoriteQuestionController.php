@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Favorite;
-use App\Models\Question;
-use Illuminate\Http\Request;
-use App\Http\Resources\QuestionResource;
+use App\Models\{Favorite, Question};
 use App\Http\Resources\QuestionCollection;
 
 class UserFavoriteQuestionController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $user = auth('api')->user();
 
@@ -20,16 +17,14 @@ class UserFavoriteQuestionController extends Controller
     }
 
 
-    public function store(Request $request, Question $question)
+    public function store(Question $question)
     {
         $user = auth('api')->user();
 
         $favorite = $question->favorites()->where('user_id', $user->id)->first();
         if ($favorite) {
-            //remove it
             $favorite->delete();
         }else {
-            //create it
             $favorite = new Favorite;
             $favorite->user()->associate($user);
             $question->favorites()->save($favorite);
@@ -44,10 +39,7 @@ class UserFavoriteQuestionController extends Controller
      */
     private function favoriteQuestions($user)
     {
-        $ids = $user->favorites()->where([
-            'favorable_type' => 'questions',
-        ])->pluck('favorable_id');
-        
+        $ids = $user->favorites()->where('favorable_type', 'questions')->pluck('favorable_id');
         return Question::whereIn('id', $ids)->paginate();
     }
 }
