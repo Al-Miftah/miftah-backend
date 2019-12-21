@@ -13,11 +13,8 @@ class UserFavoriteQuestionController extends Controller
     public function index(Request $request)
     {
         $user = auth('api')->user();
-        $ids = Favorite::where([
-            'favorable_type' => 'questions',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $questions = Question::whereIn('id', $ids)->paginate();
+
+        $questions = $this->favoriteQuestions($user);
         return new QuestionCollection($questions);
 
     }
@@ -38,11 +35,19 @@ class UserFavoriteQuestionController extends Controller
             $question->favorites()->save($favorite);
         }
 
-        $ids = Favorite::where([
-            'favorable_type' => 'questions',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $questions = Question::whereIn('id', $ids)->paginate();
+        $questions = $this->favoriteQuestions($user);
         return new QuestionCollection($questions);
+    }
+
+    /**
+     * Consider moving to Model
+     */
+    private function favoriteQuestions($user)
+    {
+        $ids = $user->favorites()->where([
+            'favorable_type' => 'questions',
+        ])->pluck('favorable_id');
+        
+        return Question::whereIn('id', $ids)->paginate();
     }
 }

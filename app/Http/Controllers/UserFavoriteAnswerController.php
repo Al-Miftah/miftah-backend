@@ -14,11 +14,8 @@ class UserFavoriteAnswerController extends Controller
     public function index()
     {
         $user = auth('api')->user();
-        $ids = Favorite::where([
-            'favorable_type' => 'answers',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $answers = Answer::whereIn('id', $ids)->paginate();
+        
+        $answers = $this->favoriteAnswers($user);
         return new AnswerCollection($answers);
     }
 
@@ -35,18 +32,19 @@ class UserFavoriteAnswerController extends Controller
             $answer->favorites()->save($favorite);
         }
 
-        $ids = Favorite::where([
-            'favorable_type' => 'answers',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $answers = Answer::whereIn('id', $ids)->paginate();
+        $answers = $this->favoriteAnswers($user);
         return new AnswerCollection($answers);
     }
 
-    public function destroy(Answer $answer)
+    /**
+     * Consider moving to Model
+     */
+    private function favoriteAnswers($user)
     {
-        $user = auth('api')->user();
-        $answer->favorites()->where('user_id', $user->id)->delete();
-        return response()->noContent();
+        $ids = $user->favorites()->where([
+            'favorable_type' => 'answers',
+        ])->pluck('favorable_id');
+        
+        return Answer::whereIn('id', $ids)->paginate();
     }
 }

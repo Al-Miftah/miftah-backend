@@ -13,12 +13,8 @@ class UserFavoriteSpeechController extends Controller
     public function index(Request $request)
     {
         $user = auth('api')->user();
-        //todo refactor how speeches are fetched later
-        $speechIds = Favorite::where([
-            'favorable_type' => 'speeches',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $speeches = Speech::whereIn('id', $speechIds)->paginate();
+
+        $speeches = $this->favoriteSpeeches($user);
         return new SpeechCollection($speeches);
     }
 
@@ -39,12 +35,19 @@ class UserFavoriteSpeechController extends Controller
             $speech->favorites()->save($favorite);
         }
         
-        //Return back user favorited speeches
-        $speechIds = Favorite::where([
-            'favorable_type' => 'speeches',
-            'user_id' => $user->id,
-        ])->pluck('favorable_id');
-        $speeches = Speech::whereIn('id', $speechIds)->paginate();
+        $speeches = $this->favoriteSpeeches($user);
         return new SpeechCollection($speeches);
+    }
+
+    /**
+     * Consider moving to Model
+     */
+    private function favoriteSpeeches($user)
+    {
+        $ids = $user->favorites()->where([
+            'favorable_type' => 'speeches',
+        ])->pluck('favorable_id');
+        
+        return Speech::whereIn('id', $ids)->paginate();
     }
 }
