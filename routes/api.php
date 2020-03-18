@@ -4,8 +4,9 @@ Route::get('developer/docs', 'DocumentationController');
 
 
 //User authentication
-Route::post('auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
-Route::post('auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
+Route::post('user/auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
+Route::post('user/auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
+Route::get('user/auth/logout', 'Auth\API\LogoutController')->name('user.auth.logout');
 
 //Email verification
 Route::get('email-verification/resend', 'Auth\API\VerificationController@resend')->name('verification.resend');
