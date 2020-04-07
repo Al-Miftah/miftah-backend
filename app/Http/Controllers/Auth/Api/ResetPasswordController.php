@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\API;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
