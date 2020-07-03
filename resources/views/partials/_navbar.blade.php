@@ -11,20 +11,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('speakers.index')}}">Speakers</a>
+                    {{-- <a class="nav-link" href="">User</a> --}}
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('topics.index') }}">Topics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('speeches.index') }}">Speeches</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('languages.index') }}">Languages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-                </li>
+    
             </ul>
 
             <!-- Right Side Of Navbar -->
