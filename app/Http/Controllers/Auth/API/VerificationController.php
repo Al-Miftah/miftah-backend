@@ -96,7 +96,7 @@ class VerificationController extends Controller
      */
     public function resend(Request $request)
     {
-        $user = $request->user();
+        $user = auth('api')->user();
         if ($user->hasVerifiedEmail()) {
             return response()->json([
                 'data' => [

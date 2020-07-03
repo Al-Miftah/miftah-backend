@@ -8,24 +8,26 @@ Route::get('/', function(){
 //User authentication
 Route::post('user/auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
 Route::post('user/auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
-Route::get('user/auth/logout', 'Auth\API\LogoutController')->name('user.auth.logout');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('user/auth/logout', 'Auth\API\LogoutController')->name('user.auth.logout');
+    Route::post('email-verification/resend', 'Auth\API\VerificationController@resend')->name('api.verification.resend');
+
+    Route::group(['prefix' => 'user/profile'], function () {
+        //User profile
+        Route::get('', 'UserProfileController@show')->name('user.profile.show');
+        Route::patch('', 'UserProfileController@update')->name('user.profile.update');
+        Route::patch('password', 'UserProfileController@changePassword')->name('user.password.update');
+        Route::get('notifications', 'UserNotificationController')->name('user.notifications.index');
+    });
+});
 
 //Email verification
-Route::get('email-verification/resend', 'Auth\API\VerificationController@resend')->name('verification.resend');
 Route::get('email-verification/verify/{id}', 'Auth\API\VerificationController@verify')->name('api.verification.verify');
 
 //Password reset
 Route::get('password/email', 'Auth\API\ForgotPasswordController@sendLink')->name('api.password.forgot');
 Route::post('password/reset', 'Auth\API\ResetPasswordController@doReset')->name('api.password.reset');
-
-Route::group(['prefix' => 'user/profile', 'middleware' => ['auth:api']], function () {
-    //User profile
-    Route::get('', 'UserProfileController@show')->name('user.profile.show');
-    Route::patch('', 'UserProfileController@update')->name('user.profile.update');
-    Route::patch('password', 'UserProfileController@changePassword')->name('user.password.update');
-    Route::get('notifications', 'UserNotificationController')->name('user.notifications.index');
-});
-
 
 //Speaker authentication
 Route::post('speaker/auth/register', 'Auth\API\SpeakerRegistrationController')->name('speaker.auth.register');

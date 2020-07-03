@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Artisan;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -36,7 +36,7 @@ class LoginUserTest extends TestCase
         $response = $this->json('POST', route('user.auth.login'), $input);
         $response->assertOk();
         $response->assertJsonStructure([
-            'access_token', 'token_expiration', 'token_type', 'user'
+            'data' => ['access_token', 'token_expiration', 'token_type', 'user']
         ]);
     }
 

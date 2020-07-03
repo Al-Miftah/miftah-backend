@@ -25,14 +25,29 @@ class DocsController extends Controller
                 ]
             ],
             [
-                'name' => 'User',
-                'page' => 'user',
+                'name' => 'Profile',
+                'page' => 'profile',
                 'children' => [
                     ['method' => 'GET', 'title' => 'View profile', 'page' => 'view-profile'],
                     ['method' => 'PATCH', 'title' => 'Update profile', 'page' => 'update-profile'],
                     ['method' => 'POST', 'title' => 'Change password', 'page' => 'change-password'],
                 ]
             ],
+            [
+                'name' => 'Email verification',
+                'page' => 'verification',
+                'children' => [
+                    ['method' => 'POST', 'title' => 'Resend', 'page' => 'resend']
+                ]
+            ],
+            [
+                'name' => 'Password reset',
+                'page' => 'password',
+                'children' => [
+                    ['method' => 'GET', 'title' => 'Forgot password', 'page' => 'forgot'],
+                    ['method' => 'POST', 'title' => 'Reset', 'page' => 'reset']
+                ]
+            ]
         ];
 
         $page = $request->query('page') ?? 'welcome';        

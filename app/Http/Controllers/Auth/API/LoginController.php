@@ -9,11 +9,12 @@ use App\Http\Resources\UserResource;
 
 class LoginController extends Controller
 {
-    public function __construct()
-    {
-        //
-    }
-
+    /**
+     * Authenticate
+     *
+     * @param Request $request
+     * @return void
+     */
     public function authenticate(Request $request)
     {
         $this->validate($request, [
@@ -33,10 +34,12 @@ class LoginController extends Controller
             $expiration = Carbon::parse($tokenObj->token->expires_at)->toDateTimeString();
             
             return response()->json([
-                'access_token' => $token,
-                'token_type'    => 'Bearer',
-                'token_expiration'  => $expiration,
-                'user'  => new UserResource($user),
+                'data' => [
+                    'access_token' => $token,
+                    'token_type'    => 'Bearer',
+                    'token_expiration'  => $expiration,
+                    'user'  => new UserResource($user),
+                ]
             ]);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);

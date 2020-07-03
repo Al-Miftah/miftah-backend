@@ -23,8 +23,11 @@ class EmailVerificationTest extends TestCase
         ]);
         $this->authenticate($user);
 
-        $response = $this->json('GET', route('verification.resend'));
+        $response = $this->json('POST', route('api.verification.resend'));
         $response->assertOk();
+        $response->assertJsonFragment([
+            'message' => 'Verification email resent successfully!'
+        ]);
         Notification::assertSentTo($user, VerifyEmail::class);
     }
 

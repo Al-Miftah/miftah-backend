@@ -12,11 +12,13 @@ use App\Http\Requests\RegisterFormRequest;
 
 class RegisterController extends Controller
 {
-    public function __construct()
-    {
-        //
-    }
 
+    /**
+     * Register
+     *
+     * @param RegisterFormRequest $request
+     * @return void
+     */
     public function register(RegisterFormRequest $request)
     {
 
@@ -33,10 +35,12 @@ class RegisterController extends Controller
 
         event(new Registered($user));
         return response()->json([
-            'access_token' => $token,
-            'token_type'    => 'Bearer',
-            'token_expiration'  => $expiration,
-            'user'  => new UserResource($user)
+            'data' => [
+                'access_token' => $token,
+                'token_type'    => 'Bearer',
+                'token_expiration'  => $expiration,
+                'user'  => new UserResource($user)
+            ]
         ]);
     }
 }

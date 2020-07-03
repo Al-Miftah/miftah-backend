@@ -75,7 +75,10 @@ class ResetPasswordController extends Controller
     protected function sendResetResponse(Request $request, $response)
     {
         return response()->json([
-            'message'   => 'Password reset successfully!',
+            'data' => [
+                'error' => false,
+                'message'   => 'Password reset successfully!',
+            ]
         ]);
     }
 
@@ -91,7 +94,10 @@ class ResetPasswordController extends Controller
     protected function sendResetFailedResponse(Request $request, $response)
     {
         return response()->json([
-            'message'   => 'Invalid password reset token!',
+            'data' => [
+                'error' => false,
+                'message'   => 'Invalid password reset token!',
+            ]
         ]);
     }
 }
