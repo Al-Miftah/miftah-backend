@@ -13,7 +13,7 @@
                             The base server url is <code>https://miftah.ultrasamad.com/api</code>.
                         </p>
                         <p>
-                            If you spot any typo or unexpected or malformed request please contact Samad on <code>naatogma@gmail.com</code>
+                            If you spot any typo or unexpected error or malformed response please contact Samad on <code>naatogma@gmail.com</code>
                         </p>
                     </div>
                 </div>
