@@ -37,7 +37,12 @@ class UserProfileController extends Controller
             $user->save();
         }
 
-        return new UserResource($user->fresh());
+        return response()->json([
+            'data' => [
+                'error' => false,
+                'message' => 'User profile information updated successfully'
+            ]
+        ]);
     }
 
     public function changePassword(Request $request)

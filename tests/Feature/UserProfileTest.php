@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Storage;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserProfileTest extends TestCase
@@ -44,7 +44,7 @@ class UserProfileTest extends TestCase
         $response = $this->json('PATCH', route('user.profile.update'), $input);
         $response->assertOk();
         $response->assertJsonFragment([
-            'username' => 'ultrasamad'
+            'message' => 'User profile information updated successfully'
         ]);
     }
 

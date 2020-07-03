@@ -11,6 +11,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('api/docs', 'DocsController')->name('docs.pages');
+
 
 // Route::get('dashboard/speakers', 'AdminController@listSpeakers')->name('speakers.index');
 // Route::get('dashboard/topics', 'AdminController@listTopics')->name('topics.index');

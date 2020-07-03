@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'username' => $this->username,
             'avatar' => Storage::url($this->avatar),
-            'joined_on' => $this->created_at,
+            'joined_on' => $this->created_at->format('Y-m-d'),
         ];
     }
 }
