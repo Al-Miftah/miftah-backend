@@ -47,6 +47,29 @@ class DocsController extends Controller
                     ['method' => 'GET', 'title' => 'Forgot password', 'page' => 'forgot'],
                     ['method' => 'POST', 'title' => 'Reset', 'page' => 'reset']
                 ]
+            ],
+            [
+                'name' => 'Topics',
+                'page' => 'topics',
+                'children' => [
+                    ['method' => 'POST', 'title' => 'Create', 'page' => 'create'],
+                    ['method' => 'GET', 'title' => 'View', 'page' => 'view'],
+                    ['method' => 'PATCH', 'title' => 'Update', 'page' => 'update'],
+                    ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete'],
+                    ['method' => 'GET', 'title' => 'List', 'page' => 'list']
+                ]
+            ],
+            [
+                'name' => 'Speakers',
+                'page' => 'speakers',
+                'children' => [
+                    ['method' => 'POST', 'title' => 'Create', 'page' => 'create'],
+                    ['method' => 'PATCH', 'title' => 'Update', 'page' => 'update'],
+                    ['method' => 'GET', 'title' => 'View', 'page' => 'view'],
+                    ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete'],
+                    ['method' => 'GET', 'title' => 'List', 'page' => 'list'],
+                    ['method' => 'POST', 'title' => 'Login', 'page' => 'login'],
+                ]
             ]
         ];
 

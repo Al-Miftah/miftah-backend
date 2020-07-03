@@ -32,7 +32,7 @@ class RegisterSpeakerRequest extends FormRequest
             'location_address' => 'required|string|max:50',
             'city' => 'required|string|max:20',
             'bio' => 'required|string',
-            'avatar' => 'nullable|image|mimes:jpeg,bmp,png'
+            'avatar' => 'nullable|string|max:250'
         ];
     }
 }

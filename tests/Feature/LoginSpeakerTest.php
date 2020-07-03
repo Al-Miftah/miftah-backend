@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Artisan;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -34,7 +34,9 @@ class LoginSpeakerTest extends TestCase
         ];
         $response = $this->json('POST', route('speaker.auth.login'), $input);
         $response->assertOk();
-        $response->assertJsonStructure(['access_token', 'token_type', 'token_expiration']);
+        $response->assertJsonStructure([
+            'data' => ['access_token', 'token_type', 'token_expiration']
+        ]);
         $response->assertJsonFragment([
             'email' => 'yakufu@gmail.com', 
         ]);

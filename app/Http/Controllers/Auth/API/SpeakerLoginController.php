@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth\API;
 
-use Auth, Hash;
 use App\Models\Speaker;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SpeakerResource;
 use App\Http\Requests\LoginSpeakerRequest;
@@ -25,10 +25,12 @@ class SpeakerLoginController extends Controller
                 $expiration = Carbon::parse($tokenObj->token->expires_at)->toDateTimeString();
                 
                 return response()->json([
-                    'access_token' => $token,
-                    'token_type'    => 'Bearer',
-                    'token_expiration'  => $expiration,
-                    'speaker'  => new SpeakerResource($speaker),
+                    'data' => [
+                        'access_token' => $token,
+                        'token_type'    => 'Bearer',
+                        'token_expiration'  => $expiration,
+                        'speaker'  => new SpeakerResource($speaker),
+                    ]
                 ]);
             }
         }

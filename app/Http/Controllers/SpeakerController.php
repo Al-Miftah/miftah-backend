@@ -30,11 +30,14 @@ class SpeakerController extends Controller
      */
     public function store(RegisterSpeakerRequest $request)
     {
-        $input = $request->only('first_name', 'last_name', 'email', 'location_address', 'phone_number', 'city', 'address', 'bio');
+        $input = $request->only('first_name', 'last_name', 'email', 'avatar', 'location_address', 'phone_number', 'city', 'bio');
         $input['password'] = bcrypt($request->password);
-        $speaker = Speaker::create($input);
+        Speaker::create($input);
 
-        return new SpeakerResource($speaker);
+        return response()->json([
+            'error' => false,
+            'message' => 'Speaker account created successfully!',
+        ], 201);
     }
 
 
@@ -47,7 +50,7 @@ class SpeakerController extends Controller
      */
     public function update(UpdateSpeakerRequest $request, Speaker $speaker)
     {
-        $input = $request->only('first_name', 'last_name', 'email', 'location_address', 'phone_number', 'city', 'address', 'bio');
+        $input = $request->only('first_name', 'last_name', 'email', 'avatar', 'location_address', 'phone_number', 'city', 'bio');
         $speaker->update($input);
         return new SpeakerResource($speaker->fresh());
     }

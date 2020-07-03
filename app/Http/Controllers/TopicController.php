@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Resources\TopicResource;
+use App\Http\Resources\TopicCollection;
 use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
-use App\Http\Resources\TopicCollection;
+
 
 class TopicController extends Controller
 {
@@ -18,7 +19,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::paginate(10);
+        $topics = Topic::get();
         return new TopicCollection($topics);
     }
 

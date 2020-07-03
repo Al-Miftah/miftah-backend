@@ -45,7 +45,7 @@ class TopicTest extends TestCase
             $response = $this->json('GET', route('topics.index'));
             $response->assertOk();
             $response->assertJsonCount(2, 'data');
-            $response->assertJsonStructure(['data', 'pagination']);
+            $response->assertJsonStructure(['data']);
         }
 
     /** @test */

@@ -38,7 +38,8 @@ class SpeakerTest extends TestCase
             'email' => 'sheikhsalifu@yahoo.com'
         ]);
         $response->assertJsonFragment([
-            'first_name' => 'Salifu'
+            'error' => false,
+            'message' => 'Speaker account created successfully!'
         ]);
     }
 

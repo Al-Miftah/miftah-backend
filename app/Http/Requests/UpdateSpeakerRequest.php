@@ -29,7 +29,7 @@ class UpdateSpeakerRequest extends FormRequest
             'phone_number' => 'filled|string|min:10|max:20',
             'email' => 'filled|email|max:150',
             'location_address' => 'filled|max:100',
-            'avatar' => 'filled|image:jpeg,png',
+            'avatar' => 'filled|string:max:250',
             'bio' => 'filled|string',
             'city' => 'filled|string',
         ];
