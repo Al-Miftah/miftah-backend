@@ -5,7 +5,7 @@
     <div class="container-fluid" id="view-profile">
         <h3>User profile information</h3>
         <h4>
-            Endpoint: <code>/api/user/profile</code>
+            Endpoint: <code>/user/profile</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -83,7 +83,7 @@
     <div class="container-fluid" id="update-profile">
         <h3>Update user profile information</h3>
         <h4>
-            Endpoint: <code>/api/user/profile</code>
+            Endpoint: <code>/user/profile</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -172,7 +172,7 @@
     <div class="container-fluid" id="change-password">
         <h3>Change user password</h3>
         <h4>
-            Endpoint: <code>/api/profile/password</code>
+            Endpoint: <code>/profile/password</code>
         </h4>
         <div class="row">
             <div class="col-md-12">

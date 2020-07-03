@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" style="max-width: 260px">
     <div class="brand">
         {{-- <a href="index.html"><img src="/img/docs/wa-comm1.png" alt="Klorofil Logo" class="img-responsive logo"></a> --}}
         Miftah API ~ Docs

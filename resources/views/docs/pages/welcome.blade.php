@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <p>
                             Welcome to the API docs for Miftah. <br><br>
-                            The base server url is <code>https://miftah.ultrasamad.com/</code>.
+                            The base server url is <code>https://miftah.ultrasamad.com/api</code>.
                         </p>
                         <p>
                             If you spot any typo or unexpected or malformed request please contact Samad on <code>naatogma@gmail.com</code>

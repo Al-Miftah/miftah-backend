@@ -3,6 +3,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('developer/docs', 'DocumentationController');
 
+Route::get('/', function(){
+    return redirect('/api/docs');
+});
 
 //User authentication
 Route::post('user/auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
