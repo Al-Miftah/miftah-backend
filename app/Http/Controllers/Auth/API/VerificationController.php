@@ -65,26 +65,26 @@ class VerificationController extends Controller
     {
         $user = User::findOrFail($request->route('id'));
         if (! hash_equals((string) $request->route('id'), (string) $user->getKey())) {
-            return response()->json([
-                'error' => 'Unauthorized! ID mismatch'
-            ], 401);
+            return view('auth.verify-error', [
+                'message' => 'Unauthorized! ID mismatch'
+            ]);
         }
         if (! hash_equals((string) $request->query('hash'), sha1($user->getEmailForVerification()))) {
-            return response()->json([
-                'error' => 'Unauthorized! Hash mismatch'
-            ], 401);
+            return view('auth.verify-error', [
+                'message' => 'Unauthorized! Hash mismatch'
+            ]);
         }
         if ($user->hasVerifiedEmail()) {
-            return response()->json([
-                'error' => 'User email already verified!'
-            ], 401);
+            return view('auth.verify-error', [
+                'message' => 'Your email address has already been verified!'
+            ]);
         }
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
-        return response()->json([
-            'message' => 'User email address verified successfully!'
-        ], 200);
+        return view('auth.verify-success', [
+            'message' => 'Your email address has been verified successfully!'
+        ]);
     }
 
     /**
@@ -99,13 +99,19 @@ class VerificationController extends Controller
         $user = $request->user();
         if ($user->hasVerifiedEmail()) {
             return response()->json([
-                'error' => 'User email has already been verified!'
+                'data' => [
+                    'error' => true,
+                    'message' => 'User email has already been verified!'
+                ]
             ], 401);
         }
         $user->sendEmailVerificationNotification();
         
         return response()->json([
-            'message'   => 'Verification email resent successfully!'
+            'data' => [
+                'error' => false,
+                'message'   => 'Verification email resent successfully!'
+            ]
         ]);
     }
 }

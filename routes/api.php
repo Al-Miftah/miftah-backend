@@ -1,8 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::get('developer/docs', 'DocumentationController');
-
 Route::get('/', function(){
     return redirect('/api/docs');
 });
