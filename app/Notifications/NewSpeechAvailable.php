@@ -3,9 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewSpeechAvailable extends Notification implements ShouldQueue
 {
@@ -54,9 +54,9 @@ class NewSpeechAvailable extends Notification implements ShouldQueue
     {
         return [
             'speaker_avatar' => $this->speaker->avatar,
-            'speech_cover_photo' => $this->speech->cover_photo,
             'speech_date' => $this->speech->created_at,
-            'message' => "{$this->speaker->last_name} {$this->speaker->last_name}: {$this->speech->title}"
+            'message' => "{$this->speaker->last_name} {$this->speaker->last_name}: {$this->speech->title}",
+            'label' => 'new-speech-available'
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NotificationCollection;
 use Illuminate\Http\Request;
 
 class UserNotificationController extends Controller
@@ -11,8 +12,6 @@ class UserNotificationController extends Controller
         $user = auth('api')->user();
 
         $notifications = $user->notifications;
-        return response()->json([
-            'data' => $notifications,
-        ]);
+        return new NotificationCollection($notifications);
     }
 }

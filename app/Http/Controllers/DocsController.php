@@ -31,6 +31,7 @@ class DocsController extends Controller
                     ['method' => 'GET', 'title' => 'View profile', 'page' => 'view-profile'],
                     ['method' => 'PATCH', 'title' => 'Update profile', 'page' => 'update-profile'],
                     ['method' => 'POST', 'title' => 'Change password', 'page' => 'change-password'],
+                    ['method' => 'GET', 'title' => 'Notifications', 'page' => 'notifications']
                 ]
             ],
             [
