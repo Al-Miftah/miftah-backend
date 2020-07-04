@@ -34,6 +34,9 @@ class SpeechController extends Controller
      */
     public function store(StoreSpeechRequest $request)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Create Speech', 'api'), 403);
+
         $input = $request->only(['title', 'summary', 'transcription', 'cover_photo', 'url', 'speaker_id', 'topic_id']);
         $speech = new Speech($input);
         $speech->save();
@@ -83,6 +86,9 @@ class SpeechController extends Controller
      */
     public function update(UpdateSpeechRequest $request, Speech $speech)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Update Speech', 'api'), 403);
+
         $input = $request->only('title', 'summary', 'transcription', 'speaker_id', 'topic_id');
         $speech->update($input);
         //Tags if any
@@ -112,9 +118,13 @@ class SpeechController extends Controller
      */
     public function destroy(Request $request, Speech $speech)
     {
+        $admin = auth('api')->user();
+
         if ($request->permanent) {
+            abort_unless($admin->can('Force delete Speech'), 403);
             $speech->forceDelete();
         }else {
+            abort_unless($admin->can('Delete Speech', 'api') || $admin->can('Force delete Speech', 'api'), 403);
             $speech->delete();
         }
         return response()->noContent(204);

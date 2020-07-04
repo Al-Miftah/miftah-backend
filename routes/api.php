@@ -43,6 +43,7 @@ Route::post('users/topics/{topic}', 'UserTopicController@store')->name('users.to
 //Speeches of a speaker
 Route::get('speakers/{speaker}/speeches', 'SpeakerSpeechController')->name('speaker.speeches');
 
+//TODO: Wrap some routes in auth:api
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('speakers', 'SpeakerController');
 Route::apiResource('speeches', 'SpeechController');

@@ -15,7 +15,11 @@ class SpeechTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed('TagsTableSeeder');
+        $this->seed(['RolesAndPermissionsSeeder', 'TagsTableSeeder']);
+        $admin = factory('App\Models\User')->create();
+        $admin->givePermissionTo('Create Speech', 'Update Speech', 'Force delete Speech');
+        $this->authenticate($admin);
+        
     }
 
     /**
@@ -23,10 +27,6 @@ class SpeechTest extends TestCase
      */
     public function it_creates_a_new_speech()
     {
-
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
-
         $speaker = factory('App\Models\Speaker')->create();
         $topic = factory('App\Models\Topic')->create();
 
@@ -86,9 +86,6 @@ class SpeechTest extends TestCase
      */
     public function it_updates_details_of_a_speech()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
-
         $speech = factory('App\Models\Speech')->create([
             'title' => 'Night of Power'          
         ]);
@@ -109,8 +106,6 @@ class SpeechTest extends TestCase
      */
     public function it_soft_deletes_a_speech()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
         $speech = factory('App\Models\Speech')->create();
 
         $response = $this->json('DELETE', route('speeches.destroy', $speech));
@@ -125,8 +120,6 @@ class SpeechTest extends TestCase
      */
     public function it_deletes_a_speech_permanently()
     {
-        $user = factory('App\Models\User')->create();
-        $this->authenticate($user);
         $speech = factory('App\Models\Speech')->create();
 
         $input = [

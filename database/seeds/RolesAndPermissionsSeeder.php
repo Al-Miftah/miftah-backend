@@ -65,6 +65,22 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Delete Topic',
                 'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Create Speech',
+                'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Update Speech',
+                'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Delete Speech',
+                'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Force delete Speech',
+                'guards' => ['api', 'web']
             ]
         ];
 
