@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Speech;
 use Tests\TestCase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Speech;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,22 +23,19 @@ class SpeechTest extends TestCase
      */
     public function it_creates_a_new_speech()
     {
-        Storage::fake('local');
 
         $user = factory('App\Models\User')->create();
         $this->authenticate($user);
 
         $speaker = factory('App\Models\Speaker')->create();
-        $language = factory('App\Models\Language')->create();
         $topic = factory('App\Models\Topic')->create();
 
         $input = [
             'title' => 'Women rights in Islam',
-            'speech' => UploadedFile::fake()->create('recording.mp3'),
+            'url' => 'http://firebase.storage.com/recording1.mp3',
             'summary' => $this->faker->sentence,
-            'cover_photo' => UploadedFile::fake()->image('recording_cover.png'),
+            'cover_photo' => 'https://storage.firebase.com/recording_cover.png',
             'speaker_id' => $speaker->id,
-            'language_id' => $language->id,
             'topic_id' => $topic->id,
             'tags' => ['repentance', 'fasting']
         ];
@@ -50,14 +45,7 @@ class SpeechTest extends TestCase
         $this->assertDatabaseHas('speeches', [
             'title' => 'Women rights in Islam'
         ]);
-        $response->assertJsonFragment([
-            'title' => 'Women rights in Islam',
-        ]);
-        $folder = 'public/uploads/speeches/audio';
-        $this->assertCount(1, Storage::files($folder));
-        $this->assertCount(1, Storage::files('public/uploads/speeches/photos'));
         $this->assertCount(2, Speech::whereTitle('Women rights in Islam')->first()->tags);
-        
     }
 
     /**

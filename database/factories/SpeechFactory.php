@@ -10,7 +10,6 @@ $factory->define(App\Models\Speech::class, function (Faker $faker) {
         'url' => $faker->url,
         'cover_photo' => $faker->imageUrl(),
         'speaker_id' => factory('App\Models\Speaker'),
-        'language_id' => factory('App\Models\Language'),
         'topic_id' => factory('App\Models\Topic'),
     ];
 });

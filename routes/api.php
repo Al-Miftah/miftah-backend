@@ -12,7 +12,7 @@ Route::post('user/auth/login', 'Auth\API\LoginController@authenticate')->name('u
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('user/auth/logout', 'Auth\API\LogoutController')->name('user.auth.logout');
     Route::post('email-verification/resend', 'Auth\API\VerificationController@resend')->name('api.verification.resend');
-
+    //User profile
     Route::group(['prefix' => 'user/profile'], function () {
         //User profile
         Route::get('', 'UserProfileController@show')->name('user.profile.show');
@@ -20,6 +20,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::patch('password', 'UserProfileController@changePassword')->name('user.password.update');
         Route::get('notifications', 'UserNotificationController')->name('user.notifications.index');
     });
+    //User speakers (following)
+    Route::get('user/speakers/following', 'UserSpeakerController@index')->name('users.speakers.index');
+    Route::post('user/speakers/{speaker}/following', 'UserSpeakerController@store')->name('users.speakers.store');
 });
 
 //Email verification
@@ -33,13 +36,9 @@ Route::post('password/reset', 'Auth\API\ResetPasswordController@doReset')->name(
 Route::post('speaker/auth/register', 'Auth\API\SpeakerRegistrationController')->name('speaker.auth.register');
 Route::post('speaker/auth/login', 'Auth\API\SpeakerLoginController')->name('speaker.auth.login');
 
-//User topics
+//User topics - Topics is following
 Route::get('users/topics', 'UserTopicController@index')->name('users.topics.index');
 Route::post('users/topics/{topic}', 'UserTopicController@store')->name('users.topics.store');
-
-//User speakers (following)
-Route::post('users/speakers/{speaker}', 'UserSpeakerController@store')->name('users.speakers.store');
-Route::get('users/speakers', 'UserSpeakerController@index')->name('users.speakers.index');
 
 //Speeches of a speaker
 Route::get('speakers/{speaker}/speeches', 'SpeakerSpeechController')->name('speaker.speeches');

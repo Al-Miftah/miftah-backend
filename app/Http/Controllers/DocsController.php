@@ -70,6 +70,26 @@ class DocsController extends Controller
                     ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete'],
                     ['method' => 'GET', 'title' => 'List', 'page' => 'list'],
                     ['method' => 'POST', 'title' => 'Login', 'page' => 'login'],
+                    ['method' => 'GET', 'title' => 'Speeches', 'page' => 'speeches'],
+                ]
+            ],
+            [
+                'name' => 'Following',
+                'page' => 'following',
+                'children' => [
+                    ['method' => 'GET', 'title' => 'List Speakers', 'page' => 'list-speakers'],
+                    ['method' => 'POST', 'title' => 'Follow a Speakers', 'page' => 'follow-speaker'],
+                ]
+            ],
+            [
+                'name' => 'Speeches',
+                'page' => 'speeches',
+                'children' => [
+                    ['method' => 'GET', 'title' => 'List', 'page' => 'list'],
+                    ['method' => 'POST', 'title' => 'Create', 'page' => 'create'],
+                    ['method' => 'GET', 'title' => 'View', 'page' => 'view'],
+                    ['method' => 'PATCH', 'title' => 'Update', 'page' => 'update'],
+                    ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete']
                 ]
             ]
         ];

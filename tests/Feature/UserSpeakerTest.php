@@ -37,9 +37,11 @@ class UserSpeakerTest extends TestCase
         //follow
         $this->json('POST', route('users.speakers.store', $speaker));
         //unfollow
-        $this->json('POST', route('users.speakers.store', $speaker));
+        $response = $this->json('POST', route('users.speakers.store', $speaker));
         //Assert user is no more part of those following the speaker
+        $response->assertOk();
         $this->assertFalse($speaker->followers->contains($user));
+
         
     }
 

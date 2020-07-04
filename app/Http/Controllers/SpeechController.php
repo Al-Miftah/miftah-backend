@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Speech;
-use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Resources\SpeechResource;
@@ -14,45 +13,29 @@ use App\Http\Requests\UpdateSpeechRequest;
 
 class SpeechController extends Controller
 {
-    use UploadTrait;
-
-    public function __construct()
-    {
-        //
-    }
-
-    public function index()
+    /**
+     * List speeches
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function index(Request $request)
     {
         $speeches = Speech::paginate(10);
         return new SpeechCollection($speeches);
     }
 
 
+    /**
+     * Create a new speech
+     *
+     * @param StoreSpeechRequest $request
+     * @return void
+     */
     public function store(StoreSpeechRequest $request)
     {
-        $input = $request->only(['title', 'summary', 'speaker_id', 'topic_id', 'language_id']);
+        $input = $request->only(['title', 'summary', 'transcription', 'cover_photo', 'url', 'speaker_id', 'topic_id']);
         $speech = new Speech($input);
-
-        //Upload speech audio
-        $file = $request->file('speech');
-        $folder = 'public/uploads/speeches/audio';
-        if (app()->environment(['staging', 'production'])) {
-            $folder = 'uploads/speeches/audio';
-        }
-        $path = $this->upload($file, $folder);
-        $speech->url = $path;
-
-        //Upload cover_photo
-        if ($request->hasFile('cover_photo')) {
-            $file = $request->file('cover_photo');
-            $folder = 'public/uploads/speeches/photos';
-            if (app()->environment(['staging', 'production'])) {
-                $folder = 'uploads/speeches/photos';
-            }
-            $path = $this->upload($file, $folder);
-            $speech->cover_photo = $path;
-        }
-        //Save speech
         $speech->save();
 
         //Tags if any
@@ -70,29 +53,37 @@ class SpeechController extends Controller
             $speech->tags()->syncWithoutDetaching($ids);
         }
 
-        return new SpeechResource($speech);
+        return response()->json([
+            'data' => [
+                'error' => false,
+                'message' => 'Speech created successfully'
+            ]
+        ], 201);
     }
 
+    /**
+     * Show details of a speech
+     *
+     * @param Speech $speech
+     * @return void
+     */
     public function show(Speech $speech)
     {
-        $data = $speech->load('speaker', 'language', 'tags');
+        $data = $speech->load('speaker', 'tags');
         return new SpeechResource($data);
     }
 
 
-
+    /**
+     * Update speech
+     *
+     * @param UpdateSpeechRequest $request
+     * @param Speech $speech
+     * @return void
+     */
     public function update(UpdateSpeechRequest $request, Speech $speech)
     {
-        $input = $request->only('title', 'summary', 'transcription', 'speaker_id', 'topic_id', 'language_id');
-        if ($request->hasFile('cover_photo')) {
-            $file = $request->file('cover_photo');
-            $folder = 'public/uploads/speeches/photos';
-            if (app()->environment(['staging', 'production'])) {
-                $folder = 'uploads/speeches/photos';
-            }
-            $path = $this->upload($file, $folder);
-            $input['cover_photo'] = $path;
-        }
+        $input = $request->only('title', 'summary', 'transcription', 'speaker_id', 'topic_id');
         $speech->update($input);
         //Tags if any
         if ($request->has('tags')) {
@@ -112,6 +103,13 @@ class SpeechController extends Controller
         return new SpeechResource($speech->fresh());
     }
 
+    /**
+     * Delete a speech
+     *
+     * @param Request $request
+     * @param Speech $speech
+     * @return void
+     */
     public function destroy(Request $request, Speech $speech)
     {
         if ($request->permanent) {

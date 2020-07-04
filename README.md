@@ -29,6 +29,3 @@ API docs available at `/api/docs`
 
 ## Run tests
 `./vendor/bin/phpunit`
-
-## TODO
-- [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following

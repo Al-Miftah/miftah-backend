@@ -21,8 +21,8 @@ class SpeechResource extends JsonResource
             'summary' => $this->summary,
             'transcription' => $this->transcription,
             'url' => Storage::url($this->url),
+            'created_at' => $this->created_at->diffForHumans(),
             'speaker' => new SpeakerResource($this->whenLoaded('speaker')),
-            'language' => new LanguageResource($this->whenLoaded('language')),
             'tags' => TagResource::collection($this->whenLoaded('tags')),
         ];
     }

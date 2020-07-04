@@ -25,7 +25,11 @@ class UserSpeakerController extends Controller
     {
         $user = auth('api')->user();
         $speaker->followers()->toggle($user->id);
-        $speakers = $user->speakers()->paginate();
-        return new SpeakerCollection($speakers);
+        return response()->json([
+            'data' => [
+                'error' => false,
+                'message' => 'Your speakers list has been updated successfully',
+            ]
+        ]);
     }
 }

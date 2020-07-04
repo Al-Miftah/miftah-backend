@@ -11,13 +11,25 @@ use App\Http\Resources\TagResource;
 class TagController extends Controller
 {
 
-    public function index()
+    /**
+     * List tags
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function index(Request $request)
     {
-        $tags = Tag::paginate(30);
-
-        return new TagCollection($tags);
+        return response()->json([
+            'data' => Tag::get(['id', 'name'])
+        ]);
     }
 
+    /**
+     * Create a new tag
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         //Create tags
@@ -37,6 +49,13 @@ class TagController extends Controller
     }
 
 
+    /**
+     * Update a tag
+     *
+     * @param Request $request
+     * @param Tag $tag
+     * @return void
+     */
     public function update(Request $request, Tag $tag)
     {
         $tag->name = $request->name;
@@ -45,6 +64,12 @@ class TagController extends Controller
     }
 
 
+    /**
+     * Delete a tag
+     *
+     * @param Tag $tag
+     * @return void
+     */
     public function destroy(Tag $tag)
     {
         $tag->delete();

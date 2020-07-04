@@ -3,9 +3,9 @@
 @section('content')
 <div class="main-content">
     <div class="container-fluid" id="create">
-        <h3>Create a speaker account</h3>
+        <h3>Create a new speech</h3>
         <h4>
-            Endpoint: <code>/speakers</code>
+            Endpoint: <code>/speeches</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -47,60 +47,60 @@
                                     <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
                                 <tr>
-                                    <td>first_name</td>
+                                    <td>title</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>John</code></td>
+                                    <td><code>Marriage in Islam</code></td>
                                 </tr>
                                 <tr>
-                                    <td>last_name</td>
+                                    <td>summary</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Doe</code></td>
+                                    <td><code>Marriage in Islam</code></td>
                                 </tr>
                                 <tr>
-                                    <td>phone_number</td>
+                                    <td>transcription</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>+23324xxxxxxx</code></td>
+                                    <td><code>Transcription for Marriage in Islam</code></td>
                                 </tr>
                                 <tr>
-                                    <td>email</td>
+                                    <td>cover_photo</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>johndoe@example.com</code></td>
+                                    <td><code>https://storage.firebase.com/4.png</code></td>
                                 </tr>
                                 <tr>
-                                    <td>location_address</td>
+                                    <td>url</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Madina, Accra</code></td>
+                                    <td><code>https://storage.firebase.com/2.mp3</code></td>
                                 </tr>
                                 <tr>
-                                    <td>city</td>
-                                    <td><code>string</code></td>
+                                    <td>speaker_id</td>
+                                    <td><code>integer</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Accra</code></td>
+                                    <td><code>1</code></td>
                                 </tr>
                                 <tr>
-                                    <td>bio</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>Yes</td>
-                                    <td><code>Some bio description here</code></td>
-                                </tr>
-                                <tr>
-                                    <td>avatar</td>
-                                    <td><code>string</code></td>
+                                    <td>topic_id</td>
+                                    <td><code>integer</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>https://firebase.storage.com/profile.png</code></td>
+                                    <td><code>1</code></td>
+                                </tr>
+                                <tr>
+                                    <td>tags</td>
+                                    <td><code>array</code></td>
+                                    <td>Body</td>
+                                    <td>No</td>
+                                    <td><code>['Fiqh', 'Seerah']</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -120,11 +120,8 @@
                     <div class="panel-body">
 <pre>{
 "data": {
-    
-        "id": "1",
-        "first_name": "John",
-        "last_name": "Doe",
-        "location_address": "Madina, Accra",
+        "error": false,
+        "message": "Speech created successfully"
         ...
     }
 }</pre>

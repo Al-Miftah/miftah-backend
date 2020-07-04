@@ -16,8 +16,15 @@ class SpeakerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //If client wants simple list for populating dropdowns
+        if ($request->has('pagination') && $request->query('pagination') == false) {
+            $speakers = Speaker::get(['id', 'name']);
+            return response()->json([
+                'data' => $speakers
+            ]);
+        }
         $speakers = Speaker::paginate(10);
         return new SpeakerCollection($speakers);
     }
