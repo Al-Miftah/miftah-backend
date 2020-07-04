@@ -91,6 +91,16 @@ class DocsController extends Controller
                     ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete'],
                     ['method' => 'GET', 'title' => 'List', 'page' => 'list'],
                 ]
+            ],
+            [
+                'name' => 'Tags',
+                'page' => 'tags',
+                'children' => [
+                    ['method' => 'GET', 'title' => 'List', 'page' => 'list'],
+                    ['method' => 'POST', 'title' => 'Create', 'page' => 'create'],
+                    ['method' => 'GET', 'title' => 'View', 'page' => 'view'],
+                    ['method' => 'DELETE', 'title' => 'Delete', 'page' => 'delete'],
+                ]
             ]
         ];
 

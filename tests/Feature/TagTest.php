@@ -10,6 +10,14 @@ class TagTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(['RolesAndPermissionsSeeder']);
+        $admin = factory('App\Models\User')->create();
+        $this->authenticate($admin);
+    }
+
     /**
      * @test
      */
@@ -36,6 +44,23 @@ class TagTest extends TestCase
         ]);
         $response->assertJsonFragment([
             'message' => 'Tags created successfully!'
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function it_shows_details_of_a_tag()
+    {
+        $tag = factory('App\Models\Tag')->create([
+            'name' => 'Ramadanm',
+        ]);
+        $response = $this->getJson(route('tags.show', $tag));
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => ['id', 'name', 'speeches'],
         ]);
     }
 

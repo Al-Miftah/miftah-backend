@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Resources\TopicResource;
-use App\Http\Resources\TopicCollection;
 use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
 
 
 class TopicController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +24,10 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = Topic::get();
-        return new TopicCollection($topics);
+        $topics = Topic::get(['id', 'title', 'description']);
+        return response()->json([
+            'data' => $topics
+        ]);
     }
 
     /**
@@ -31,8 +38,21 @@ class TopicController extends Controller
      */
     public function store(StoreTopicRequest $request)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Create Topic', 'api'), 403);
         $topic = Topic::create($request->only('title', 'description'));
         return new TopicResource($topic);
+    }
+
+    /**
+     * View a topic
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function show(Request $request, Topic $topic)
+    {
+        return new TopicResource($topic->load('speeches'));
     }
 
     /**
@@ -44,6 +64,8 @@ class TopicController extends Controller
      */
     public function update(UpdateTopicRequest $request, Topic $topic)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Update Topic', 'api'), 403);
         $topic->update($request->only(['title', 'description']));
         return new TopicResource($topic->fresh());
     }
@@ -55,7 +77,8 @@ class TopicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Topic $topic)
-    {   
+    {   $admin = auth('api')->user();
+        abort_unless($admin->can('Delete Topic', 'api'), 403);
         $topic->delete();
         return response()->noContent(204);
     }

@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Speaker;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -65,6 +63,26 @@ class SpeakerTest extends TestCase
         ]);
         $response->assertJsonFragment([
             'first_name' => 'Salih'
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function it_shows_details_of_a_speaker()
+    {
+        $speaker = factory('App\Models\Speaker')->create([
+            'first_name' => 'John',
+            'last_name' => 'Doe'
+        ]);
+        $response = $this->getJson(route('speakers.show', $speaker));
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                'id', 'first_name', 'last_name', 'phone_number', 'email', 'location_address', 'city', 'bio', 'speeches_count', 'followers_count'
+            ]
         ]);
     }
 

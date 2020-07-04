@@ -3,9 +3,9 @@
 @section('content')
 <div class="main-content">
     <div class="container-fluid" id="create">
-        <h3>Create a topic</h3>
+        <h3>Create tags</h3>
         <h4>
-            Endpoint: <code>/topics</code>
+            Endpoint: <code>/tags</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -47,18 +47,11 @@
                                     <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
                                 <tr>
-                                    <td>title</td>
-                                    <td><code>string</code></td>
+                                    <td>tags</td>
+                                    <td><code>array</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Seerah of the prophet</code></td>
-                                </tr>
-                                <tr>
-                                    <td>description</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>Some description here</code></td>
+                                    <td><code>['Fasting', 'Sacrifice']</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -78,10 +71,8 @@
                     <div class="panel-body">
 <pre>{
 "data": {
-    
-        "id": "1",
-        "title": "Seerah of the project",
-        "description": "Some description",
+        "error": false,
+        "message": "Tags created successfully"
     }
 }</pre>
                     </div>
@@ -90,9 +81,9 @@
         </div>
     </div>
     <hr>
-    {{-- Update a topic --}}
+    {{-- Update a tag --}}
     <div class="container-fluid" id="update">
-        <h3>Update a topic</h3>
+        <h3>Update a tag</h3>
         <h4>
             Endpoint: <code>/topics/:id</code>
         </h4>
@@ -129,18 +120,11 @@
                                     <td><code>application/json</code></td>
                                 </tr>
                                 <tr>
-                                    <td>title</td>
+                                    <td>name</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>Some title</code></td>
-                                </tr>
-                                <tr>
-                                    <td>description</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>Some description</code></td>
+                                    <td><code>Marriage</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -162,8 +146,7 @@
 <pre>{
 "data": {
         "id": "1",
-        "title": "Seerah of the project",
-        "description": "Some description",
+        "name": "Marriage",
     }
 }</pre>
                     </div>
@@ -173,11 +156,11 @@
     </div>
     
     <hr>
-    {{-- View a topic --}}
+    {{-- View a tag --}}
     <div class="container-fluid" id="view">
-        <h3>View a topic</h3>
+        <h3>View a tag</h3>
         <h4>
-            Endpoint: <code>/topics/:id</code>
+            Endpoint: <code>/tags/:id</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -239,8 +222,7 @@
 <pre>{
 "data": {
         "id": "1",
-        "title": "Seerah of the project",
-        "description": "Some description",
+        "name": "Marriage",
         'speeches': []
     }
 }</pre>
@@ -252,9 +234,9 @@
     </div>
 
     <div class="container-fluid" id="view">
-        <h3>Delete a topic</h3>
+        <h3>Delete a tag</h3>
         <h4>
-            Endpoint: <code>/topics/:id</code>
+            Endpoint: <code>/tags/:id</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -322,9 +304,9 @@
     </div>
 
     <div class="container-fluid" id="list">
-        <h3>List topics</h3>
+        <h3>List tags</h3>
         <h4>
-            Endpoint: <code>/topics</code>
+            Endpoint: <code>/tags</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -387,8 +369,7 @@
     "data": [
         {
             "id": 1,
-            "title": "Ramadan 2021",
-            "description": "Some description"
+            "name": "Fasting",
         }
         ...
     ]

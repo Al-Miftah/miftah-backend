@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Http\Resources\TagCollection;
+use Illuminate\Http\Request;
 use App\Http\Resources\TagResource;
 
 class TagController extends Controller
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
 
     /**
      * List tags
@@ -22,6 +28,18 @@ class TagController extends Controller
         return response()->json([
             'data' => Tag::get(['id', 'name'])
         ]);
+    }
+
+    /**
+     * View a tag
+     *
+     * @param Request $request
+     * @param Tag $tag
+     * @return void
+     */
+    public function show(Request $request, Tag $tag)
+    {
+        return new TagResource($tag->load('speeches'));
     }
 
     /**
@@ -44,7 +62,10 @@ class TagController extends Controller
         }
 
         return response()->json([
-            'message' => 'Tags created successfully!'
+            'data' => [
+                'error' => false,
+                'message' => 'Tags created successfully!'
+            ]
         ]);
     }
 
@@ -73,6 +94,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return response()->noContent();
+        return response()->noContent(204);
     }
 }

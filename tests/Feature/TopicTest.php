@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\Topic;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
@@ -16,10 +15,14 @@ class TopicTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $this->seed(['RolesAndPermissionsSeeder']);
+        $admin = factory('App\Models\User')->create();
+        $admin->givePermissionTo(['Create Topic', 'Update Topic', 'Delete Topic']);
+        $this->authenticate($admin);
     }
 
     /** @test */
-    public function it_creates_a_new_topic()
+    public function an_authorized_admin_can_creates_a_new_topic()
     {
         $input = [
             'title' => 'Marriage in Islam',

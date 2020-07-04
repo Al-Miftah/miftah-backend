@@ -14,6 +14,14 @@ use App\Http\Requests\UpdateSpeechRequest;
 class SpeechController extends Controller
 {
     /**
+     * Constructor
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+    /**
      * List speeches
      *
      * @param Request $request

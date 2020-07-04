@@ -12,6 +12,16 @@ use App\Http\Requests\RegisterSpeakerRequest;
 class SpeakerController extends Controller
 {
     /**
+     * Constructor
+     *
+     * 
+     */ 
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -27,6 +37,18 @@ class SpeakerController extends Controller
         }
         $speakers = Speaker::paginate(10);
         return new SpeakerCollection($speakers);
+    }
+
+    /**
+     * View details of a speaker
+     *
+     * @param Request $request
+     * @param Speaker $speaker
+     * @return void
+     */
+    public function show(Request $request, Speaker $speaker)
+    {
+        return new SpeakerResource($speaker);
     }
 
     /**

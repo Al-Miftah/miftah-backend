@@ -81,6 +81,10 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Force delete Speech',
                 'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Create Tag',
+                'guards' => ['api', 'web']
             ]
         ];
 

@@ -47,7 +47,6 @@ Route::get('speakers/{speaker}/speeches', 'SpeakerSpeechController')->name('spea
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('speakers', 'SpeakerController');
 Route::apiResource('speeches', 'SpeechController');
-Route::apiResource('languages', 'LanguageController');
 Route::apiResource('tags', 'TagController');
 Route::apiResource('questions', 'QuestionController');
 
@@ -74,3 +73,6 @@ Route::get('user/questions', 'UserQuestionController@index')->name('user.questio
 
 //Tag speeches
 Route::get('tags/{tag}/speeches', 'TagSpeechController')->name('tags.speeches.index');
+
+//Permissions & Roles
+Route::get('permissions', 'PermissionController@index')->name('permissions.index');
