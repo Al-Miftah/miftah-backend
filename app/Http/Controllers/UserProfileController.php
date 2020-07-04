@@ -2,40 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Http\Resources\UserResource;
 use App\Rules\ValidCurrentUserPassword;
 use App\Http\Requests\UpdateUserProfileRequest;
 
 class UserProfileController extends Controller
 {
-    use UploadTrait;
-
+    /**
+     * View profile
+     *
+     * @param Request $request
+     * @return void
+     */
     public function show(Request $request)
     {
         $user = auth('api')->user();
-
         return new UserResource($user);
     }
 
+    /**
+     * Update profile
+     *
+     * @param UpdateUserProfileRequest $request
+     * @return void
+     */
     public function update(UpdateUserProfileRequest $request)
     {
         $user = auth('api')->user();
-        $input = $request->only('name', 'email', 'username');
+        $input = $request->only('name', 'email', 'username', 'avatar');
         $user->update($input);
-
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $folder = 'public/uploads/profile';
-            if (app()->environment(['staging', 'production'])) {
-                $folder = 'uploads/profile';
-            }
-            $path = $this->upload($avatar, $folder);
-            $user->avatar = $path;
-            $user->save();
-        }
 
         return response()->json([
             'data' => [
@@ -45,6 +41,12 @@ class UserProfileController extends Controller
         ]);
     }
 
+    /**
+     * Change password
+     *
+     * @param Request $request
+     * @return void
+     */
     public function changePassword(Request $request)
     {
         $request->validate([
@@ -55,7 +57,10 @@ class UserProfileController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         return response()->json([
-            'message'   => 'Password changed successfully!'
+            'data' => [
+                'error' => false,
+                'message'   => 'Password changed successfully!'
+            ]
         ]);
     }
 }

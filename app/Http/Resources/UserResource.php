@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'username' => $this->username,
-            'avatar' => Storage::url($this->avatar),
+            'avatar' => $this->avatar,
             'joined_on' => $this->created_at->format('Y-m-d'),
         ];
     }

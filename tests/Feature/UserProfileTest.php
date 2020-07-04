@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserProfileTest extends TestCase
@@ -46,27 +44,6 @@ class UserProfileTest extends TestCase
         $response->assertJsonFragment([
             'message' => 'User profile information updated successfully'
         ]);
-    }
-
-    /**
-     * @test
-     */
-    public function it_updates_profile_picture_of_user()
-    {
-        Storage::fake('local');
-
-        $user = factory('App\Models\User')->create([
-            'name' => 'Abdul Samad'
-        ]);
-        $this->authenticate($user);
-
-        $input = [
-            'avatar' => UploadedFile::fake()->image('myface.png'),
-        ];
-        $response = $this->json('PATCH', route('user.profile.update'), $input);
-        $response->assertOk();
-        $folder = 'public/uploads/profile';
-        $this->assertCount(1, Storage::files($folder));
     }
 
     /**

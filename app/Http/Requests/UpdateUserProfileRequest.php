@@ -27,7 +27,7 @@ class UpdateUserProfileRequest extends FormRequest
             'name' => 'filled|string|max:150',
             'email' => 'filled|email|max:150',
             'username' => 'filled|string|max:50',
-            'avatar' => 'sometimes|image:png,jpeg,bmp|max:200'
+            'avatar' => 'filled|string|max:250'
         ];
     }
 }
