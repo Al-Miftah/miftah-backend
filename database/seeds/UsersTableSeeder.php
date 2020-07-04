@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -22,7 +23,8 @@ class UsersTableSeeder extends Seeder
             'avatar' => 'https://s.gravatar.com/avatar/c39ca80df6397b97fbd93a3c479a742a?s=80',
         ]);
 
-        //Give super admin role
-        $user->assignRole('Super Admin');
+        //Assign both api and web guards
+        $roles = Role::where('name', 'Super Admin')->get();
+        $user->assignRole($roles);
     }
 }
