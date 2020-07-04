@@ -66,18 +66,7 @@ class TopicTest extends TestCase
     }
 
     /** @test */
-    public function it_soft_deletes_a_topic()
-    {
-        $topic = factory(Topic::class)->create();
-        $response = $this->json('DELETE', route('topics.destroy', $topic));
-        $response->assertStatus(204);
-        $this->assertSoftDeleted('topics', [
-            'id' => $topic->id
-        ]);
-    }
-
-    /** @test */
-    public function it_deletes_a_topic_permanently()
+    public function an_authorized_admin_can_deletes_a_topic()
     {
         $topic = factory(Topic::class)->create();
         $response = $this->json('DELETE', route('topics.destroy', $topic), ['permanent' => true]);

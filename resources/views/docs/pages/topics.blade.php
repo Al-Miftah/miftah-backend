@@ -294,13 +294,6 @@
                                     <td>Yes</td>
                                     <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
-                                <tr>
-                                    <td>permanent</td>
-                                    <td><code>boolean</code></td>
-                                    <td>Body</td>
-                                    <td>Yes</td>
-                                    <td><code>true|false</code></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -55,12 +55,7 @@ class TopicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Topic $topic)
-    {
-        if($request->permanent) {
-            $topic->forceDelete();
-            return response()->noContent(204);
-        }
-        
+    {   
         $topic->delete();
         return response()->noContent(204);
     }

@@ -30,6 +30,9 @@ class SpeakerController extends Controller
      */
     public function store(RegisterSpeakerRequest $request)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Create Speaker', 'api'), 403);
+
         $input = $request->only('first_name', 'last_name', 'email', 'avatar', 'location_address', 'phone_number', 'city', 'bio');
         $input['password'] = bcrypt($request->password);
         Speaker::create($input);
@@ -50,6 +53,9 @@ class SpeakerController extends Controller
      */
     public function update(UpdateSpeakerRequest $request, Speaker $speaker)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Update Speaker', 'api'), 403);
+
         $input = $request->only('first_name', 'last_name', 'email', 'avatar', 'location_address', 'phone_number', 'city', 'bio');
         $speaker->update($input);
         return new SpeakerResource($speaker->fresh());
@@ -63,9 +69,12 @@ class SpeakerController extends Controller
      */
     public function destroy(Request $request, Speaker $speaker)
     {
+        $admin = auth('api')->user();
         if ($request->permanent) {
+            abort_unless($admin->can('Force delete Speaker'), 403);
             $speaker->forceDelete();
         }else {
+            abort_unless($admin->can('Delete Speaker', 'api') || $admin->can('Force delete Speaker', 'api'), 403);
             $speaker->delete();
         }
         return response()->noContent(204);
