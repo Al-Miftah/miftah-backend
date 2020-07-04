@@ -1,9 +1,9 @@
 # Al-Miftah Backend API
 
-API docs available at `/api/developer/docs`
+API docs available at `/api/docs`
 
 ## Installation & Setup
-1. Setup [homestead](https://laravel.com/docs/5.8/homestead) on your PC
+1. Setup [homestead](https://laravel.com/docs/7.x/homestead) on your PC
 2. Clone the repository `git clone https://github.com/Al-Miftah/miftah-backend.git`
 3. Create a `.env` file with contents from `.env.example` file and then update the env variables
 4. Run `composer install && npm install` to install project dependencies
@@ -15,20 +15,20 @@ API docs available at `/api/developer/docs`
 
 
 ## Deployment instructions
-1. Review official [Guide](https://laravel.com/docs/6.x/deployment)
+1. Review official [Guide](https://laravel.com/docs/7.x/deployment)
 2. Tweak `.env` variables for production
 3. Install Supervisor, Redis
-4. Run migrations and seeders (if any)
-5. Generate and link public and private oauth keys for passport
+4. Install npm & composer dependencies
+5. Run migrations and seeders
+6. Generate and link public and private oauth keys for passport
 
 ## External packages used
 - [Laravel passport](https://github.com/laravel/passport)
 - [Predis](https://github.com/nrk/predis)
+- [Spatie permissions](https://github.com/spatie/laravel-permission)
 
 ## Run tests
 `./vendor/bin/phpunit`
 
 ## TODO
-- [ ] Apply authorization to appropriate resources
 - [ ] A User get notified when there's a new Speech in a Topic (Series) he/she is following
-- [ ] Add status page for email and password reset verification
