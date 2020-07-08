@@ -15,6 +15,7 @@ class TagTest extends TestCase
         parent::setUp();
         $this->seed(['RolesAndPermissionsSeeder']);
         $admin = factory('App\Models\User')->create();
+        $admin->givePermissionTo(['Create Tag', 'Update Tag', 'Delete Tag']);
         $this->authenticate($admin);
     }
 
@@ -76,6 +77,7 @@ class TagTest extends TestCase
             'name' => 'Ramadan',
         ];
         $response = $this->json('PATCH', route('tags.update', $tag), $input);
+        $response->assertOk();
         $this->assertDatabaseHas('tags', [
             'name' => 'Ramadan',
         ]);

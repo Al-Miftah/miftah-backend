@@ -81,6 +81,14 @@ class RolesAndPermissionsSeeder extends Seeder
             [
                 'name' => 'Create Tag',
                 'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Update Tag',
+                'guards' => ['api', 'web']
+            ],
+            [
+                'name' => 'Delete Tag',
+                'guards' => ['api', 'web']
             ]
         ];
 

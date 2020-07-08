@@ -88,7 +88,7 @@ class DocsController extends Controller
                 'page' => 'following',
                 'children' => [
                     ['method' => 'GET', 'title' => 'List Speakers', 'page' => 'list-speakers'],
-                    ['method' => 'POST', 'title' => 'Follow a Speakers', 'page' => 'follow-speaker'],
+                    ['method' => 'POST', 'title' => 'Follow a Speaker', 'page' => 'follow-speaker'],
                 ]
             ],
             [

@@ -50,7 +50,8 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //Create tags
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Create Tag'), 403, 'You are not authorized to perfrom this action');
         $tags = $request->input('tags');
         foreach ($tags as $tag) {
             Tag::firstOrCreate(
@@ -79,6 +80,8 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Update Tag'), 403, 'You are not authorized to perform this action');
         $tag->name = $request->name;
         $tag->save();
         return new TagResource($tag);
@@ -93,6 +96,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Delete Tag'), 403, 'You are not authorized to perform this action');
         $tag->delete();
         return response()->noContent(204);
     }
