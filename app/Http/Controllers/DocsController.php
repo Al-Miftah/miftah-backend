@@ -50,6 +50,16 @@ class DocsController extends Controller
                 ]
             ],
             [
+                'name' => 'Roles & permissions',
+                'page' => 'roles-permissions',
+                'children' => [
+                    ['method' => 'GET', 'title' => 'List roles', 'page' => 'roles-list'],
+                    ['method' => 'GET', 'title' => 'List permissions', 'page' => 'permissions-list'],
+                    ['method' => 'PATCH', 'title' => 'Update user roles', 'page' => 'update-user-roles'],
+                    ['method' => 'PATCH', 'title' => 'Update user permissions', 'page' => 'update-user-permissions']
+                ]
+            ],
+            [
                 'name' => 'Topics',
                 'page' => 'topics',
                 'children' => [

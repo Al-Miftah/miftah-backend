@@ -23,6 +23,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     //User speakers (following)
     Route::get('user/speakers/following', 'UserSpeakerController@index')->name('users.speakers.index');
     Route::post('user/speakers/{speaker}/following', 'UserSpeakerController@store')->name('users.speakers.store');
+    //Permissions & Roles
+    Route::get('permissions', 'PermissionController@index')->name('permissions.index');
+    Route::get('roles', 'RoleController@index')->name('roles.index');
+    Route::patch('users/{user}/roles', 'RoleController@update')->name('user.roles.update');
+    Route::patch('users/{user}/permissions', 'PermissionController@update')->name('user.permissions.update');
 });
 
 //Email verification
@@ -73,6 +78,3 @@ Route::get('user/questions', 'UserQuestionController@index')->name('user.questio
 
 //Tag speeches
 Route::get('tags/{tag}/speeches', 'TagSpeechController')->name('tags.speeches.index');
-
-//Permissions & Roles
-Route::get('permissions', 'PermissionController@index')->name('permissions.index');

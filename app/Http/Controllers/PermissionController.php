@@ -24,14 +24,30 @@ class PermissionController extends Controller
     }
 
     /**
-     * Assign permissions to a user
+     * Update user permissions list
      *
      * @param Request $request
      * @param User $user
      * @return void
      */
-    public function assign(Request $request, User $user)
+    public function update(Request $request, User $user)
     {
-        //
+        $admin = auth('api')->user();
+        abort_unless($admin->can('Update user permissions', 'api'), 403, 'You are not authorized to perform this action');
+        $this->validate($request, [
+            'permissions' => 'required|array',
+            'permissions.*' => 'string'
+        ]);
+        $names = $request->input('permissions');
+        //Assign permissions for both web and api guard
+        $permissions = Permission::whereIn('name', $names)->get();
+        $user->syncPermissions($permissions);
+
+        return response()->json([
+            'data' => [
+                'error' => false,
+                'message' => 'User permissions updated successfully'
+            ]
+        ]);
     }
 }

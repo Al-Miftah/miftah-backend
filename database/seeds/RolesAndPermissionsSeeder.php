@@ -26,16 +26,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'name' => 'Admin',
                 'guards' => ['api', 'web']
             ],
-            [
-                'name' => 'Assign roles',
-                'guards' => ['api', 'web']
-            ],
         ];
 
         //Permissions
         $permissions = [
             [
-                'name' => 'Assign permissions',
+                'name' => 'Update user permissions',
                 'guards' => ['api', 'web']
             ],
             [
