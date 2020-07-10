@@ -1,9 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function(){
-    return redirect('/api/docs');
-});
+Route::redirect('/', '/api/docs');
 
 //User authentication
 Route::post('user/auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
