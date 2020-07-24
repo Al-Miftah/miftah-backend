@@ -6,11 +6,14 @@ use App\Models\Tag;
 use App\Models\Speech;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Resources\SpeechResource;
 use App\Http\Resources\SpeechCollection;
 use App\Http\Requests\StoreSpeechRequest;
 use App\Http\Requests\UpdateSpeechRequest;
+use App\Http\Resources\Detail\SpeechResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeechController extends Controller
 {
     /**
@@ -29,7 +32,7 @@ class SpeechController extends Controller
      */
     public function index(Request $request)
     {
-        $speeches = Speech::paginate(10);
+        $speeches = Speech::paginate(30);
         return new SpeechCollection($speeches);
     }
 

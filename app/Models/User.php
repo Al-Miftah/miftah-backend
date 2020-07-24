@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Donation;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,9 @@ use App\Notifications\Auth\API\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens, HasRoles;
@@ -79,5 +83,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function topics()
     {
         return $this->morphedByMany(Topic::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
+    }
+
+    /**
+     * User donations
+     *
+     *@return mixed
+     */
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
     }
 }

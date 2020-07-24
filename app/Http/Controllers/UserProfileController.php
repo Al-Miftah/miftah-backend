@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\UserResource;
 use App\Rules\ValidCurrentUserPassword;
+use App\Http\Resources\Detail\UserResource;
 use App\Http\Requests\UpdateUserProfileRequest;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class UserProfileController extends Controller
 {
     /**

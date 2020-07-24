@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Speaker;
 use Illuminate\Http\Request;
-use App\Http\Resources\SpeakerResource;
 use App\Http\Resources\SpeakerCollection;
 use App\Http\Requests\UpdateSpeakerRequest;
 use App\Http\Requests\RegisterSpeakerRequest;
+use App\Http\Resources\Detail\SpeakerResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeakerController extends Controller
 {
     /**
@@ -35,7 +38,7 @@ class SpeakerController extends Controller
                 'data' => $speakers
             ]);
         }
-        $speakers = Speaker::paginate(10);
+        $speakers = Speaker::paginate(30);
         return new SpeakerCollection($speakers);
     }
 

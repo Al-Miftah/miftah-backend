@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class RegisterUserTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

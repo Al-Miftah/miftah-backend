@@ -8,6 +8,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeechTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -125,7 +128,6 @@ class SpeechTest extends TestCase
         $input = [
             'permanent' => true,
         ];
-
         $response = $this->json('DELETE', route('speeches.destroy', $speech), $input);
         $this->assertDatabaseMissing('speeches', [
             'id' => $speech->id,

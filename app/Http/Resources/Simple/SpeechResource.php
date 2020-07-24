@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Simple;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeechResource extends JsonResource
 {
     /**
@@ -18,12 +20,7 @@ class SpeechResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'summary' => $this->summary,
-            'transcription' => $this->transcription,
-            'url' => $this->url,
             'created_at' => $this->created_at->diffForHumans(),
-            'speaker' => new SpeakerResource($this->whenLoaded('speaker')),
-            'tags' => TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }

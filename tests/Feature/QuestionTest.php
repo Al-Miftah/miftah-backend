@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class QuestionTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -27,7 +30,6 @@ class QuestionTest extends TestCase
         $response = $this->json('GET', route('questions.index'));
         $response->assertOk();
         $response->assertJsonCount(2, 'data');
-        $response->assertJsonStructure(['data', 'pagination']);
     }
 
     /**
@@ -62,13 +64,10 @@ class QuestionTest extends TestCase
         ];
 
         $response = $this->json('POST', route('questions.store'), $input);
-        $response->assertStatus(201);
+        $response->assertOk();
         $this->assertDatabaseHas('questions', [
             'description' => 'Who is it mandatory upon to fast the full month of Ramadan?',
             'user_id' => $this->user->id,
-        ]);
-        $response->assertJsonFragment([
-            'description' => 'Who is it mandatory upon to fast the full month of Ramadan?'
         ]);
     }
 

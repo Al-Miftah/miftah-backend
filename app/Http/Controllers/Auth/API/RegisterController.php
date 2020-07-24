@@ -6,10 +6,13 @@ use App\Models\User;
 
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use Illuminate\Auth\Events\Registered;
+use App\Http\Resources\Simple\UserResource;
 use App\Http\Requests\RegisterFormRequest;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class RegisterController extends Controller
 {
 

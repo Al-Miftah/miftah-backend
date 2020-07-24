@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Resources\TagResource;
+use App\Http\Resources\TagCollection;
+use App\Http\Resources\Detail\TagResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class TagController extends Controller
 {
     /**
@@ -25,9 +30,7 @@ class TagController extends Controller
      */
     public function index(Request $request)
     {
-        return response()->json([
-            'data' => Tag::get(['id', 'name'])
-        ]);
+        return new TagCollection(Tag::paginate(30));
     }
 
     /**

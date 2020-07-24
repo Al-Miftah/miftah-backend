@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Simple\TopicResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class TopicCollection extends ResourceCollection
 {
     /**

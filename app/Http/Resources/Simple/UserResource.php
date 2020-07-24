@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Simple;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Simple\{PermissionResource, RoleResource};
 
-class AnswerResource extends JsonResource
+/**
+ * @author  Ibrahim Samad <naatogma@gmail.com>
+ */
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +20,8 @@ class AnswerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'description' => $this->description,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'answerer' => new SpeakerResource($this->answerer),
+            'name' => $this->name,
+            'email' => $this->email,
         ];
     }
 }

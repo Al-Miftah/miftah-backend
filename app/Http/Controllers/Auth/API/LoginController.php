@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Simple\UserResource;
 
 class LoginController extends Controller
 {

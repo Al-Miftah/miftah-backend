@@ -7,6 +7,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class QuestionAnswerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -47,6 +50,5 @@ class QuestionAnswerTest extends TestCase
             'question_id' => $question->id,
             'speaker_id' => $speaker->id,
         ]);
-        $response->assertJsonCount(1, 'data.answers');
     }
 }

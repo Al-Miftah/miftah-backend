@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Simple;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TagResource extends JsonResource
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class QuestionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +19,8 @@ class TagResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'speeches' => SpeechResource::collection($this->whenLoaded('speeches')),
+            'title' => $this->title,
+            'created_at' => $this->created_at,
         ];
     }
 }

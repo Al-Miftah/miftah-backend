@@ -8,6 +8,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class TopicTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -30,13 +33,13 @@ class TopicTest extends TestCase
         ];
 
         $response = $this->json('POST', route('topics.store'), $input);
-        $response->assertStatus(201);
+        $response->assertOk();
         $this->assertDatabaseHas('topics', [
             'title' => 'Marriage in Islam',
             'slug' => 'marriage-in-islam'
         ]);
         $response->assertJsonFragment([
-            'title' => 'Marriage in Islam',
+            'message' => 'Topic created successfully'
         ]);
         
     }

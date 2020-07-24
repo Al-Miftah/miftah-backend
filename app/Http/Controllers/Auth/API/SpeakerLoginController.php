@@ -6,8 +6,8 @@ use App\Models\Speaker;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SpeakerResource;
 use App\Http\Requests\LoginSpeakerRequest;
+use App\Http\Resources\Simple\SpeakerResource;
 
 
 class SpeakerLoginController extends Controller

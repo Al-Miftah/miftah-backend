@@ -7,6 +7,9 @@ use App\Models\Speaker;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeakerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

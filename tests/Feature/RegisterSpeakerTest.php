@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class RegisterSpeakerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -26,7 +29,7 @@ class RegisterSpeakerTest extends TestCase
             'first_name' => 'Salifu',
             'last_name' => 'Yakubu',
             'phone_number' => '+2335412345',
-            'email' => 'yakufu@gmail.com',
+            'email' => 'yakubu@gmail.com',
             'password' => 'secret123',
             'password_confirmation' => 'secret123',
             'city' => 'Wa',
@@ -38,8 +41,5 @@ class RegisterSpeakerTest extends TestCase
         $response = $this->json('POST', route('speaker.auth.register'), $input);
         $response->assertOk();
         $response->assertJsonStructure(['access_token', 'token_type', 'token_expiration']);
-        $response->assertJsonFragment([
-            'email' => 'yakufu@gmail.com', 
-        ]);
     }
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth\API;
 use App\Models\Speaker;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SpeakerResource;
 use App\Http\Requests\RegisterSpeakerRequest;
+use App\Http\Resources\Simple\SpeakerResource;
 
 class SpeakerRegistrationController extends Controller
 {

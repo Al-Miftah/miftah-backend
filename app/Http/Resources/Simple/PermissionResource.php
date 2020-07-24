@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Simple;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TopicResource extends JsonResource
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class PermissionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +19,7 @@ class TopicResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'speeches' => SpeechResource::collection($this->whenLoaded('speeches')),
+            'name' => $this->name,
         ];
     }
 }

@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Simple\SpeechResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeechCollection extends ResourceCollection
 {
     /**
@@ -16,12 +20,6 @@ class SpeechCollection extends ResourceCollection
     {
         return [
             'data' => SpeechResource::collection($this->collection),
-            'pagination' => [
-                'total' => $this->total(),
-                'per_page' => $this->perPage(),
-                'current_page' => $this->currentPage(),
-                'total_pages' => $this->lastPage()
-            ]
         ];
     }
 }

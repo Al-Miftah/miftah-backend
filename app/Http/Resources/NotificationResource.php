@@ -4,6 +4,9 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class NotificationResource extends JsonResource
 {
     /**
