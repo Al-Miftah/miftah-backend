@@ -17,7 +17,7 @@ class DonationController extends Controller
      * List all donations
      *
      * @param Request $request
-     * @return void
+     * @return DonationCollection
      */
     public function index(Request $request)
     {
@@ -30,15 +30,17 @@ class DonationController extends Controller
      * Create a new donation
      *
      * @param StoreDonation $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function store(StoreDonation $request)
     {
         $input = $request->only(['transaction_reference', 'amount', 'gateway', 'channel', 'currency', 'additional_information', 'organization_id', 'user_id']);
         Donation::create($input);
         return response()->json([
-            'error' => false,
-            'message' => 'Donation recorded successfully'
+            'data' => [
+                'error' => false,
+                'message' => 'Donation recorded successfully'
+            ] 
         ]);
     }
 
@@ -46,7 +48,7 @@ class DonationController extends Controller
      * View details of a donation
      *
      * @param Donation $donation
-     * @return void
+     * @return DonationResource
      */
     public function show(Donation $donation)
     {
@@ -59,7 +61,7 @@ class DonationController extends Controller
      *
      * @param Request $request
      * @param Donation $donation
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request$request, Donation $donation)
     {

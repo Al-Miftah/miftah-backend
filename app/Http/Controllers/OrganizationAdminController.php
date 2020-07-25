@@ -15,7 +15,7 @@ class OrganizationAdminController extends Controller
      * List admins of an organization
      *
      * @param Request $request
-     * @return void
+     * @return UserCollection
      */
     public function index(Organization $organization)
     {
@@ -28,7 +28,7 @@ class OrganizationAdminController extends Controller
      *
      * @param Request $request
      * @param Organization $organization
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Organization $organization)
     {
@@ -45,7 +45,7 @@ class OrganizationAdminController extends Controller
      *
      * @param Request $request
      * @param Organization $organization
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Organization $organization)
     {

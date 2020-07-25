@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\PasswordReset; //work on
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class ResetPasswordController extends Controller
 {
     /*
@@ -57,10 +60,8 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
         $user->password = Hash::make($password);
-        //$user->setRememberToken(Str::random(60));
         $user->save();
         event(new PasswordReset($user));
-        //$this->guard()->login($user);
     }
 
     /**

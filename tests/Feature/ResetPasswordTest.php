@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\Auth\API\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class ResetPasswordTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

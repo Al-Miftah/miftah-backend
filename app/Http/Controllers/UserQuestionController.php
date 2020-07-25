@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
-use Illuminate\Http\Request;
 use App\Http\Resources\QuestionCollection;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class UserQuestionController extends Controller
 {
+    /**
+     * List user questions
+     *
+     * @return QuestionCollection
+     */
     public function index()
     {
         $user = auth('api')->user();

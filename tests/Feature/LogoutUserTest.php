@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class LogoutUserTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
@@ -20,7 +23,10 @@ class LogoutUserTest extends TestCase
         $response = $this->json('GET', route('user.auth.logout'));
         $response->assertOk();
         $response->assertJsonFragment([
-            'message' => 'User logged out successfully'
+            'data' => [
+                'error' => false,
+                'message' => 'User logged out successfully'
+            ]
         ]);
     }
 }

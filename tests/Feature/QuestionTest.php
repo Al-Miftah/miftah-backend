@@ -15,6 +15,11 @@ class QuestionTest extends TestCase
 
     private $user;
 
+    /**
+     * Setup
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();

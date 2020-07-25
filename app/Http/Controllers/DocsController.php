@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class DocsController extends Controller
 {
     /**

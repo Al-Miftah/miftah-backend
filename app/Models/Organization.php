@@ -34,7 +34,7 @@ class Organization extends Model
     /**
      * Who created the organization
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function creator()
     {
@@ -43,7 +43,7 @@ class Organization extends Model
 
     /**
      * Organization donations
-     *@return mixed
+     *@return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function donations()
     {
@@ -52,7 +52,7 @@ class Organization extends Model
 
     /**
      * Admins of the organization
-     *@return mixed
+     *@return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function admins()
     {

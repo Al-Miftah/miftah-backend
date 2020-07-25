@@ -20,7 +20,7 @@ class RegisterController extends Controller
      * Register
      *
      * @param RegisterFormRequest $request
-     * @return void
+     * @return \Illumninate\Http\Response
      */
     public function register(RegisterFormRequest $request)
     {

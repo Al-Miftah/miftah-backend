@@ -6,6 +6,9 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeakerSpeechTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

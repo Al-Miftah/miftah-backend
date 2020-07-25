@@ -37,6 +37,56 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Favorite relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * Question relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    /**
+     * Speaker relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     */
+    public function speakers()
+    {
+        return $this->morphedByMany(Speaker::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
+    }
+
+    /**
+     * Topic relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphedByMany
+     */
+    public function topics()
+    {
+        return $this->morphedByMany(Topic::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
+    }
+
+    /**
+     * Donation relation
+     *
+     *@return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
+    /**
      * @Overriden
      * Custom email verification method for api endpoints
      */
@@ -51,47 +101,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
-    }
-
-    /**
-     * Return all user favorites
-     */
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-
-    /**
-     * Questions asked by the user
-     */
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
-    }
-
-    /**
-     * Speakers the user follows
-     */
-    public function speakers()
-    {
-        return $this->morphedByMany(Speaker::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
-    }
-
-    /**
-     * Topics the user follows
-     */
-    public function topics()
-    {
-        return $this->morphedByMany(Topic::class, 'followerble', 'followerbles', 'follower_id', 'followerble_id');
-    }
-
-    /**
-     * User donations
-     *
-     *@return mixed
-     */
-    public function donations()
-    {
-        return $this->hasMany(Donation::class);
     }
 }

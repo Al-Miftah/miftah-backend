@@ -40,6 +40,8 @@ class RegisterSpeakerTest extends TestCase
 
         $response = $this->json('POST', route('speaker.auth.register'), $input);
         $response->assertOk();
-        $response->assertJsonStructure(['access_token', 'token_type', 'token_expiration']);
+        $response->assertJsonStructure([
+            'data' => ['access_token', 'token_type', 'token_expiration']
+        ]);
     }
 }

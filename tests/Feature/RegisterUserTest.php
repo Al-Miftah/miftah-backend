@@ -14,6 +14,11 @@ class RegisterUserTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
+    /**
+     * @author Ibrahim Samad <naatogma@gmail.com>
+     *
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();

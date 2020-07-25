@@ -5,19 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class Question extends Model
 {
     use SoftDeletes;
 
     protected $fillable = ['title', 'description', 'user_id'];
 
+    /**
+     * Answers relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function answers()
     {
         return $this->hasMany(Answer::class);
     }
 
     /**
-     * Person asking the question
+     * User relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function asker()
     {
@@ -25,7 +35,9 @@ class Question extends Model
     }
 
     /**
-     * Get all question favorites
+     * Favorites relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function favorites()
     {

@@ -20,7 +20,7 @@ class OrganizationController extends Controller
      * List all organizations
      *
      * @param Request $request
-     * @return void
+     * @return OrganizationCollection
      */
     public function index(Request $request)
     {
@@ -32,7 +32,7 @@ class OrganizationController extends Controller
      * Create a new Organization
      *
      * @param StoreOrganization $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function store(StoreOrganization $request)
     {
@@ -54,7 +54,7 @@ class OrganizationController extends Controller
      * View detailed info of an organization
      *
      * @param Organization $organization
-     * @return void
+     * @return OrganizationResource
      */
     public function show(Organization $organization)
     {
@@ -66,7 +66,7 @@ class OrganizationController extends Controller
      *
      * @param Request $request
      * @param Organization $organization
-     * @return void
+     * @return OrganizationResource
      */
     public function update(UpdateOrganization $request, Organization $organization)
     {
@@ -80,7 +80,7 @@ class OrganizationController extends Controller
      *
      * @param Request $request
      * @param Organization $organization
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Organization $organization)
     {

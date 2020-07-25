@@ -10,6 +10,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class UserNotificationTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

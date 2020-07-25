@@ -2,12 +2,15 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Notifications\Auth\API\VerifyEmail;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class EmailVerificationTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

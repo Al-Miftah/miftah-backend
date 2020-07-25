@@ -3,10 +3,12 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeechNotificationTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

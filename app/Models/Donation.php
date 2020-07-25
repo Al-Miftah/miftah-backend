@@ -29,7 +29,7 @@ class Donation extends Model
      * Retrive amount in highest denomination
      *
      * @param [type] $value
-     * @return void
+     * @return float
      */
     public function getAmountAttribute($value)
     {
@@ -39,7 +39,7 @@ class Donation extends Model
     /**
      * User who made the donation
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function donor()
     {
@@ -49,7 +49,7 @@ class Donation extends Model
     /**
      * Organization Donation for
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function organization()
     {

@@ -14,6 +14,11 @@ class SpeakerTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
+    /**
+     * Setup
+     *
+     * @return void
+     */
     public function setUp() : void
     {
         parent::setUp();

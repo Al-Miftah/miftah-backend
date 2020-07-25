@@ -16,7 +16,7 @@ class UserProfileController extends Controller
      * View profile
      *
      * @param Request $request
-     * @return void
+     * @return UserResource
      */
     public function show(Request $request)
     {
@@ -28,7 +28,7 @@ class UserProfileController extends Controller
      * Update profile
      *
      * @param UpdateUserProfileRequest $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserProfileRequest $request)
     {
@@ -48,7 +48,7 @@ class UserProfileController extends Controller
      * Change password
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function changePassword(Request $request)
     {

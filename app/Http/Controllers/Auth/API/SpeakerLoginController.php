@@ -9,9 +9,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginSpeakerRequest;
 use App\Http\Resources\Simple\SpeakerResource;
 
-
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class SpeakerLoginController extends Controller
 {
+    /**
+     * Respond to request
+     *
+     * @param LoginSpeakerRequest $request
+     * @return \Illumniate\Http\Response
+     */
     public function __invoke(LoginSpeakerRequest $request)
     {
             $email = $request->input('email');

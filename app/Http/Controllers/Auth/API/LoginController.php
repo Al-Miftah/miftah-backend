@@ -7,13 +7,16 @@ use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Simple\UserResource;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class LoginController extends Controller
 {
     /**
      * Authenticate
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function authenticate(Request $request)
     {

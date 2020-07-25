@@ -6,10 +6,15 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Resources\TopicCollection;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class UserTopicController extends Controller
 {
     /**
-     * List all topics user is following
+     * List users
+     *
+     * @return TopicCollection
      */
     public function index()
     {
@@ -19,7 +24,11 @@ class UserTopicController extends Controller
     }
 
     /**
-     * Follow/Unfollow a topic
+     * Toggle following Topic
+     *
+     * @param Request $request
+     * @param Topic $topic
+     * @return TopicCollection
      */
     public function store(Request $request, Topic $topic)
     {

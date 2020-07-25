@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class VerificationController extends Controller
 {
     /*

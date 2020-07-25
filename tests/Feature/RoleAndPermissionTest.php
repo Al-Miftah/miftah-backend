@@ -8,6 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class RoleAndPermissionTest extends TestCase
 {
     use WithFaker, RefreshDatabase;

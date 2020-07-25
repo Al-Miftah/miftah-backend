@@ -6,10 +6,17 @@ use App\Models\Speaker;
 use Illuminate\Http\Request;
 use App\Http\Resources\SpeakerCollection;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class UserSpeakerController extends Controller
 {
     /**
-     * Speakers user follows
+     * List speakers user is following
+     *
+     * @param Request $request
+     * @param Speaker $speaker
+     * @return SpeakerCollection
      */
     public function index(Request $request, Speaker $speaker)
     {
@@ -19,7 +26,11 @@ class UserSpeakerController extends Controller
     }
 
     /**
-     * Follow/Unfollow a speaker
+     * Toggle following a speaker
+     *
+     * @param Request $request
+     * @param Speaker $speaker
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Speaker $speaker)
     {

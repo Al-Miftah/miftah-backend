@@ -7,6 +7,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class Speaker extends Authenticatable
 {
     use Notifiable, HasApiTokens, SoftDeletes;
@@ -19,11 +22,21 @@ class Speaker extends Authenticatable
         'password', 'remember_token',
     ];
     
+    /**
+     * Speeches relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function speeches()
     {
         return $this->hasMany(Speech::class);
     }
 
+    /**
+     * Follower relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function followers()
     {
         return $this->morphToMany(User::class, 'followerble', 'followerbles', 'followerble_id', 'follower_id');
@@ -31,7 +44,9 @@ class Speaker extends Authenticatable
     }
 
     /**
-     * Questions directed to the speaker
+     * Question relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function questions()
     {

@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Auth\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class LogoutController extends Controller
 {
     /**
      * Logout user
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
     {
@@ -20,6 +23,7 @@ class LogoutController extends Controller
 
         return response()->json([
             'data' => [
+                'error' => false,
                 'message' => 'User logged out successfully',
             ]
         ]);
