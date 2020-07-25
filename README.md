@@ -1,5 +1,7 @@
 # Al-Miftah Backend API
 
+![](https://github.com/Al-Miftah/miftah-backend/workflows/Laravel/badge.svg?branch=master)
+
 API docs available at `/api/docs`
 
 ## Installation & Setup
