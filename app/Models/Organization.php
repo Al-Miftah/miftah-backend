@@ -51,6 +51,16 @@ class Organization extends Model
     }
 
     /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    public function donationSum()
+    {
+        return $this->donations()->sum('amount');
+    }
+
+    /**
      * Admins of the organization
      *@return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

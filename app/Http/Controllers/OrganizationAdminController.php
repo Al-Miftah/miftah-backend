@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use Illuminate\Http\Request;
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\OrganizationAdminCollection;
 
 /**
  * @author Ibrahim Samad <naatogma@gmail.com>
@@ -15,12 +15,12 @@ class OrganizationAdminController extends Controller
      * List admins of an organization
      *
      * @param Request $request
-     * @return UserCollection
+     * @return OrganizationAdminCollection
      */
     public function index(Organization $organization)
     {
         $admins = $organization->admins;
-        return new UserCollection($admins);
+        return new OrganizationAdminCollection($admins);
     }
 
     /**

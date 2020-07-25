@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Donations;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Organization;
@@ -122,6 +122,52 @@ class OrganizationTest extends TestCase
         $response->assertNoContent(204);
         $this->assertDatabaseMissing('organizations', [
             'name' => 'Taqwa foundation',
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function it_lists_donations_made_for_an_organization()
+    {
+        $organization = factory('App\Models\Organization')->create();
+        //Create donations for this organization
+        factory('App\Models\Donation', 2)->create([
+            'organization_id' => $organization->id,
+        ]);
+        $response = $this->getJson(route('organization.donations.index', $organization));
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => ['id', 'amount', 'currency', 'status', 'created_at']
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function it_returns_stats_information_of_an_organization()
+    {
+        $organization = factory('App\Models\Organization')->create();
+        //Add 2 admins
+        $users = factory('App\Models\User', 2)->create();
+        $organization->admins()->attach($users->pluck('id'));
+        //Make 2 donations
+        factory('App\Models\Donation', 3)->create([
+            'amount' => 100,
+            'organization_id' => $organization->id,
+        ]);
+        $response = $this->getJson(route('organization.statistics', $organization));
+        $response->assertOk();
+        $response->assertJsonFragment([
+            'admins_count' => 2,
+            'donations_count' => 3,
+            'donations_sum' => 300,
         ]);
     }
 }

@@ -3,12 +3,11 @@
 namespace App\Http\Resources\Simple;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Simple\{PermissionResource, RoleResource};
 
 /**
- * @author  Ibrahim Samad <naatogma@gmail.com>
+ * @author Ibrahim Samad <naatogma@gmail.com>
  */
-class UserResource extends JsonResource
+class OrganizationAdminResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,6 +20,7 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'membership' => $this->pivot->membership,
         ];
     }
 }

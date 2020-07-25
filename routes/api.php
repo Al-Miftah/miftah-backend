@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('organizations/{organization}/admins', 'OrganizationAdminController@index')->name('organization.admin.index');
     Route::post('organizations/{organization}/admins', 'OrganizationAdminController@store')->name('organization.admin.store');
     Route::delete('organizations/{organization}/admins', 'OrganizationAdminController@destroy')->name('organization.admin.destroy');
+    Route::get('organizations/{organization}/donations', 'OrganizationDonationController@index')->name('organization.donations.index');
+    Route::get('organizations/{organization}/statistics', 'OrganizationStatsController@index')->name('organization.statistics');
 });
 
 //Email verification

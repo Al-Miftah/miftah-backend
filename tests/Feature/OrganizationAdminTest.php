@@ -32,6 +32,11 @@ class OrganizationAdminTest extends TestCase
         $organization->admins()->attach($users->pluck('id'));
         $response = $this->getJson(route('organization.admin.index', $organization));
         $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => ['id', 'name', 'membership']
+            ]
+        ]);
     }
 
     /**
