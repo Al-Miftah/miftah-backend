@@ -6,6 +6,8 @@
  * @param integer $amount
  * @return float
  */
-function lower_denomination(int $amount) {
-    return (float)number_format($amount / 100, 2);
+if (!function_exists('lower_denomination')) {
+    function lower_denomination(int $amount) {
+        return (float)number_format($amount / 100, 2);
+    }
 }
