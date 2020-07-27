@@ -31,6 +31,7 @@ class StoreDonation extends FormRequest
             'transaction_reference' => ['required', 'string', 'unique:donations'],
             'gateway' => ['required', 'string'],
             'amount' => ['required'],
+            'payment_type' => ['required', Rule::in(['onetime', 'monthly'])],
             'currency' => ['required', Rule::in(['GHS', 'USD', 'GBP'])],
             'channel' => ['required', Rule::in(['card', 'mobile_money', 'cash', 'bank'])],
             'additional_information' => ['nullable', 'string', 'min:10'],

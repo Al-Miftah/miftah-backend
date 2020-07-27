@@ -2,7 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
-class SpeakersTableSeeder extends Seeder
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class SpeecheSeeder extends Seeder
 {
     /**
      * Run the database seeds.

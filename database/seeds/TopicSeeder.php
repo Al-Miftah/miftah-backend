@@ -4,7 +4,10 @@ use App\Models\Topic;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
-class TopicsTableSeeder extends Seeder
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class TopicSeeder extends Seeder
 {
     /**
      * Run the database seeds.

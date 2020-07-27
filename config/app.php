@@ -177,6 +177,7 @@ return [
         
         App\Providers\EloquentEventServiceProvider::class,
         App\Providers\EloquentModelServiceProvider::class,
+        App\Providers\PaystackServiceProvider::class,
 
     ],
 

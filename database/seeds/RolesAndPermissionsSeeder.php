@@ -4,6 +4,9 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class RolesAndPermissionsSeeder extends Seeder
 {
     /**

@@ -24,7 +24,7 @@ class OrganizationStatsController extends Controller
             'data' => [
                 'admins_count' => (int)$data->admins_count,
                 'donations_count' => (int)$data->donations_count,
-                'donations_sum' => lower_denomination($donationSum),
+                'donations_sum' => money_tolower($donationSum),
             ]
         ]);
     }

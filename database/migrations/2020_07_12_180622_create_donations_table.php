@@ -24,6 +24,7 @@ class CreateDonationsTable extends Migration
             $table->unsignedBigInteger('amount')->comment('Store in lowest denomation');
             $table->string('currency');
             $table->string('channel')->comment('Any of the following: card, mobile_money, bank, cash');
+            $table->string('payment_type')->comment('onetime, monthly etc');
             $table->unsignedBigInteger('user_id')->nullable()->comment('Nullable for anonymous donors');
             $table->unsignedBigInteger('organization_id');
             $table->text('additional_information')->nullable();

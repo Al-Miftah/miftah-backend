@@ -4,7 +4,10 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
-class TagsTableSeeder extends Seeder
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.

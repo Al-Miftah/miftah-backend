@@ -34,7 +34,7 @@ class DonationController extends Controller
      */
     public function store(StoreDonation $request)
     {
-        $input = $request->only(['transaction_reference', 'amount', 'gateway', 'channel', 'currency', 'additional_information', 'organization_id', 'user_id']);
+        $input = $request->only(['transaction_reference', 'payment_type', 'amount', 'gateway', 'channel', 'currency', 'additional_information', 'organization_id', 'user_id']);
         Donation::create($input);
         return response()->json([
             'data' => [

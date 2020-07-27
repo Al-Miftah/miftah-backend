@@ -4,7 +4,10 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-class UsersTableSeeder extends Seeder
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -17,7 +17,7 @@ class DonationTest extends TestCase
     public function it_converts_a_currency_amount_to_lower_denomination()
     {
         $amount = 500;
-        $converted = lower_denomination($amount);
+        $converted = money_tolower($amount);
         $this->assertEquals(5.00, $converted);
     }
 }

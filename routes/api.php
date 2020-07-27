@@ -35,6 +35,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('organizations/{organization}/admins', 'OrganizationAdminController@destroy')->name('organization.admin.destroy');
     Route::get('organizations/{organization}/donations', 'OrganizationDonationController@index')->name('organization.donations.index');
     Route::get('organizations/{organization}/statistics', 'OrganizationStatsController@index')->name('organization.statistics');
+
+    //Payments
+    Route::get('checkout/verification', 'PaystackController@verifyTrasanction');
+    Route::get('paystack/plans', 'PaystackController@getPlans')->name('paystack.plans');
+    Route::post('paystack/webhook', 'PaystackWebhookController@handleWebhook');
 });
 
 //Email verification

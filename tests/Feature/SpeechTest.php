@@ -23,7 +23,7 @@ class SpeechTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->seed(['RolesAndPermissionsSeeder', 'TagsTableSeeder']);
+        $this->seed(['RolesAndPermissionsSeeder', 'TagSeeder']);
         $admin = factory('App\Models\User')->create();
         $admin->givePermissionTo('Create Speech', 'Update Speech', 'Force delete Speech');
         $this->authenticate($admin);

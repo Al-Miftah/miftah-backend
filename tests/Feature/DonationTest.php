@@ -22,6 +22,7 @@ class DonationTest extends TestCase
     {
         parent::setUp();
         $admin = $this->authenticate();
+        $this->seed(['PlanSeeder']);
     }
 
     /**
@@ -35,6 +36,7 @@ class DonationTest extends TestCase
             'transaction_reference' => '89348347273',
             'amount' => 5,
             'currency' => 'GHS',
+            'payment_type' => 'onetime',
             'gateway' => 'paystack',
             'channel' => 'mobile_money',
             'additional_information' => 'Maasha Allah',
@@ -120,6 +122,22 @@ class DonationTest extends TestCase
         $response->assertNoContent(204);
         $this->assertDatabaseMissing('donations', [
             'transaction_reference' => 934948534,
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function it_lists_all_paystack_plans()
+    {
+        $response = $this->getJson(route('paystack.plans'));
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => ['id', 'name', 'plan_code', 'description']
+            ]
         ]);
     }
 }
