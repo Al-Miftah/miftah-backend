@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,13 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $classes = [
+        $seeders = [
             RolesAndPermissionsSeeder::class, 
             UserSeeder::class, 
             TopicSeeder::class, 
             TagSeeder::class,
-            PlanSeeder::class
+            PlanSeeder::class,
+            OrganizationSeeder::class
         ];
-        $this->call($classes);
+        $this->call($seeders);
     }
 }

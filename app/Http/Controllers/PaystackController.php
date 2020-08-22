@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Yabacon\Paystack\Exception\ApiException;
 
 /**
  * @author Ibrahim Samad <naatogma@gmail.com>
@@ -18,7 +19,7 @@ class PaystackController extends Controller
      */
     public function getPlans(Request $request)
     {
-        $plans = Plan::get(['id', 'name', 'plan_code', 'description']);
+        $plans = Plan::get(['id', 'name', 'paystack_plan_code', 'description']);
         return response()->json([
             'data' => $plans
         ]);
@@ -42,6 +43,28 @@ class PaystackController extends Controller
             ]);
         }
 
-        //
+        try {
+            $transaction = paystack()->transaction->verify([
+                'reference' => $reference
+            ]);
+        } catch (ApiException $e) {
+            //e->getResponseObject()
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ], 402);
+        }
+        paystack()->transaction->verify([
+            'reference' => $reference
+        ]);
+
+        if ('success' == $transaction->data->status) {
+            return response()->json([
+                'data' => [
+                    'error' => false,
+                    'message' => 'Transaction verification successful'
+                ]
+            ]);
+        }
     }
 }

@@ -22,7 +22,7 @@ class OrganizationResource extends JsonResource
             'digital_address' => $this->digital_address,
             'about' => $this->about,
             'is_active' => $this->active,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->format('Y-m-d'),
             'admins' => UserResource::collection($this->admins),
         ];
     }

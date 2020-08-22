@@ -3,6 +3,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/api/docs');
 
+//TODO: Remove
+Route::post('test', function(\Illuminate\Http\Request $request){
+    return getallheaders();
+});
+
 //User authentication
 Route::post('user/auth/register', 'Auth\API\RegisterController@register')->name('user.auth.register');
 Route::post('user/auth/login', 'Auth\API\LoginController@authenticate')->name('user.auth.login');
@@ -36,11 +41,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('organizations/{organization}/donations', 'OrganizationDonationController@index')->name('organization.donations.index');
     Route::get('organizations/{organization}/statistics', 'OrganizationStatsController@index')->name('organization.statistics');
 
-    //Payments
-    Route::get('checkout/verification', 'PaystackController@verifyTrasanction');
-    Route::get('paystack/plans', 'PaystackController@getPlans')->name('paystack.plans');
-    Route::post('paystack/webhook', 'PaystackWebhookController@handleWebhook');
 });
+
+//Payments
+//TODO: Moved out of Auth temporarily
+Route::get('checkout/paystack/verify', 'PaystackController@verifyTransaction');
+Route::get('checkout/paystack', 'PaystackController@getPlans')->name('checkout.paystack.plans');
+Route::post('paystack/webhook', 'PaystackWebhookController@handleWebhook');
 
 //Email verification
 Route::get('email-verification/verify/{id}', 'Auth\API\VerificationController@verify')->name('api.verification.verify');

@@ -57,6 +57,20 @@ class DonationController extends Controller
     }
 
     /**
+     * Update a docation record
+     *
+     * @param Request $request
+     * @param Donation $donation
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Donation $donation)
+    {
+        $input = $request->only(['transaction_reference', 'payment_type', 'amount', 'gateway', 'channel']);
+        $donation->update($input);
+        return new DonationResource($donation->fresh());
+    }
+
+    /**
      * Delete a donation
      *
      * @param Request $request

@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Config\Repository as Config;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class VerifyWebhookSignature
 {
     /**
@@ -42,11 +45,11 @@ class VerifyWebhookSignature
     public function handle($request, Closure $next)
     {
         //Valid IPs from Paystack: 52.31.139.75, 52.49.173.169, 52.214.14.220
-        if (!$request->headers->has('HTTP_X_PAYSTACK_SIGNATURE')) 
+        if (!$request->headers->has('X-Paystack-Signature')) 
             abort(403);
 
         // validate event do all at once to avoid timing attack
-        if($request->header('HTTP_X_PAYSTACK_SIGNATURE') === $this->sign($request->getContent(), $this->config->get('services.paystack.secret_key'))) 
+        if($request->header('X-Paystack-Signature') === $this->sign($request->getContent(), $this->config->get('services.paystack.secret_key'))) 
             abort(403);
 
         return $next($request);
@@ -55,9 +58,9 @@ class VerifyWebhookSignature
     /**
      * Sign request
      *
-     * @param [type] $payload
-     * @param [type] $secret
-     * @return void
+     * @param string $payload
+     * @param string $secret
+     * @return string
      */
     private function sign($payload, $secret)
     {

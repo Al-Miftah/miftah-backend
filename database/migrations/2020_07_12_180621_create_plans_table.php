@@ -20,7 +20,7 @@ class CreatePlansTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('plan_code');
+            $table->string('paystack_plan_code');
             $table->timestamps();
         });
     }

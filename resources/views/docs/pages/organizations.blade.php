@@ -3,9 +3,9 @@
 @section('content')
 <div class="main-content">
     <div class="container-fluid" id="create">
-        <h3>Create a speaker account</h3>
+        <h3>Create an organization</h3>
         <h4>
-            Endpoint: <code>/speakers</code>
+            Endpoint: <code>/organizations</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -47,60 +47,46 @@
                                     <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
                                 <tr>
-                                    <td>first_name</td>
+                                    <td>name</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>John</code></td>
-                                </tr>
-                                <tr>
-                                    <td>last_name</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>Yes</td>
-                                    <td><code>Doe</code></td>
+                                    <td><code>Wa central Mosque</code></td>
                                 </tr>
                                 <tr>
                                     <td>phone_number</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>+23324xxxxxxx</code></td>
+                                    <td><code>+233240000000</code></td>
                                 </tr>
                                 <tr>
-                                    <td>email</td>
+                                    <td>digital_address</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>johndoe@example.com</code></td>
+                                    <td><code>XW-0005-9319</code></td>
                                 </tr>
                                 <tr>
-                                    <td>location_address</td>
+                                    <td>about</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Madina, Accra</code></td>
+                                    <td><code>Wa Central Mosque</code></td>
                                 </tr>
                                 <tr>
-                                    <td>city</td>
+                                    <td>logo_url</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Accra</code></td>
+                                    <td><code>https://storage.firebase.com/logo.png</code></td>
                                 </tr>
                                 <tr>
-                                    <td>bio</td>
-                                    <td><code>string</code></td>
+                                    <td>creator_id</td>
+                                    <td><code>int</code></td>
                                     <td>Body</td>
                                     <td>Yes</td>
-                                    <td><code>Some bio description here</code></td>
-                                </tr>
-                                <tr>
-                                    <td>avatar</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>https://firebase.storage.com/profile.png</code></td>
+                                    <td><code>1</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -120,11 +106,8 @@
                     <div class="panel-body">
 <pre>{
 "data": {
-    
-        "id": "1",
-        "first_name": "John",
-        "last_name": "Doe",
-        "location_address": "Madina, Accra",
+        "error": false,
+        "message": "Organization created successfully"
         ...
     }
 }</pre>
@@ -133,12 +116,12 @@
             </div>
         </div>
     </div>
+
     <hr>
-    {{-- Update speaker --}}
     <div class="container-fluid" id="update">
-        <h3>Update a speaker details</h3>
+        <h3>Update an organization details</h3>
         <h4>
-            Endpoint: <code>/speakers/:id</code>
+            Endpoint: <code>/organizations/:id</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -180,60 +163,39 @@
                                     <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
                                 <tr>
-                                    <td>first_name</td>
+                                    <td>name</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>John</code></td>
-                                </tr>
-                                <tr>
-                                    <td>last_name</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>Doe</code></td>
+                                    <td><code>Wa central Mosque</code></td>
                                 </tr>
                                 <tr>
                                     <td>phone_number</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>+23324xxxxxxx</code></td>
+                                    <td><code>+233240000000</code></td>
                                 </tr>
                                 <tr>
-                                    <td>email</td>
+                                    <td>digital_address</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>johndoe@example.com</code></td>
+                                    <td><code>XW-0005-9319</code></td>
                                 </tr>
                                 <tr>
-                                    <td>location_address</td>
+                                    <td>about</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>Madina, Accra</code></td>
+                                    <td><code>Wa Central Mosque</code></td>
                                 </tr>
                                 <tr>
-                                    <td>city</td>
+                                    <td>logo_url</td>
                                     <td><code>string</code></td>
                                     <td>Body</td>
                                     <td>No</td>
-                                    <td><code>Accra</code></td>
-                                </tr>
-                                <tr>
-                                    <td>bio</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>Some bio description here</code></td>
-                                </tr>
-                                <tr>
-                                    <td>avatar</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>No</td>
-                                    <td><code>https://firebase.storage.com/profile.png</code></td>
+                                    <td><code>https://storage.firebase.com/logo.png</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -254,9 +216,13 @@
                     <div class="panel-body">
 <pre>{
 "data": {
-        "id": "1",
-        "first_name": "John",
-        "last_name": "Doe",
+    "id": 2,
+    "name": "",
+    "phone_number": "+233240000000",
+    "digital_address" => "XW-0005-9319",
+    "about" => "Wa Central Mosque",
+    "is_active" => true,
+    "created_at" => "2020-08-21",
         ...
     }
 }</pre>
@@ -267,11 +233,10 @@
     </div>
     
     <hr>
-    {{-- View  a speaker profile --}}
     <div class="container-fluid" id="view">
-        <h3>View profile details of a speaker</h3>
+        <h3>View profile details of an organization</h3>
         <h4>
-            Endpoint: <code>/speakers/:id</code>
+            Endpoint: <code>/organizations/:id</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -332,10 +297,14 @@
                     <div class="panel-body">
 <pre>{
 "data": {
-        "id": "1",
-        "first_name": "John",
-        "last_name": "Doe",
-        ...
+    "id": 2,
+    "name": "",
+    "phone_number": "+233240000000",
+    "digital_address" => "XW-0005-9319",
+    "about" => "Wa Central Mosque",
+    "is_active" => true,
+    "created_at" => "2020-08-21",
+    ...
     }
 }</pre>
                     </div>
@@ -346,9 +315,9 @@
     </div>
 
     <div class="container-fluid" id="delete">
-        <h3>Delete a speaker</h3>
+        <h3>Delete a organization</h3>
         <h4>
-            Endpoint: <code>/speakers/:id</code>
+            Endpoint: <code>/organizations/:id</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -423,9 +392,9 @@
     </div>
 
     <div class="container-fluid" id="list">
-        <h3>List speakers</h3>
+        <h3>List Organizations</h3>
         <h4>
-            Endpoint: <code>/speakers</code>
+            Endpoint: <code>/organizations</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -488,8 +457,9 @@
     "data": [
         {
             "id": 1,
-            "first_name": "John,
-            "last_name": "Doe"
+            "name": "",
+            "phone_number": "+233240000000",
+            "digital_address" => "XW-0005-9319",
         }
         ...
     ],
@@ -513,98 +483,11 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="login">
-        <h3>Speaker login</h3>
-        <h4>
-            Endpoint: <code>/speaker/auth/login</code>
-        </h4>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Request</h3>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Type</th>
-                                    <th>Position</th>
-                                    <th>Required</th>
-                                    <th>Sample</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Content-Type</td>
-                                    <td><code>string</code></td>
-                                    <td>Header</td>
-                                    <td>Yes</td>
-                                    <td><code>application/json</code></td>
-                                </tr>
-                                <tr>
-                                    <td>Accept</td>
-                                    <td><code>string</code></td>
-                                    <td>Header</td>
-                                    <td>Yes</td>
-                                    <td><code>application/json</code></td>
-                                </tr>
-                                <tr>
-                                    <td>email</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>Yes</td>
-                                    <td><code>johndoe@example.com</code></td>
-                                </tr>
-                                <tr>
-                                    <td>password</td>
-                                    <td><code>string</code></td>
-                                    <td>Body</td>
-                                    <td>Yes</td>
-                                    <td><code>secret123</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- END TABLE HOVER -->
-            </div>
-        </div>
-        <!--Success Response row -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- TABLE HOVER -->
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="label label-success">Success Response</span>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-<pre>{
-    "data":{
-        "access_token": "xxxxxxxxxxxx",
-        "token_type": "bearer",
-        "expiration": "2021",
-        "speaker": {
-            "id": 1,
-            ...
-        }
-    }
-}</pre>
-                    </div>
-                </div>
-                <!-- END TABLE HOVER -->
-            </div>
-        </div>
-    </div>
-
     <hr>
-    <div class="container-fluid" id="speeches">
-        <h3>List speeches of a speaker</h3>
+    <div class="container-fluid" id="list-admins">
+        <h3>List admins of an Organization</h3>
         <h4>
-            Endpoint: <code>/speakers/:id/speeches</code>
+            Endpoint: <code>/organizations/:id/admins</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -637,6 +520,13 @@
                                     <td>Header</td>
                                     <td>Yes</td>
                                     <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>Bearer xxxxxxxxxxx</code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -660,20 +550,11 @@
     "data":[
             {
                 "id": 1,
-                "title": "Mariage in Islam",
-                "summary": "Summary of marriage in Islam",
-                "transcription": "Transacription of marriage in Islam",
-                "url": "https://storage.firebase.com/1.mp3",
-                "created_at": "2 minutes ago",
+                "name": "John Doe",
+                "membership": "admin"
             }
             ...
         ],
-        "pagination": {
-            "total": 30,
-            "per_page": 15,
-            "current_page": 1,
-            "total_pages": 2
-        },
         "links": {
             "first": "",
             "last": "",
@@ -686,6 +567,340 @@
             "last_page": 1,
             "path": ""
         }
+    }
+}</pre>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container-fluid" id="add-admins">
+        <h3>Add admin to an Organization</h3>
+        <h4>
+            Endpoint: <code>/organizations/:id/admins</code>
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Request</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Position</th>
+                                    <th>Required</th>
+                                    <th>Sample</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content-Type</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Accept</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>Bearer xxxxxxxxxxx</code></td>
+                                </tr>
+                                <tr>
+                                    <td>users</td>
+                                    <td><code>array</code></td>
+                                    <td>Body</td>
+                                    <td>Yes</td>
+                                    <td><code>[1,2]</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+        <!--Success Response row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="label label-success">Success Response</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+<pre>{
+    "data": {
+        "error": false,
+        "message": "User now an admin of the organization"
+    }
+            
+}</pre>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container-fluid" id="remove-admins">
+        <h3>Remove an admin from an Organization</h3>
+        <h4>
+            Endpoint: <code>/organizations/:id/admins</code>
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Request</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Position</th>
+                                    <th>Required</th>
+                                    <th>Sample</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content-Type</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Accept</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>Bearer xxxxxxxxxxx</code></td>
+                                </tr>
+                                <tr>
+                                    <td>users</td>
+                                    <td><code>array</code></td>
+                                    <td>Body</td>
+                                    <td>Yes</td>
+                                    <td><code>[1,2]</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+        <!--Success Response row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="label label-success">Success Response</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+<pre>Status: 204, No content</pre>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container-fluid" id="list-donations">
+        <h3>List donations of an Organization</h3>
+        <h4>
+            Endpoint: <code>/organizations/:id/donations</code>
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Request</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Position</th>
+                                    <th>Required</th>
+                                    <th>Sample</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content-Type</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Accept</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>Bearer xxxxxxxxxxx</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+        <!--Success Response row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="label label-success">Success Response</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+<pre>{
+    "data":[
+            {
+                "id": 1,
+                "amount": 250,
+                "currency": "GHS",
+                "status": "success"
+                "created_at": "2020-08-22"
+            }
+            ...
+        ],
+        "links": {
+            "first": "",
+            "last": "",
+            "prev": "",
+            "next": 
+        },
+        "meta": {
+            "current_page": 1,
+            "from": 1,
+            "last_page": 1,
+            "path": ""
+        }
+    }
+}</pre>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="container-fluid" id="view-statistics">
+        <h3>View an Organization statistics</h3>
+        <h4>
+            Endpoint: <code>/organizations/:id/statistics</code>
+        </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Request</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Position</th>
+                                    <th>Required</th>
+                                    <th>Sample</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content-Type</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Accept</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>application/json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Authorization</td>
+                                    <td><code>string</code></td>
+                                    <td>Header</td>
+                                    <td>Yes</td>
+                                    <td><code>Bearer xxxxxxxxxxx</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END TABLE HOVER -->
+            </div>
+        </div>
+        <!--Success Response row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="label label-success">Success Response</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+<pre>{
+    "data":{
+        "admins_count": 5,
+        "donations_count": 100,
+        "donations_sum": 25000
     }
 }</pre>
                     </div>

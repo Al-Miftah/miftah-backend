@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+/**
+ * @author Ibrahim Samad <naatogma@gmail.com>
+ */
 class Admin
 {
     /**

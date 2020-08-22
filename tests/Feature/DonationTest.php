@@ -108,6 +108,17 @@ class DonationTest extends TestCase
      *
      * @return void
      */
+    public function an_authorized_user_can_update_details_of_a_donation()
+    {
+        //TODO: Implement
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
     public function an_authorized_user_can_delete_a_donation()
     {
         $donation = factory('App\Models\Donation')->create([
@@ -122,22 +133,6 @@ class DonationTest extends TestCase
         $response->assertNoContent(204);
         $this->assertDatabaseMissing('donations', [
             'transaction_reference' => 934948534,
-        ]);
-    }
-
-    /**
-     * @test
-     *
-     * @return void
-     */
-    public function it_lists_all_paystack_plans()
-    {
-        $response = $this->getJson(route('paystack.plans'));
-        $response->assertOk();
-        $response->assertJsonStructure([
-            'data' => [
-                '*' => ['id', 'name', 'plan_code', 'description']
-            ]
         ]);
     }
 }

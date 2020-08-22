@@ -21,13 +21,16 @@ class CreateDonationsTable extends Migration
             $table->string('status')->default('success'); 
             $table->string('gateway')->comment('Any payment gateway like stripe, paystack, bank name etc' );
             $table->string('transaction_reference');
-            $table->unsignedBigInteger('amount')->comment('Store in lowest denomation');
+            $table->unsignedBigInteger('amount')->comment('Store in lowest denomination');
             $table->string('currency');
             $table->string('channel')->comment('Any of the following: card, mobile_money, bank, cash');
             $table->string('payment_type')->comment('onetime, monthly etc');
+            $table->string('customer_code')->nullable()->comment('Customer code from gateway');
+            $table->unsignedBigInteger('plan_id')->nullable()->comment('Plan paid for in case of subscription');
             $table->unsignedBigInteger('user_id')->nullable()->comment('Nullable for anonymous donors');
             $table->unsignedBigInteger('organization_id');
             $table->text('additional_information')->nullable();
+            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->timestamps();

@@ -19,7 +19,7 @@ class PlanSeeder extends Seeder
         $plans = [
             [
                 'name' => 'GH₵ 50 Monthly',
-                'plan_code' => [
+                'paystack_plan_code' => [
                     'test' => 'PLN_d8fc6gdpgdeo1qf',
                     'live' => '',
                 ],
@@ -27,7 +27,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 'name' => 'GH₵ 100 Monthly',
-                'plan_code' => [
+                'paystack_plan_code' => [
                     'test' => 'PLN_m0upait6z9wicfn',
                     'live' => '',
                 ],
@@ -35,7 +35,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 'name' => 'GH₵ 150 Monthly',
-                'plan_code' => [
+                'paystack_plan_code' => [
                     'test' => 'PLN_hinex7jgrzqkjk8',
                     'live' => '',
                 ],
@@ -43,7 +43,7 @@ class PlanSeeder extends Seeder
             ],
             [
                 'name' => 'GH₵ 200 Monthly',
-                'plan_code' => [
+                'paystack_plan_code' => [
                     'test' => 'PLN_r3d5fr9xjn4vpgq',
                     'live' => '',
                 ],
@@ -52,9 +52,9 @@ class PlanSeeder extends Seeder
         ];
 
         foreach ($plans as $plan) {
-            $code = (App::environment() == 'production') ? $plan['plan_code']['live'] : $plan['plan_code']['test'];
+            $code = (App::environment() == 'production') ? $plan['paystack_plan_code']['live'] : $plan['paystack_plan_code']['test'];
             Plan::firstOrCreate(['name' => $plan['name']], [
-                'plan_code' => $code,
+                'paystack_plan_code' => $code,
                 'description' => $plan['description']
             ]);
         }
