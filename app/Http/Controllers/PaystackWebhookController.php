@@ -32,6 +32,10 @@ class PaystackWebhookController extends Controller
     public function handleWebhook(Request $request)
     {
         $payload = json_decode($request->getContent(), true);
+        if (!Str::contains($payload, '-')) {
+            info('Ignoring webhook event with reference: ' .$payload['data']['reference']);
+            return;
+        }
         $method = 'handle'.Str::studly(str_replace('.', '_', $payload['event']));
         if (method_exists($this, $method)) {
             return $this->{$method}($payload);
@@ -47,11 +51,6 @@ class PaystackWebhookController extends Controller
      */
     public function handleChargeSuccess($payload)
     {
-        //Fix for multiple webhook event after a transaction
-        if (!isset($payload['data']['metadata']['organization_id'])) {
-            info('Ignoring webhook event with reference: ' .$payload['data']['reference']);
-            return;
-        }
         $this->recordPayment($payload);
     }
 
