@@ -6,7 +6,7 @@ use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Middleware\VerifyWebhookSignature;
+use App\Http\Middleware\VerifyPaystackWebhookSignature;
 
 /**
  * @author Ibrahim Samad <naatogma@gmail.com>
@@ -19,7 +19,7 @@ class PaystackWebhookController extends Controller
     public function __construct()
     {
         if (config('services.paystack.secret_key')) {
-            $this->middleware(VerifyWebhookSignature::class);
+            $this->middleware(VerifyPaystackWebhookSignature::class);
         }
     }
 
@@ -32,7 +32,8 @@ class PaystackWebhookController extends Controller
     public function handleWebhook(Request $request)
     {
         $payload = json_decode($request->getContent(), true);
-        if (!Str::contains($payload, '-')) {
+        //Ignore any webhook event that's not triggered by our transactions
+        if (!Str::contains($payload['data']['reference'], 'miftah-')) {
             info('Ignoring webhook event with reference: ' .$payload['data']['reference']);
             return;
         }
@@ -49,20 +50,24 @@ class PaystackWebhookController extends Controller
      * @param array $payload
      * @return void
      */
-    public function handleChargeSuccess($payload)
+    public function handleChargeSuccess(array $payload)
     {
-        $this->recordPayment($payload);
+        $exists = Donation::where('transaction_reference', $payload['data']['reference'])->exists();
+        if (!$exists) {
+            $this->recordPayment($payload);
+        }
+        info('Handled successful charge. Ref: ' . $payload['data']['reference']);
     }
 
     /**
      * Respond to when payment request has been paid
      *
-     * @param [type] $payload
+     * @param array $payload
      * @return void
      */
-    public function handlePaymentrequestSuccess($payload)
+    public function handlePaymentrequestSuccess(array $payload)
     {
-        //
+        info('Payment request success Ref: ' . $payload['data']['reference']);
     }
 
     /**
@@ -73,8 +78,7 @@ class PaystackWebhookController extends Controller
      */
     public function handleSubscriptionCreate(array $payload)
     {
-        info('Subscription created: ');
-        info($payload);
+        info('Subscription created Ref: ' . $payload['data']['reference']);
     }
 
     /**
@@ -85,7 +89,7 @@ class PaystackWebhookController extends Controller
      */
     public function handleInvoiceUpdate(array $payload)
     {
-        # code...
+        info('Invoice updated Ref: ' . $payload['data']['reference']);
     }
 
     /**
@@ -96,7 +100,7 @@ class PaystackWebhookController extends Controller
      */
     public function handleSubscriptionDisable(array $payload)
     {
-        //
+        info('Subscription disabled Ref: ' . $payload['data']['reference']);
     }
 
     /**
@@ -107,7 +111,7 @@ class PaystackWebhookController extends Controller
      */
     public function handleInvoiceFailed(array $payload)
     {
-        # code...
+        info('Invoice failed Ref: ' . $payload['data']['reference']);
     }
 
     /**
