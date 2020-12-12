@@ -5,7 +5,7 @@
     <div class="container-fluid" id="login">
         <h3>User Login</h3>
         <h4>
-            Endpoint: <code>/auth/login</code>
+            Endpoint: <code>/user/auth/login</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
@@ -92,7 +92,7 @@
     <div class="container-fluid" id="register">
         <h3>Registration</h3>
         <h4>
-            Endpoint: <code>/auth/register</code>
+            Endpoint: <code>/user/auth/register</code>
         </h4>
         <div class="row">
             <div class="col-md-12">
