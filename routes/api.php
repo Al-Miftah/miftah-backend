@@ -32,22 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('users/{user}/roles', 'RoleController@update')->name('user.roles.update');
     Route::patch('users/{user}/permissions', 'PermissionController@update')->name('user.permissions.update');
 
-    //Organizations & donations
-    Route::apiResource('organizations', 'OrganizationController');
-    Route::apiResource('donations', 'DonationController');
-    Route::get('organizations/{organization}/admins', 'OrganizationAdminController@index')->name('organization.admin.index');
-    Route::post('organizations/{organization}/admins', 'OrganizationAdminController@store')->name('organization.admin.store');
-    Route::delete('organizations/{organization}/admins', 'OrganizationAdminController@destroy')->name('organization.admin.destroy');
-    Route::get('organizations/{organization}/donations', 'OrganizationDonationController@index')->name('organization.donations.index');
-    Route::get('organizations/{organization}/statistics', 'OrganizationStatsController@index')->name('organization.statistics');
-
 });
-
-//Payments
-//TODO: Moved out of Auth temporarily
-Route::get('checkout/paystack/verify', 'PaystackController@verifyTransaction');
-Route::get('checkout/paystack', 'PaystackController@getPlans')->name('checkout.paystack.plans');
-Route::post('paystack/webhook', 'PaystackWebhookController@handleWebhook');
 
 //Email verification
 Route::get('email-verification/verify/{id}', 'Auth\API\VerificationController@verify')->name('api.verification.verify');

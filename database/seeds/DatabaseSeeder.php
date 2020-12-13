@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class, 
             TopicSeeder::class, 
             TagSeeder::class,
-            PlanSeeder::class,
-            OrganizationSeeder::class
         ];
         $this->call($seeders);
     }

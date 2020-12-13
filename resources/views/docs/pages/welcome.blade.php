@@ -13,9 +13,6 @@
                             The base server url is <code>https://miftah.ultrasamad.com/api</code>.
                         </p>
                         <p>
-                            Vist <a href="{{ route('donation.docs.pages') }}">here</a> for docs to donations APIs.
-                        </p>
-                        <p>
                             If you spot any typo or unexpected error or malformed response please contact <a href="mailto:naatogma@gmail.com">Samad</a>
                         </p>
                     </div>
